@@ -1,0 +1,4 @@
+# Netlify configuration for Tools Website
+# Plain static HTML/CSS/JS — no build step.
+[build]
+  publish = "."

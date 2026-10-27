@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tools Website — Free Online Tools for Photos, Signatures &amp; Forms</title>
+<meta name="description" content="Free online tools that give you the exact file your form needs: compress images to a precise KB size, resize photos and signatures for exam and job forms, make passport photos and convert files — right in your browser, no sign-up, no uploads.">
+<link rel="stylesheet" href="assets/style.css">
+<script>
+/* Apply saved theme before first paint to avoid a flash. */
+(function(){try{var t=localStorage.getItem("tw-theme");if(t){document.documentElement.setAttribute("data-theme",t);}else if(window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches){document.documentElement.setAttribute("data-theme","dark");}}catch(e){}})();
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "name": "Tools Website",
+      "description": "Free online tools for compressing and resizing photos and signatures to the exact size online forms require."
+    },
+    {
+      "@type": "WebSite",
+      "name": "Tools Website",
+      "inLanguage": "en"
+    },
+    {
+      "@type": "WebApplication",
+      "name": "Tools Website",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Any (web browser)",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "description": "A collection of free browser-based tools: image compression to an exact KB size, photo and signature resizing for exam and job forms, passport photo making and file conversion. Files are processed locally in the browser and never uploaded."
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Are these tools really free?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. Every tool on this site is completely free to use, with no sign-up, no account and no daily limits. The site is supported by advertising so the tools can stay free for students and job applicants." }
+        },
+        {
+          "@type": "Question",
+          "name": "Are my photos uploaded to a server?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. All processing happens locally in your own browser using JavaScript. Your photo, signature or document never leaves your device, which also means the tools work instantly and even on slow connections." }
+        },
+        {
+          "@type": "Question",
+          "name": "Why does an online form reject my photo?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Most rejections are size problems: the file is larger than the allowed KB limit, the pixel dimensions do not match the specification, or the format is wrong (for example PNG instead of JPG). Our form tools set the exact KB, pixel dimensions and format the form asks for, so the upload is accepted." }
+        },
+        {
+          "@type": "Question",
+          "name": "What sizes do exam and job forms usually need?",
+          "acceptedAnswer": { "@type": "Answer", "text": "It varies by exam. Common examples: SSC and IBPS photos are typically 20–50 KB at 200×230 pixels, signatures 10–20 KB; many Pakistani exams such as FPSC ask for a photo under a set KB limit at a fixed size. Each of our tools has preset buttons for popular exams so you do not have to remember the numbers." }
+        },
+        {
+          "@type": "Question",
+          "name": "Do the tools work on a mobile phone?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. The site is designed mobile-first and every tool runs in a phone browser — no app install needed. You can take a photo, resize it to the exact size your form needs and download the finished file in under a minute." }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need to create an account?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. There are no accounts on this site. Open a tool, add your file, and download the result — that is all." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <!-- Brand name (temporary working name — replace "Tools Website" here and in <title> when the final name is chosen) -->
+    <a class="logo" href="index.html">Tools<span>Website</span></a>
+    <nav class="main-nav" aria-label="Categories">
+      <a href="image-form-tools/">Image &amp; Form Tools</a>
+      <a href="urdu-tools/">Urdu Tools</a>
+      <a href="creator-tools/">Creator Tools</a>
+      <a href="file-converters/">File Converters</a>
+    </nav>
+    <button class="theme-toggle" type="button" aria-label="Switch to dark mode">🌙</button>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="container">
+      <h1>Free tools that hand you the exact file your form needs</h1>
+      <p>Compress a photo to an exact KB size, resize a signature to the pixel, or make a passport photo with a white background — finished, downloadable files for exam and job forms. Everything runs in your browser: no sign-up, no uploads, no waiting.</p>
+      <form class="search-bar" role="search" onsubmit="return false;">
+        <label class="sr-only" for="tool-search" style="position:absolute;left:-9999px;">Search tools</label>
+        <input type="search" id="tool-search" placeholder="Search tools — try “compress”, “signature”, “passport”…" autocomplete="off">
+      </form>
+      <p id="search-empty" class="search-empty" hidden>No tool matches that search yet. Try “compress”, “photo”, “signature” or “pdf”.</p>
+    </div>
+  </section>
+
+  <div class="trust-strip" aria-label="Why use these tools">
+    <div class="container">
+      <span><span class="dot">✓</span> 100% Free</span>
+      <span><span class="dot">✓</span> No Sign-up</span>
+      <span><span class="dot">✓</span> Files processed in your browser — never uploaded</span>
+    </div>
+  </div>
+
+  <section class="section" data-filter-section aria-labelledby="popular-heading">
+    <div class="container">
+      <h2 id="popular-heading">Popular Tools</h2>
+      <p class="section-intro">The tools people reach for when an application form is waiting.</p>
+      <div class="tool-grid">
+        <a class="tool-card" data-name="compress image to kb jpg png size reducer 20kb 50kb 100kb 200kb" href="tools/compress-image-to-kb/">
+          <div class="icon" aria-hidden="true">🗜️</div>
+          <h3>Compress Image to KB</h3>
+          <p>Shrink a JPG, PNG or WebP photo to an exact target size — 20KB, 50KB, 100KB and more — without wrecking the quality.</p>
+        </a>
+        <a class="tool-card" data-name="photo and signature resizer for forms fpsc ppsc ssc ibps neet exam" href="tools/photo-signature-resizer/">
+          <div class="icon" aria-hidden="true">🪪</div>
+          <h3>Photo &amp; Signature Resizer</h3>
+          <p>One page for both uploads: presets for FPSC, PPSC, SSC, IBPS and NEET set the exact pixels and KB for you.</p>
+        </a>
+        <a class="tool-card" data-name="signature resizer to kb sign 10kb 20kb" href="tools/signature-resizer/">
+          <div class="icon" aria-hidden="true">✍️</div>
+          <h3>Signature Resizer</h3>
+          <p>Turn a photo of your signature into a clean file under 10KB or 20KB, at the exact dimensions forms ask for.</p>
+        </a>
+        <a class="tool-card" data-name="passport size photo maker white background print sheet 35x45" href="tools/passport-size-photo-maker/">
+          <div class="icon" aria-hidden="true">📸</div>
+          <h3>Passport Size Photo Maker</h3>
+          <p>Make a proper passport-size photo (35×45&nbsp;mm or 2×2&nbsp;inch) with a white background, plus a printable sheet.</p>
+        </a>
+        <a class="tool-card" data-name="image to pdf jpg to pdf convert under 200kb" href="tools/image-to-pdf/">
+          <div class="icon" aria-hidden="true">📄</div>
+          <h3>Image to PDF</h3>
+          <p>Combine one or more images into a single PDF — with an option to keep the PDF under 200KB for form uploads.</p>
+        </a>
+        <a class="tool-card" data-name="json to toon converter developer token" href="tools/json-to-toon-converter/">
+          <div class="icon" aria-hidden="true">{ }</div>
+          <h3>JSON to TOON Converter</h3>
+          <p>Convert JSON into the compact TOON format to cut token usage when feeding structured data to AI models.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" data-filter-section aria-labelledby="cat-image-heading">
+    <div class="container">
+      <h2 id="cat-image-heading">Image &amp; Form Tools</h2>
+      <p class="section-intro">Everything an online application asks for: the right photo, the right signature, the right size. <a class="view-all" href="image-form-tools/">View the category →</a></p>
+      <div class="tool-grid">
+        <a class="tool-card" data-name="compress image to kb" href="tools/compress-image-to-kb/">
+          <div class="icon" aria-hidden="true">🗜️</div>
+          <h3>Compress Image to KB</h3>
+          <p>Exact-KB compression with one-click presets.</p>
+        </a>
+        <a class="tool-card" data-name="photo and signature resizer forms" href="tools/photo-signature-resizer/">
+          <div class="icon" aria-hidden="true">🪪</div>
+          <h3>Photo &amp; Signature Resizer</h3>
+          <p>Exam presets for FPSC, PPSC, SSC, IBPS, NEET.</p>
+        </a>
+        <a class="tool-card" data-name="passport size photo maker" href="tools/passport-size-photo-maker/">
+          <div class="icon" aria-hidden="true">📸</div>
+          <h3>Passport Size Photo Maker</h3>
+          <p>Correct size, white background, print sheet.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" data-filter-section aria-labelledby="cat-urdu-heading">
+    <div class="container">
+      <h2 id="cat-urdu-heading">Urdu Tools</h2>
+      <p class="section-intro">Urdu OCR, voice typing and transcripts — the tools big sites forget to build. <a class="view-all" href="urdu-tools/">View the category →</a></p>
+      <div class="tool-grid">
+        <div class="tool-card is-soon" data-name="urdu image to text ocr">
+          <span class="badge-soon">Coming soon</span>
+          <div class="icon" aria-hidden="true">🔤</div>
+          <h3>Urdu Image to Text (OCR)</h3>
+          <p>Extract editable Urdu text from a photo or scan.</p>
+        </div>
+        <div class="tool-card is-soon" data-name="urdu voice to text speech typing">
+          <span class="badge-soon">Coming soon</span>
+          <div class="icon" aria-hidden="true">🎙️</div>
+          <h3>Urdu Voice to Text</h3>
+          <p>Speak Urdu and get written text — no typing needed.</p>
+        </div>
+        <div class="tool-card is-soon" data-name="youtube urdu transcript generator">
+          <span class="badge-soon">Coming soon</span>
+          <div class="icon" aria-hidden="true">▶️</div>
+          <h3>YouTube Urdu Transcript</h3>
+          <p>Get the full Urdu transcript of a YouTube video.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" data-filter-section aria-labelledby="cat-creator-heading">
+    <div class="container">
+      <h2 id="cat-creator-heading">Creator Tools</h2>
+      <p class="section-intro">Exact sizes for YouTube, Instagram, TikTok and WhatsApp — no cropping surprises. <a class="view-all" href="creator-tools/">View the category →</a></p>
+      <div class="tool-grid">
+        <div class="tool-card is-soon" data-name="whatsapp sticker maker">
+          <span class="badge-soon">Coming soon</span>
+          <div class="icon" aria-hidden="true">💬</div>
+          <h3>WhatsApp Sticker Maker</h3>
+          <p>Turn any photo into a WhatsApp-ready sticker.</p>
+        </div>
+        <div class="tool-card is-soon" data-name="youtube thumbnail resizer 1280x720">
+          <span class="badge-soon">Coming soon</span>
+          <div class="icon" aria-hidden="true">🖼️</div>
+          <h3>YouTube Thumbnail Resizer</h3>
+          <p>Resize any image to the exact 1280×720 thumbnail size.</p>
+        </div>
+        <div class="tool-card is-soon" data-name="instagram post resizer without cropping">
+          <span class="badge-soon">Coming soon</span>
+          <div class="icon" aria-hidden="true">📷</div>
+          <h3>Instagram Post Resizer</h3>
+          <p>Fit a full photo into Instagram sizes without cropping.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" data-filter-section aria-labelledby="cat-convert-heading">
+    <div class="container">
+      <h2 id="cat-convert-heading">File Converters</h2>
+      <p class="section-intro">Convert images and files between formats — including the exact format a form insists on. <a class="view-all" href="file-converters/">View the category →</a></p>
+      <div class="tool-grid">
+        <a class="tool-card" data-name="image to pdf jpg png convert" href="tools/image-to-pdf/">
+          <div class="icon" aria-hidden="true">📄</div>
+          <h3>Image to PDF</h3>
+          <p>Images into one PDF, optionally under 200KB.</p>
+        </a>
+        <a class="tool-card" data-name="json to toon converter" href="tools/json-to-toon-converter/">
+          <div class="icon" aria-hidden="true">{ }</div>
+          <h3>JSON to TOON Converter</h3>
+          <p>Compact TOON output that uses fewer AI tokens.</p>
+        </a>
+        <div class="tool-card is-soon" data-name="heic to jpg converter iphone">
+          <span class="badge-soon">Coming soon</span>
+          <div class="icon" aria-hidden="true">🔄</div>
+          <h3>HEIC to JPG</h3>
+          <p>Convert iPhone HEIC photos into JPG files forms accept.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section faq" aria-labelledby="faq-heading">
+    <div class="container">
+      <h2 id="faq-heading">Frequently Asked Questions</h2>
+      <details>
+        <summary>Are these tools really free?</summary>
+        <p>Yes. Every tool is completely free, with no sign-up, no account and no daily limits. The site is supported by advertising so the tools can stay free for students and job applicants.</p>
+      </details>
+      <details>
+        <summary>Are my photos uploaded to a server?</summary>
+        <p>No. All processing happens locally in your own browser using JavaScript. Your photo, signature or document never leaves your device — which also means the tools work instantly, even on slow connections.</p>
+      </details>
+      <details>
+        <summary>Why does an online form reject my photo?</summary>
+        <p>Usually it is a size problem: the file is larger than the allowed KB limit, the pixel dimensions do not match the specification, or the format is wrong (for example PNG instead of JPG). Our form tools set the exact KB, pixels and format the form asks for, so the upload is accepted.</p>
+      </details>
+      <details>
+        <summary>What sizes do exam and job forms usually need?</summary>
+        <p>It varies by exam. Common examples: SSC and IBPS photos are typically 20–50 KB at 200×230 pixels and signatures 10–20 KB, while many Pakistani exams such as FPSC set their own KB limit at a fixed size. Each tool has preset buttons for popular exams so you do not have to remember the numbers.</p>
+      </details>
+      <details>
+        <summary>Do the tools work on a mobile phone?</summary>
+        <p>Yes. The site is designed mobile-first and every tool runs in a phone browser — no app install needed. Take a photo, resize it to the exact size your form needs, and download the finished file in under a minute.</p>
+      </details>
+      <details>
+        <summary>Do I need to create an account?</summary>
+        <p>No. There are no accounts on this site. Open a tool, add your file, and download the result — that is all.</p>
+      </details>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h3>Categories</h3>
+        <ul>
+          <li><a href="image-form-tools/">Image &amp; Form Tools</a></li>
+          <li><a href="urdu-tools/">Urdu Tools</a></li>
+          <li><a href="creator-tools/">Creator Tools</a></li>
+          <li><a href="file-converters/">File Converters</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Popular Tools</h3>
+        <ul>
+          <li><a href="tools/compress-image-to-kb/">Compress Image to KB</a></li>
+          <li><a href="tools/photo-signature-resizer/">Photo &amp; Signature Resizer</a></li>
+          <li><a href="tools/signature-resizer/">Signature Resizer</a></li>
+          <li><a href="tools/passport-size-photo-maker/">Passport Size Photo Maker</a></li>
+          <li><a href="tools/image-to-pdf/">Image to PDF</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Site</h3>
+        <ul>
+          <li><a href="about/">About Us</a></li>
+          <li><a href="contact/">Contact Us</a></li>
+          <li><a href="privacy/">Privacy Policy</a></li>
+          <li><a href="terms/">Terms &amp; Conditions</a></li>
+          <li><a href="disclaimer/">Disclaimer</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Tools Website. Free tools — files are processed in your browser and never uploaded.</span>
+      <span><a href="index.html">Home</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/app.js"></script>
+</body>
+</html>
