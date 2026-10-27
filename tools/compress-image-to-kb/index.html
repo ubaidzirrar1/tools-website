@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Compress Image to KB — Exact 20KB, 50KB, 100KB, 200KB Online Free | Tools Website</title>
-<meta name="description" content="Compress a JPG, PNG or WebP image to an exact size in KB — 20KB, 30KB, 50KB, 100KB, 200KB or 500KB — for exam and job form uploads. Free, no sign-up, processed in your browser.">
+<title>Compress Image to KB Online Free — Exact Size, No Sign-up | Tools Website</title>
+<meta name="description" content="Compress JPG, PNG or WebP images to an exact size in KB — 20KB, 30KB, 50KB, 100KB, 200KB or 500KB — for FPSC, SSC, IBPS and other exam and job forms. Free, no sign-up, your file never leaves your device.">
 <link rel="stylesheet" href="../../assets/style.css">
 <script>
 (function(){try{var t=localStorage.getItem("tw-theme");if(t){document.documentElement.setAttribute("data-theme",t);}else if(window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches){document.documentElement.setAttribute("data-theme","dark");}}catch(e){}})();
@@ -19,7 +19,7 @@
       "applicationCategory": "UtilitiesApplication",
       "operatingSystem": "Any (web browser)",
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-      "description": "Compress an image to an exact target file size in kilobytes for online form uploads. Processing happens locally in the browser."
+      "description": "Compress an image to an exact target file size in kilobytes (20KB, 30KB, 50KB, 100KB, 200KB, 500KB) for online form uploads. Processing happens locally in the browser."
     },
     {
       "@type": "BreadcrumbList",
@@ -27,6 +27,32 @@
         { "@type": "ListItem", "position": 1, "name": "Home", "item": "../../" },
         { "@type": "ListItem", "position": 2, "name": "Image & Form Tools", "item": "../../image-form-tools/" },
         { "@type": "ListItem", "position": 3, "name": "Compress Image to KB" }
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "name": "How to compress an image to an exact size in KB",
+      "totalTime": "PT1M",
+      "step": [
+        { "@type": "HowToStep", "position": 1, "name": "Add your image", "text": "Drag and drop your JPG, PNG or WebP image into the tool, or tap to select it from your phone or computer." },
+        { "@type": "HowToStep", "position": 2, "name": "Choose the target size", "text": "Tap a preset size (20KB, 30KB, 50KB, 100KB, 200KB, 500KB) or type the exact KB limit your form asks for." },
+        { "@type": "HowToStep", "position": 3, "name": "Compress", "text": "Press Compress. The tool adjusts quality — and, only if needed, dimensions — until the file lands at or just under your target." },
+        { "@type": "HowToStep", "position": 4, "name": "Download and upload", "text": "Check the before/after sizes and download your compressed JPG, then upload it to your form." }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "Will compressing my photo reduce its quality?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Only as much as your target size forces. The tool searches for the highest quality setting that still fits your KB limit, so a photo compressed to 50KB keeps far more detail than one squeezed to 20KB. For the small sizes at which forms display photos (often 200×230 pixels), the result normally looks identical on screen." } },
+        { "@type": "Question", "name": "Why did the form still reject my photo after compressing?",
+          "acceptedAnswer": { "@type": "Answer", "text": "File size is only one of three checks. Many forms also require exact pixel dimensions (for example 200×230) and a specific format, usually JPG. This tool guarantees the KB size and always outputs JPG. If your form also lists pixel dimensions, use our Photo & Signature Resizer, which sets size and dimensions together." } },
+        { "@type": "Question", "name": "Is my photo uploaded to your server?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. The compression runs entirely inside your browser using your own device — the file is never sent to a server, never stored, and never seen by anyone. You can even switch off your internet after the page loads and the tool will still work." } },
+        { "@type": "Question", "name": "What if my image is already smaller than the target size?",
+          "acceptedAnswer": { "@type": "Answer", "text": "The tool tells you straight away that your image already fits, and you can simply upload your original file. If your form insists on a JPG and your original is a PNG, run the compression anyway — if re-encoding would make the file bigger, the tool hands your original back untouched." } },
+        { "@type": "Question", "name": "Which target size should I choose for my form?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Always match the limit written in your form or advertisement — bigger is not better if the cap is smaller. As a guide: SSC and IBPS photos are typically 20–50KB, signatures 10–20KB, FPSC photos are typically under 30KB, and Indonesia's CPNS pas foto is a maximum of 200KB. Check our specs table on this page, and when in doubt compress to just under the stated maximum." } }
       ]
     }
   ]
@@ -56,31 +82,183 @@
   <section class="page">
     <div class="container">
       <h1>Compress Image to KB</h1>
-      <p class="lede">Shrink a photo to the <strong>exact</strong> file size your form demands. Pick a target, drop your image in, and download a file that comes in at — or just under — that exact size, at the best quality the limit allows.</p>
+      <p class="lede">Shrink a photo to the <strong>exact</strong> file size your form demands — not “smaller”, but at or just under the precise KB limit, at the best quality that limit allows. Free, no sign-up, and your file never leaves your device.</p>
 
-      <div class="notice">
-        <strong>Launching with the MVP build:</strong> this hero tool is first in the Phase 2 build queue and will appear here shortly. The page, presets and guides below describe exactly how it will work.
+      <!-- ===== Tool box ===== -->
+      <div class="tool-box" data-compress-tool data-default-kb="50">
+        <div class="dropzone" data-dropzone tabindex="0" role="button" aria-label="Drop an image here, or activate to choose a file">
+          <input type="file" accept="image/jpeg,image/png,image/webp" data-file-input hidden>
+          <div class="dropzone-icon" aria-hidden="true">🗜️</div>
+          <p class="dropzone-title">Drag &amp; drop your image here</p>
+          <p class="dropzone-sub">or <span class="dropzone-link">click to choose a file</span> — JPG, PNG or WebP</p>
+          <p class="dropzone-note">🔒 Your file never leaves your device — compression happens in your browser.</p>
+        </div>
+
+        <div class="tool-stage" data-stage hidden>
+          <div class="preview-grid">
+            <figure class="preview-card">
+              <img data-preview-img alt="Preview of your original image">
+              <figcaption data-original-meta></figcaption>
+            </figure>
+            <div class="controls-card">
+              <label class="target-label" for="target-kb-main">Target size (KB)</label>
+              <div class="target-row">
+                <input class="target-input" id="target-kb-main" type="number" min="5" max="10000" step="1" value="50" data-target-input inputmode="numeric">
+                <span class="target-unit">KB</span>
+              </div>
+              <div class="chip-row preset-chips" data-preset-chips>
+                <button type="button" class="chip preset-chip" data-kb="20">20 KB</button>
+                <button type="button" class="chip preset-chip" data-kb="30">30 KB</button>
+                <button type="button" class="chip preset-chip" data-kb="50">50 KB</button>
+                <button type="button" class="chip preset-chip" data-kb="100">100 KB</button>
+                <button type="button" class="chip preset-chip" data-kb="200">200 KB</button>
+                <button type="button" class="chip preset-chip" data-kb="500">500 KB</button>
+              </div>
+              <div class="notice already-note" data-already-note hidden></div>
+              <button type="button" class="btn btn-big" data-compress-btn>Compress image</button>
+              <p class="tool-status" data-status role="status" aria-live="polite"></p>
+              <p class="privacy-note">🔒 Your file never leaves your device.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="result-panel" data-result hidden>
+          <h3 class="result-title">✅ Your compressed image is ready</h3>
+          <div class="result-grid">
+            <figure class="preview-card">
+              <img data-result-img alt="Preview of the compressed image">
+              <figcaption data-result-meta></figcaption>
+            </figure>
+            <div class="result-stats">
+              <div class="stat-row"><span>Original size</span><strong data-stat-original></strong></div>
+              <div class="stat-row"><span>Compressed size</span><strong data-stat-compressed></strong></div>
+              <div class="stat-row"><span>You saved</span><strong data-stat-saved></strong></div>
+              <div class="stat-row"><span>Dimensions</span><strong data-stat-dims></strong></div>
+              <a class="btn btn-download" data-download href="#" download>⬇ Download compressed image</a>
+              <button type="button" class="btn btn-ghost" data-reset>Compress another image</button>
+            </div>
+          </div>
+        </div>
       </div>
+      <!-- ===== /Tool box ===== -->
 
-      <h2>Popular target sizes</h2>
+      <h2>Popular sizes</h2>
+      <p>One-tap pages for the sizes forms ask for most — the tool opens already set to that target:</p>
       <div class="chip-row">
-        <span class="chip">Compress to 20KB</span>
-        <span class="chip">Compress to 30KB</span>
-        <span class="chip">Compress to 50KB</span>
-        <span class="chip">Compress to 100KB</span>
-        <span class="chip">Compress to 200KB</span>
-        <span class="chip">Compress to 500KB</span>
+        <a class="chip" href="to-20kb/">Compress to 20KB</a>
+        <a class="chip" href="to-30kb/">Compress to 30KB</a>
+        <a class="chip" href="to-50kb/">Compress to 50KB</a>
+        <a class="chip" href="to-100kb/">Compress to 100KB</a>
+        <a class="chip" href="to-200kb/">Compress to 200KB</a>
+        <a class="chip" href="to-500kb/">Compress to 500KB</a>
       </div>
 
-      <h2>How it will work</h2>
-      <ol>
-        <li>Drag &amp; drop your JPG, PNG or WebP image (or tap to select it).</li>
-        <li>Choose a preset target size, or type any exact KB value.</li>
-        <li>See the original vs. final size side by side, then download the compressed file.</li>
+      <h2>How to use</h2>
+      <ol class="howto-steps">
+        <li><strong>Add your image.</strong> Drag &amp; drop your JPG, PNG or WebP into the box above, tap to select it, or paste it from your clipboard.</li>
+        <li><strong>Choose the target size.</strong> Tap a preset (20KB, 30KB, 50KB, 100KB, 200KB, 500KB) or type the exact KB limit written in your form.</li>
+        <li><strong>Press Compress.</strong> The tool fine-tunes quality — and, only if truly needed, dimensions — until the file lands at or just under your target.</li>
+        <li><strong>Download and upload.</strong> Check the before/after sizes, download the JPG, and upload it to your form.</li>
       </ol>
 
-      <h2>Why exact size matters</h2>
-      <p>Application forms do not ask for “a smaller photo” — they set a hard limit such as “maximum 50 KB”. A generic compressor may hand you 73 KB or 210 KB and the form still rejects the upload. This tool adjusts quality (and, if needed, dimensions) step by step until the output lands at your exact target. And because everything runs in your browser, your photo is never uploaded anywhere.</p>
+      <h2>What size does your form need?</h2>
+      <p>These are the photo and signature specifications most commonly published for major exam and job forms. Advertisements change, so always confirm against your current notice — but this table covers the large majority of cases:</p>
+      <div class="table-wrap">
+        <table class="specs-table">
+          <thead>
+            <tr><th>Exam / form</th><th>Photo</th><th>Signature</th><th>Format</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>SSC</strong> (Staff Selection Commission, India)</td>
+              <td>20–50 KB, 200 × 230 px</td>
+              <td>10–20 KB, 140 × 60 px</td>
+              <td>JPG / JPEG</td>
+            </tr>
+            <tr>
+              <td><strong>IBPS</strong> (bank PO / clerk exams, India)</td>
+              <td>20–50 KB, 200 × 230 px</td>
+              <td>10–20 KB, 140 × 60 px</td>
+              <td>JPG / JPEG</td>
+            </tr>
+            <tr>
+              <td><strong>FPSC</strong> (Federal Public Service Commission, Pakistan)</td>
+              <td colspan="2">Photo typically under 30 KB (small JPG, as specified in the advertisement)</td>
+              <td>JPG / JPEG</td>
+            </tr>
+            <tr>
+              <td><strong>PPSC</strong> (Punjab Public Service Commission, Pakistan)</td>
+              <td colspan="2">Photo typically a small JPG, commonly under ~30 KB — check your advertisement</td>
+              <td>JPG / JPEG</td>
+            </tr>
+            <tr>
+              <td><strong>NEET (UG)</strong> (medical entrance, India)</td>
+              <td colspan="2">Passport-size photo in JPG; the size range is typically 10–200 KB — check the current NTA information bulletin</td>
+              <td>JPG / JPEG</td>
+            </tr>
+            <tr>
+              <td><strong>CPNS / SSCASN</strong> (government jobs, Indonesia)</td>
+              <td colspan="2">Pas foto maximum 200 KB</td>
+              <td>JPG / JPEG</td>
+            </tr>
+            <tr>
+              <td><strong>Most other online forms</strong></td>
+              <td colspan="2">A JPG under 100–200 KB covers most portals; match the exact limit your form states</td>
+              <td>JPG / JPEG</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Why forms demand an exact size in KB</h2>
+      <p>When a government portal or exam body writes “photo must be between 20 KB and 50 KB”, that is not a suggestion — the software checks the file the moment you upload it, and a file of 51 KB or 300 KB is rejected on the spot, sometimes without telling you which rule it broke. Modern phone cameras make this a daily problem: a single photo from a recent phone is commonly 3–8 MB, roughly a hundred times too large. Candidates lose hours — and occasionally the application itself — fighting a file-size rule that has nothing to do with their qualifications.</p>
+      <p>Generic “image compressors” only half-solve this. They shrink by a percentage — say 60% smaller — and hand you whatever size comes out: 73 KB when you needed under 50 KB, or a needlessly blurry 12 KB when you were allowed 200 KB. An exact-size compressor works backwards from your limit instead. You state the target, and the tool searches for the best quality setting that fits inside it, so you always use the full allowance your form gives you and never a byte more.</p>
+
+      <h2>Why a chat AI can't do this for you</h2>
+      <p>It is reasonable to ask why you would visit a tool for something an AI assistant could surely handle. In practice, chat assistants are unreliable at this job: they cannot guarantee an output file of an exact byte size, they often return the image in a different format or at different dimensions, and uploading a personal photograph or signature to a chat service means your file leaves your device and sits on someone else's server. This tool was built for the one thing forms actually check — a downloadable file, of an exact size, in the right format, produced locally on your own phone or computer. No account, no upload, no waiting.</p>
+
+      <h2>How this tool hits your exact target</h2>
+      <p>Under the hood, the tool re-encodes your image as a JPEG and runs a fine-grained search: it tries high quality first, then narrows in on the highest quality whose output still fits under your target — typically within a handful of attempts. If even the lowest quality setting is too large (common with very high-resolution photos squeezed to 20 KB), it progressively reduces the dimensions as well, which is exactly what a small form photo needs anyway. Transparent PNGs are placed on a white background, the standard every form photo expects. Before you download, you see the original and final sizes side by side, so you can verify the number the form will check.</p>
+
+      <h2>Tips for the best result</h2>
+      <ul>
+        <li><strong>Always compress from the original photo.</strong> Re-compressing an already-compressed copy loses quality twice. Go back to the camera original each time.</li>
+        <li><strong>Use the largest size your form allows.</strong> If the notice says “20–50 KB”, compress to 50 KB — you keep noticeably more detail than at 20 KB, and it still passes.</li>
+        <li><strong>Check dimensions as well as size.</strong> If the form lists pixels (for example 200 × 230), the file must match those too — our <a href="../photo-signature-resizer/">Photo &amp; Signature Resizer</a> handles size and dimensions together.</li>
+        <li><strong>Crop before you compress.</strong> A tighter crop around your face means more of the KB budget goes to you, and less to the background.</li>
+        <li><strong>Keep your original file safe.</strong> Download the compressed copy for the form, but never overwrite the only copy of your full-quality photo.</li>
+      </ul>
+
+      <h2>Frequently asked questions</h2>
+      <div class="faq">
+        <details>
+          <summary>Will compressing my photo reduce its quality?</summary>
+          <p>Only as much as your target size forces. The tool searches for the highest quality setting that still fits your KB limit, so a photo compressed to 50KB keeps far more detail than one squeezed to 20KB. For the small sizes at which forms display photos (often 200×230 pixels), the result normally looks identical on screen.</p>
+        </details>
+        <details>
+          <summary>Why did the form still reject my photo after compressing?</summary>
+          <p>File size is only one of three checks. Many forms also require exact pixel dimensions (for example 200×230) and a specific format, usually JPG. This tool guarantees the KB size and always outputs JPG. If your form also lists pixel dimensions, use our <a href="../photo-signature-resizer/">Photo &amp; Signature Resizer</a>, which sets size and dimensions together.</p>
+        </details>
+        <details>
+          <summary>Is my photo uploaded to your server?</summary>
+          <p>No. The compression runs entirely inside your browser, on your own device — the file is never sent to a server, never stored, and never seen by anyone. You can even switch off your internet after the page loads and the tool will still work.</p>
+        </details>
+        <details>
+          <summary>What if my image is already smaller than the target size?</summary>
+          <p>The tool tells you straight away that your image already fits, and you can simply upload your original file. If your form insists on a JPG and your original is a PNG, run the compression anyway — if re-encoding would make the file bigger, the tool hands your original back untouched.</p>
+        </details>
+        <details>
+          <summary>Which target size should I choose for my form?</summary>
+          <p>Always match the limit written in your form or advertisement — bigger is not better if the cap is smaller. As a guide: SSC and IBPS photos are typically 20–50KB, signatures 10–20KB, FPSC photos are typically under 30KB, and Indonesia's CPNS pas foto is a maximum of 200KB. Check the specs table on this page, and when in doubt compress to just under the stated maximum.</p>
+        </details>
+      </div>
+
+      <h2>Share this tool</h2>
+      <p>Know someone fighting a form upload right now? Send them this page:</p>
+      <div class="share-row">
+        <a class="share-btn share-wa" href="https://wa.me/?text=Compress%20image%20to%20an%20exact%20KB%20size%20online%20free%3A%20https%3A%2F%2Ffastidious-alfajores-461763.netlify.app%2Ftools%2Fcompress-image-to-kb%2F" target="_blank" rel="noopener">Share on WhatsApp</a>
+        <a class="share-btn share-fb" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ffastidious-alfajores-461763.netlify.app%2Ftools%2Fcompress-image-to-kb%2F" target="_blank" rel="noopener">Share on Facebook</a>
+      </div>
 
       <h2>Related tools</h2>
       <div class="chip-row">
@@ -134,5 +312,6 @@
 </footer>
 
 <script src="../../assets/app.js"></script>
+<script src="../../assets/compress.js"></script>
 </body>
 </html>
