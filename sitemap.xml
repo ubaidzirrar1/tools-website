@@ -8,6 +8,12 @@
   <url><loc>https://fastidious-alfajores-461763.netlify.app/creator-tools/</loc><priority>0.8</priority></url>
   <url><loc>https://fastidious-alfajores-461763.netlify.app/file-converters/</loc><priority>0.8</priority></url>
   <url><loc>https://fastidious-alfajores-461763.netlify.app/tools/compress-image-to-kb/</loc><priority>0.9</priority></url>
+  <url><loc>https://fastidious-alfajores-461763.netlify.app/tools/compress-image-to-kb/to-20kb/</loc><priority>0.9</priority></url>
+  <url><loc>https://fastidious-alfajores-461763.netlify.app/tools/compress-image-to-kb/to-30kb/</loc><priority>0.9</priority></url>
+  <url><loc>https://fastidious-alfajores-461763.netlify.app/tools/compress-image-to-kb/to-50kb/</loc><priority>0.9</priority></url>
+  <url><loc>https://fastidious-alfajores-461763.netlify.app/tools/compress-image-to-kb/to-100kb/</loc><priority>0.8</priority></url>
+  <url><loc>https://fastidious-alfajores-461763.netlify.app/tools/compress-image-to-kb/to-200kb/</loc><priority>0.8</priority></url>
+  <url><loc>https://fastidious-alfajores-461763.netlify.app/tools/compress-image-to-kb/to-500kb/</loc><priority>0.8</priority></url>
   <url><loc>https://fastidious-alfajores-461763.netlify.app/tools/photo-signature-resizer/</loc><priority>0.9</priority></url>
   <url><loc>https://fastidious-alfajores-461763.netlify.app/tools/signature-resizer/</loc><priority>0.8</priority></url>
   <url><loc>https://fastidious-alfajores-461763.netlify.app/tools/passport-size-photo-maker/</loc><priority>0.8</priority></url>
