@@ -1,7 +1,7 @@
 /* Tools Website — shared JavaScript
    0) Google Analytics 4 (loaded here so every page that includes app.js is tracked)
    1) Dark-mode toggle persisted in localStorage
-   2) Homepage tool search: filters tool cards by name/keywords as the user types */
+   2) Homepage tool search + category pills: filters tool cards as the user types / taps */
 
 /* ---------- Google Analytics 4 ---------- */
 (function () {
@@ -46,37 +46,46 @@
     });
   }
 
-  /* ---------- Tool search (homepage) ---------- */
+  /* ---------- Tool search + category pills (homepage) ----------
+     Both filters apply together: a card shows only when it matches the
+     search text AND the active category pill. */
   var input = document.getElementById("tool-search");
-  if (!input) return;
+  var grid = document.getElementById("tool-grid");
+  if (!input && !grid) return;
 
   var cards = Array.prototype.slice.call(document.querySelectorAll(".tool-card[data-name]"));
   var emptyMsg = document.getElementById("search-empty");
-  var grids = Array.prototype.slice.call(document.querySelectorAll("[data-filter-section]"));
+  var pills = Array.prototype.slice.call(document.querySelectorAll(".pill[data-filter]"));
+  var activeCategory = "all";
 
   function applyFilter() {
-    var q = input.value.trim().toLowerCase();
+    var q = input ? input.value.trim().toLowerCase() : "";
     var visibleTotal = 0;
 
     cards.forEach(function (card) {
       var haystack = (card.getAttribute("data-name") || "") + " " + card.textContent.toLowerCase();
-      var show = q === "" || haystack.indexOf(q) !== -1;
+      var matchSearch = q === "" || haystack.indexOf(q) !== -1;
+      var matchCategory = activeCategory === "all" ||
+        card.getAttribute("data-category") === activeCategory;
+      var show = matchSearch && matchCategory;
       card.style.display = show ? "" : "none";
       if (show) visibleTotal++;
     });
 
-    /* Hide a whole section when none of its cards match. */
-    grids.forEach(function (section) {
-      if (q === "") { section.style.display = ""; return; }
-      var anyVisible = Array.prototype.some.call(
-        section.querySelectorAll(".tool-card[data-name]"),
-        function (c) { return c.style.display !== "none"; }
-      );
-      section.style.display = anyVisible ? "" : "none";
-    });
-
-    if (emptyMsg) emptyMsg.hidden = !(q !== "" && visibleTotal === 0);
+    if (emptyMsg) emptyMsg.hidden = visibleTotal !== 0;
   }
 
-  input.addEventListener("input", applyFilter);
+  if (input) input.addEventListener("input", applyFilter);
+
+  pills.forEach(function (pill) {
+    pill.addEventListener("click", function () {
+      activeCategory = pill.getAttribute("data-filter") || "all";
+      pills.forEach(function (p) {
+        var on = p === pill;
+        p.classList.toggle("is-active", on);
+        p.setAttribute("aria-pressed", on ? "true" : "false");
+      });
+      applyFilter();
+    });
+  });
 })();
