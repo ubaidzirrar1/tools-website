@@ -91,12 +91,158 @@
 <main>
   <section class="hero">
     <div class="container">
-      <h1>Free tools that hand you the exact file your form needs</h1>
+      <h1>Free tools that hand you the <span class="hl">exact file</span> your form needs</h1>
       <p>Compress a photo to an exact KB size, resize a signature to the pixel, or make a passport photo with a white background — finished, downloadable files for exam and job forms. Everything runs in your browser: no sign-up, no uploads, no waiting.</p>
       <form class="search-bar" role="search" onsubmit="return false;">
         <label class="sr-only" for="tool-search" style="position:absolute;left:-9999px;">Search tools</label>
         <input type="search" id="tool-search" placeholder="Search tools — try “compress”, “signature”, “passport”…" autocomplete="off">
       </form>
+    </div>
+  </section>
+
+  <section class="section tools-section" aria-labelledby="tools-heading">
+    <div class="container">
+      <h2 id="tools-heading" class="tools-heading">All Tools</h2>
+      <p class="section-intro tools-intro">Every tool is free and runs right in your browser — nothing is uploaded. Pick a category, or search above.</p>
+      <div class="filter-pills" role="group" aria-label="Filter tools by category">
+        <button type="button" class="pill is-active" data-filter="all" aria-pressed="true">All Tools</button>
+        <button type="button" class="pill" data-filter="image-form" aria-pressed="false">Image &amp; Form Tools</button>
+        <button type="button" class="pill" data-filter="urdu" aria-pressed="false">Urdu Tools</button>
+        <button type="button" class="pill" data-filter="creator" aria-pressed="false">Creator Tools</button>
+        <button type="button" class="pill" data-filter="converters" aria-pressed="false">File Converters</button>
+      </div>
+      <div class="tool-grid" id="tool-grid">
+        <a class="tool-card" data-category="image-form" data-name="compress image to kb jpg png size reducer 20kb 50kb 100kb 200kb" href="tools/compress-image-to-kb/" style="--chip:#e5322d">
+          <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 4v5H4"/><path d="M20 9h-5V4"/><path d="M15 20v-5h5"/><path d="M4 15h5v5"/><path d="M4 4l5 5"/><path d="M20 4l-5 5"/><path d="M20 20l-5-5"/><path d="M4 20l5-5"/></svg></div>
+          <h3>Compress Image to KB</h3>
+          <p>Shrink any photo to an exact target — 20KB, 30KB, 50KB, 100KB, 200KB or 500KB — keeping the best possible quality.</p>
+        </a>
+        <a class="tool-card" data-category="image-form" data-name="photo and signature resizer for forms fpsc ppsc ssc ibps neet exam" href="tools/photo-signature-resizer/" style="--chip:#7048e8">
+          <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="2"/><circle cx="8.3" cy="11" r="1.8"/><path d="M5.6 16.6c.5-1.5 1.5-2.2 2.7-2.2s2.2.7 2.7 2.2"/><path d="M14.5 9.5H19"/><path d="M14.5 13H19"/></svg></div>
+          <h3>Photo &amp; Signature Resizer</h3>
+          <p>Prepare both form uploads in one place, with ready-made presets for FPSC, PPSC, SSC, IBPS and NEET.</p>
+        </a>
+        <a class="tool-card" data-category="image-form" data-name="signature resizer to kb sign 10kb 20kb" href="tools/signature-resizer/" style="--chip:#f76707">
+          <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M17 3a2.83 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="M15 5l4 4"/></svg></div>
+          <h3>Signature Resizer</h3>
+          <p>Photograph your signature and get a clean file under 10KB or 20KB, at the dimensions forms require.</p>
+        </a>
+        <a class="tool-card" data-category="image-form" data-name="passport size photo maker white background print sheet 35x45" href="tools/passport-size-photo-maker/" style="--chip:#0ca678">
+          <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
+          <h3>Passport Size Photo Maker</h3>
+          <p>Passport-size photos (35×45&nbsp;mm / 2×2&nbsp;inch) with a white background and a print-ready sheet of copies.</p>
+        </a>
+        <a class="tool-card" data-category="image-form" data-name="change background to white photo replace plain white" href="tools/change-background-to-white/" style="--chip:#1c7ed6">
+          <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
+          <h3>Change Background to White</h3>
+          <p>Replace a messy photo background with the plain white background most ID and exam photos require.</p>
+        </a>
+        <a class="tool-card" data-category="converters" data-name="image to pdf jpg to pdf convert under 200kb" href="tools/image-to-pdf/" style="--chip:#e64980">
+          <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6"/><path d="M9 17h6"/></svg></div>
+          <h3>Image to PDF</h3>
+          <p>Combine images into a single PDF, with an option to keep the finished PDF under 200KB for form uploads.</p>
+        </a>
+        <a class="tool-card" data-category="converters" data-name="json to toon converter developer token" href="tools/json-to-toon-converter/" style="--chip:#1098ad">
+          <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg></div>
+          <h3>JSON to TOON Converter</h3>
+          <p>Convert JSON to the compact TOON format and cut the token cost of feeding structured data to AI models.</p>
+        </a>
+        <a class="tool-card" data-category="converters" data-name="llm token cost calculator ai api pricing prompt" href="tools/llm-token-cost-calculator/" style="--chip:#5f3dc4">
+          <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><path d="M8.5 6.5h7"/><path d="M8.5 11h.01M12 11h.01M15.5 11h.01M8.5 14.5h.01M12 14.5h.01M15.5 14.5h.01M8.5 18h.01M12 18h.01M15.5 18h.01"/></svg></div>
+          <h3>LLM Token Cost Calculator</h3>
+          <p>Estimate token counts and API costs for your prompts across popular AI models before you send them.</p>
+        </a>
+        <div class="tool-card is-soon" data-category="image-form" data-name="background remover remove photo background ai" style="--chip:#9c36b5">
+          <span class="badge-soon">Coming soon</span>
+          <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M18.8 15.2l.9 2.1 2.1.9-2.1.9-.9 2.1-.9-2.1-2.1-.9 2.1-.9z"/></svg></div>
+          <h3>Background Remover</h3>
+          <p>Remove a photo background automatically with an in-browser AI model — no upload, no watermark.</p>
+        </div>
+        <div class="tool-card is-soon" data-category="image-form" data-name="image upscaler enlarge photo enhance bigger" style="--chip:#66a80f">
+          <span class="badge-soon">Coming soon</span>
+          <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/><path d="M11 8v6"/><path d="M8 11h6"/></svg></div>
+          <h3>Image Upscaler</h3>
+          <p>Enlarge a small or blurry photo so it stays clear when a form or print needs a bigger size.</p>
+        </div>
+        <div class="tool-card is-soon" data-category="urdu" data-name="urdu image to text ocr" style="--chip:#0b7285">
+          <span class="badge-soon">Coming soon</span>
+          <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><path d="M7 8h8"/><path d="M7 12h10"/><path d="M7 16h5"/></svg></div>
+          <h3>Urdu Image to Text (OCR)</h3>
+          <p>Take a photo of an Urdu book page, notice or document and get editable Urdu text out of it.</p>
+        </div>
+        <div class="tool-card is-soon" data-category="urdu" data-name="urdu voice to text speech typing" style="--chip:#748ffc">
+          <span class="badge-soon">Coming soon</span>
+          <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0"/><path d="M12 19v3"/></svg></div>
+          <h3>Urdu Voice to Text</h3>
+          <p>Speak in Urdu and watch it become written text — useful for messages, assignments and notes.</p>
+        </div>
+        <div class="tool-card is-soon" data-category="urdu" data-name="youtube urdu transcript generator" style="--chip:#f03e3e">
+          <span class="badge-soon">Coming soon</span>
+          <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9.5l5 2.5-5 2.5z"/></svg></div>
+          <h3>YouTube Urdu Transcript</h3>
+          <p>Paste a YouTube link and get the full Urdu transcript of a lecture, sermon or interview to read and save.</p>
+        </div>
+        <div class="tool-card is-soon" data-category="urdu" data-name="roman urdu to urdu converter script" style="--chip:#2f9e44">
+          <span class="badge-soon">Coming soon</span>
+          <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></div>
+          <h3>Roman Urdu to Urdu Converter</h3>
+          <p>Type in Roman Urdu (“aap kaise hain”) and convert it into proper Urdu script automatically.</p>
+        </div>
+        <div class="tool-card is-soon" data-category="creator" data-name="whatsapp sticker maker" style="--chip:#12b886">
+          <span class="badge-soon">Coming soon</span>
+          <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></div>
+          <h3>WhatsApp Sticker Maker</h3>
+          <p>Turn any photo into a properly sized WhatsApp sticker in a few taps.</p>
+        </div>
+        <div class="tool-card is-soon" data-category="creator" data-name="whatsapp dp resizer full photo profile picture" style="--chip:#087f5b">
+          <span class="badge-soon">Coming soon</span>
+          <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+          <h3>WhatsApp DP Resizer</h3>
+          <p>Fit your full photo into a WhatsApp profile picture without cutting off heads or edges.</p>
+        </div>
+        <div class="tool-card is-soon" data-category="creator" data-name="youtube thumbnail resizer 1280x720" style="--chip:#f08c00">
+          <span class="badge-soon">Coming soon</span>
+          <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M10 8.5l4.5 2.5L10 13.5z"/><path d="M12 17v4"/><path d="M8 21h8"/></svg></div>
+          <h3>YouTube Thumbnail Resizer</h3>
+          <p>Resize any image to the exact 1280×720 YouTube thumbnail size, ready to upload.</p>
+        </div>
+        <div class="tool-card is-soon" data-category="creator" data-name="instagram post resizer without cropping" style="--chip:#d6336c">
+          <span class="badge-soon">Coming soon</span>
+          <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.3 6.7h.01"/></svg></div>
+          <h3>Instagram Post Resizer</h3>
+          <p>Fit a whole photo into Instagram's square or portrait sizes without cropping anything important.</p>
+        </div>
+        <div class="tool-card is-soon" data-category="converters" data-name="heic to jpg converter iphone" style="--chip:#4dabf7">
+          <span class="badge-soon">Coming soon</span>
+          <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11.5 18.5h1"/></svg></div>
+          <h3>HEIC to JPG</h3>
+          <p>Convert iPhone HEIC photos to JPG so any form or website will accept them.</p>
+        </div>
+        <div class="tool-card is-soon" data-category="converters" data-name="webp to jpg converter" style="--chip:#3bc9db">
+          <span class="badge-soon">Coming soon</span>
+          <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+          <h3>WebP to JPG</h3>
+          <p>Turn WebP images downloaded from the web into standard JPG or PNG files.</p>
+        </div>
+        <div class="tool-card is-soon" data-category="converters" data-name="avif to jpg converter" style="--chip:#9775fa">
+          <span class="badge-soon">Coming soon</span>
+          <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2.5" y="2.5" width="19" height="19" rx="2"/><path d="M7.5 2.5v19"/><path d="M16.5 2.5v19"/><path d="M2.5 12h5"/><path d="M2.5 7h5"/><path d="M2.5 17h5"/><path d="M16.5 17h5"/><path d="M16.5 12h5"/><path d="M16.5 7h5"/></svg></div>
+          <h3>AVIF to JPG</h3>
+          <p>Convert newer AVIF images into JPG files that open everywhere.</p>
+        </div>
+        <div class="tool-card is-soon" data-category="converters" data-name="compress pdf to kb shrink pdf 200kb 300kb 500kb" style="--chip:#a61e4d">
+          <span class="badge-soon">Coming soon</span>
+          <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M12 11v5"/><path d="M9.8 13.8L12 16l2.2-2.2"/></svg></div>
+          <h3>Compress PDF to KB</h3>
+          <p>Shrink a PDF to the exact KB limit a form sets — 200KB, 300KB, 500KB and more.</p>
+        </div>
+        <div class="tool-card is-soon" data-category="converters" data-name="merge split pdf combine separate" style="--chip:#1864ab">
+          <span class="badge-soon">Coming soon</span>
+          <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></div>
+          <h3>Merge &amp; Split PDF</h3>
+          <p>Combine several PDFs into one, or split one PDF into separate files — in your browser.</p>
+        </div>
+      </div>
       <p id="search-empty" class="search-empty" hidden>No tool matches that search yet. Try “compress”, “photo”, “signature” or “pdf”.</p>
     </div>
   </section>
@@ -108,148 +254,6 @@
       <span><span class="dot">✓</span> Files processed in your browser — never uploaded</span>
     </div>
   </div>
-
-  <section class="section" data-filter-section aria-labelledby="popular-heading">
-    <div class="container">
-      <h2 id="popular-heading">Popular Tools</h2>
-      <p class="section-intro">The tools people reach for when an application form is waiting.</p>
-      <div class="tool-grid">
-        <a class="tool-card" data-name="compress image to kb jpg png size reducer 20kb 50kb 100kb 200kb" href="tools/compress-image-to-kb/">
-          <div class="icon" aria-hidden="true">🗜️</div>
-          <h3>Compress Image to KB</h3>
-          <p>Shrink a JPG, PNG or WebP photo to an exact target size — 20KB, 50KB, 100KB and more — without wrecking the quality.</p>
-        </a>
-        <a class="tool-card" data-name="photo and signature resizer for forms fpsc ppsc ssc ibps neet exam" href="tools/photo-signature-resizer/">
-          <div class="icon" aria-hidden="true">🪪</div>
-          <h3>Photo &amp; Signature Resizer</h3>
-          <p>One page for both uploads: presets for FPSC, PPSC, SSC, IBPS and NEET set the exact pixels and KB for you.</p>
-        </a>
-        <a class="tool-card" data-name="signature resizer to kb sign 10kb 20kb" href="tools/signature-resizer/">
-          <div class="icon" aria-hidden="true">✍️</div>
-          <h3>Signature Resizer</h3>
-          <p>Turn a photo of your signature into a clean file under 10KB or 20KB, at the exact dimensions forms ask for.</p>
-        </a>
-        <a class="tool-card" data-name="passport size photo maker white background print sheet 35x45" href="tools/passport-size-photo-maker/">
-          <div class="icon" aria-hidden="true">📸</div>
-          <h3>Passport Size Photo Maker</h3>
-          <p>Make a proper passport-size photo (35×45&nbsp;mm or 2×2&nbsp;inch) with a white background, plus a printable sheet.</p>
-        </a>
-        <a class="tool-card" data-name="image to pdf jpg to pdf convert under 200kb" href="tools/image-to-pdf/">
-          <div class="icon" aria-hidden="true">📄</div>
-          <h3>Image to PDF</h3>
-          <p>Combine one or more images into a single PDF — with an option to keep the PDF under 200KB for form uploads.</p>
-        </a>
-        <a class="tool-card" data-name="json to toon converter developer token" href="tools/json-to-toon-converter/">
-          <div class="icon" aria-hidden="true">{ }</div>
-          <h3>JSON to TOON Converter</h3>
-          <p>Convert JSON into the compact TOON format to cut token usage when feeding structured data to AI models.</p>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" data-filter-section aria-labelledby="cat-image-heading">
-    <div class="container">
-      <h2 id="cat-image-heading">Image &amp; Form Tools</h2>
-      <p class="section-intro">Everything an online application asks for: the right photo, the right signature, the right size. <a class="view-all" href="image-form-tools/">View the category →</a></p>
-      <div class="tool-grid">
-        <a class="tool-card" data-name="compress image to kb" href="tools/compress-image-to-kb/">
-          <div class="icon" aria-hidden="true">🗜️</div>
-          <h3>Compress Image to KB</h3>
-          <p>Exact-KB compression with one-click presets.</p>
-        </a>
-        <a class="tool-card" data-name="photo and signature resizer forms" href="tools/photo-signature-resizer/">
-          <div class="icon" aria-hidden="true">🪪</div>
-          <h3>Photo &amp; Signature Resizer</h3>
-          <p>Exam presets for FPSC, PPSC, SSC, IBPS, NEET.</p>
-        </a>
-        <a class="tool-card" data-name="passport size photo maker" href="tools/passport-size-photo-maker/">
-          <div class="icon" aria-hidden="true">📸</div>
-          <h3>Passport Size Photo Maker</h3>
-          <p>Correct size, white background, print sheet.</p>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" data-filter-section aria-labelledby="cat-urdu-heading">
-    <div class="container">
-      <h2 id="cat-urdu-heading">Urdu Tools</h2>
-      <p class="section-intro">Urdu OCR, voice typing and transcripts — the tools big sites forget to build. <a class="view-all" href="urdu-tools/">View the category →</a></p>
-      <div class="tool-grid">
-        <div class="tool-card is-soon" data-name="urdu image to text ocr">
-          <span class="badge-soon">Coming soon</span>
-          <div class="icon" aria-hidden="true">🔤</div>
-          <h3>Urdu Image to Text (OCR)</h3>
-          <p>Extract editable Urdu text from a photo or scan.</p>
-        </div>
-        <div class="tool-card is-soon" data-name="urdu voice to text speech typing">
-          <span class="badge-soon">Coming soon</span>
-          <div class="icon" aria-hidden="true">🎙️</div>
-          <h3>Urdu Voice to Text</h3>
-          <p>Speak Urdu and get written text — no typing needed.</p>
-        </div>
-        <div class="tool-card is-soon" data-name="youtube urdu transcript generator">
-          <span class="badge-soon">Coming soon</span>
-          <div class="icon" aria-hidden="true">▶️</div>
-          <h3>YouTube Urdu Transcript</h3>
-          <p>Get the full Urdu transcript of a YouTube video.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" data-filter-section aria-labelledby="cat-creator-heading">
-    <div class="container">
-      <h2 id="cat-creator-heading">Creator Tools</h2>
-      <p class="section-intro">Exact sizes for YouTube, Instagram, TikTok and WhatsApp — no cropping surprises. <a class="view-all" href="creator-tools/">View the category →</a></p>
-      <div class="tool-grid">
-        <div class="tool-card is-soon" data-name="whatsapp sticker maker">
-          <span class="badge-soon">Coming soon</span>
-          <div class="icon" aria-hidden="true">💬</div>
-          <h3>WhatsApp Sticker Maker</h3>
-          <p>Turn any photo into a WhatsApp-ready sticker.</p>
-        </div>
-        <div class="tool-card is-soon" data-name="youtube thumbnail resizer 1280x720">
-          <span class="badge-soon">Coming soon</span>
-          <div class="icon" aria-hidden="true">🖼️</div>
-          <h3>YouTube Thumbnail Resizer</h3>
-          <p>Resize any image to the exact 1280×720 thumbnail size.</p>
-        </div>
-        <div class="tool-card is-soon" data-name="instagram post resizer without cropping">
-          <span class="badge-soon">Coming soon</span>
-          <div class="icon" aria-hidden="true">📷</div>
-          <h3>Instagram Post Resizer</h3>
-          <p>Fit a full photo into Instagram sizes without cropping.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" data-filter-section aria-labelledby="cat-convert-heading">
-    <div class="container">
-      <h2 id="cat-convert-heading">File Converters</h2>
-      <p class="section-intro">Convert images and files between formats — including the exact format a form insists on. <a class="view-all" href="file-converters/">View the category →</a></p>
-      <div class="tool-grid">
-        <a class="tool-card" data-name="image to pdf jpg png convert" href="tools/image-to-pdf/">
-          <div class="icon" aria-hidden="true">📄</div>
-          <h3>Image to PDF</h3>
-          <p>Images into one PDF, optionally under 200KB.</p>
-        </a>
-        <a class="tool-card" data-name="json to toon converter" href="tools/json-to-toon-converter/">
-          <div class="icon" aria-hidden="true">{ }</div>
-          <h3>JSON to TOON Converter</h3>
-          <p>Compact TOON output that uses fewer AI tokens.</p>
-        </a>
-        <div class="tool-card is-soon" data-name="heic to jpg converter iphone">
-          <span class="badge-soon">Coming soon</span>
-          <div class="icon" aria-hidden="true">🔄</div>
-          <h3>HEIC to JPG</h3>
-          <p>Convert iPhone HEIC photos into JPG files forms accept.</p>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <section class="section faq" aria-labelledby="faq-heading">
     <div class="container">
