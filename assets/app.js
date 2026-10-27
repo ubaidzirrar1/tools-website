@@ -1,6 +1,20 @@
 /* Tools Website — shared JavaScript
+   0) Google Analytics 4 (loaded here so every page that includes app.js is tracked)
    1) Dark-mode toggle persisted in localStorage
    2) Homepage tool search: filters tool cards by name/keywords as the user types */
+
+/* ---------- Google Analytics 4 ---------- */
+(function () {
+  var GA_ID = "G-MSLHDKGRN4";
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://www.googletagmanager.com/gtag/js?id=" + GA_ID;
+  document.head.appendChild(s);
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  window.gtag("js", new Date());
+  window.gtag("config", GA_ID);
+})();
 (function () {
   "use strict";
 
