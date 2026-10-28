@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Photo &amp; Signature Resizer for Online Forms — FPSC, PPSC, SSC, IBPS, NEET | Tools Website</title>
-<meta name="description" content="Resize your photo and signature to the exact pixels and KB your application form requires, with one-click presets for FPSC, PPSC, SSC, IBPS and NEET. Free, in your browser, no sign-up.">
+<title>Photo and Signature Resizer for Online Forms — Exact Pixels &amp; KB, Free | Tools Website</title>
+<meta name="description" content="Resize your photo and signature for online forms to exact pixels and KB — SSC 200×230 (20–50KB), IBPS, FPSC, PPSC and passport-size presets with an aspect-locked crop. Free, no sign-up, files never leave your device.">
 <link rel="stylesheet" href="../../assets/style.css">
 <script>
 (function(){try{var t=localStorage.getItem("tw-theme");if(t){document.documentElement.setAttribute("data-theme",t);}else if(window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches){document.documentElement.setAttribute("data-theme","dark");}}catch(e){}})();
@@ -15,18 +15,112 @@
   "@graph": [
     {
       "@type": "WebApplication",
-      "name": "Photo & Signature Resizer for Forms",
+      "name": "Photo and Signature Resizer for Online Forms",
       "applicationCategory": "UtilitiesApplication",
       "operatingSystem": "Any (web browser)",
-      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-      "description": "Resize a photo and signature to the exact pixel dimensions and KB limits of exam and job application forms, with presets for FPSC, PPSC, SSC, IBPS and NEET."
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "Resize a photo and signature to the exact pixel dimensions and KB band of exam and job application forms (SSC, IBPS, FPSC, PPSC, passport size), with an aspect-locked crop frame. Processing happens locally in the browser."
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Home", "item": "../../" },
-        { "@type": "ListItem", "position": 2, "name": "Image & Form Tools", "item": "../../image-form-tools/" },
-        { "@type": "ListItem", "position": 3, "name": "Photo & Signature Resizer" }
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "../../"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Image & Form Tools",
+          "item": "../../image-form-tools/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Photo & Signature Resizer"
+        }
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "name": "How to resize a photo and signature for an online form",
+      "totalTime": "PT2M",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Pick photo or signature, then your exam preset",
+          "text": "Use the Photo / Signature tabs and tap your exam preset (SSC, IBPS, FPSC, PPSC, passport size) — or choose Custom and type the exact pixels and KB your form asks for."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Add your image",
+          "text": "Drag and drop your JPG, PNG or WebP image into the tool, or tap to select it from your phone or computer."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "Crop with the locked frame",
+          "text": "Drag the red frame over your face or your signature. The frame keeps the preset's exact proportions — drag its corner handle to resize it, or tap Auto center-crop."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "name": "Make it and download",
+          "text": "Press the Make button. The tool renders exactly the preset's pixels and fits the file into the required KB band, then shows you the exact dimensions and size before you download."
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is the difference between this tool and Compress Image to KB?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "That tool changes only the file size (KB) and keeps your photo's original proportions. This tool changes size AND dimensions together: the output is exactly the pixel width and height the form demands (for example 200 × 230 px) AND inside the required KB band. If your form lists pixels, you need this tool; if it lists only a KB limit, either tool works."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "My photo was already the right KB, but the form still rejected it. Why?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Because most forms check three things, not one: the file format (JPG), the file size in KB, and the exact pixel dimensions. A 40 KB photo that is 800 × 1000 pixels still fails an SSC upload that demands 200 × 230 pixels. This tool sets all three at once, which is why the result panel shows the exact dimensions next to the size."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why would a form reject a file for being too SMALL?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Several exam portals — SSC and IBPS among them — specify a band such as 20–50 KB, and their software rejects files below the minimum just as firmly as files above the maximum. If your cropped photo encodes to less than the minimum at top quality, this tool adds a small amount of harmless padding data inside the JPEG file (in comment segments decoders ignore) to bring it into the band. The picture itself is not changed at all."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How should I photograph my signature?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sign with a dark blue or black pen on a plain white sheet of paper — no ruled lines — and sign a little larger than usual so the strokes are bold. Photograph it straight-on in bright, even light, filling the frame with the signature area, and check there are no shadows across the paper. Then use the Signature tab here: crop tightly around the signature with the locked 140 × 60 frame."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is my photo or signature uploaded to your server?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Everything — cropping, resizing, encoding — runs inside your browser on your own device. Your files are never sent anywhere, never stored, and never seen by anyone. The tool even keeps working if you switch off your internet after the page has loaded."
+          }
+        }
       ]
     }
   ]
@@ -50,37 +144,229 @@
 
 <main>
   <nav class="breadcrumbs container" aria-label="Breadcrumb">
-    <a href="../../index.html">Home</a><span class="sep">›</span><a href="../../image-form-tools/">Image &amp; Form Tools</a><span class="sep">›</span><span aria-current="page">Photo &amp; Signature Resizer</span>
+    <a href="../../index.html">Home</a><span class="sep">›</span><a href="../../image-form-tools/">Image & Form Tools</a><span class="sep">›</span><span aria-current="page">Photo & Signature Resizer</span>
   </nav>
 
   <section class="page">
     <div class="container">
-      <h1>Photo &amp; Signature Resizer for Online Forms</h1>
-      <p class="lede">Almost every application form asks for two uploads — a photo and a signature — each with its own pixel size and KB limit. This tool prepares both in one place: pick your exam, and the exact specifications are applied for you.</p>
+      <h1>Photo and Signature Resizer for Online Forms</h1>
+      <p class="lede">One tool for both uploads every form demands: your <strong>photo</strong> and your <strong>signature</strong>, each rendered at the <strong>exact pixels</strong> and fitted into the <strong>exact KB band</strong> your exam requires. Pick a preset — SSC, IBPS, FPSC, PPSC or passport size — crop with the locked frame, and download a file the form will accept. Free, no sign-up, and your files never leave your device.</p>
 
-      <div class="notice">
-        <strong>Launching with the MVP build:</strong> this tool is in the Phase 2 build queue and will appear here shortly, with the presets listed below ready to use.
+      <!-- ===== Tool box ===== -->
+      <div class="tool-box" data-form-resizer>
+        <div class="mode-tabs" role="tablist" aria-label="Choose photo or signature">
+          <button type="button" class="mode-tab is-active" role="tab" aria-selected="true" data-mode-tab="photo">📷 Photo</button>
+          <button type="button" class="mode-tab" role="tab" aria-selected="false" data-mode-tab="signature">✍️ Signature</button>
+        </div>
+        <div class="fr-workspace" data-workspace data-mode="photo">
+    <div class="dropzone" data-dropzone tabindex="0" role="button" aria-label="Drop your photo here, or activate to choose a file">
+      <input type="file" accept="image/jpeg,image/png,image/webp" data-file-input hidden>
+      <div class="dropzone-icon" aria-hidden="true">📷</div>
+      <p class="dropzone-title">Drag &amp; drop your photo here</p>
+      <p class="dropzone-sub">or <span class="dropzone-link">click to choose a file</span> — JPG, PNG or WebP</p>
+      <p class="dropzone-note">🔒 Your file never leaves your device — resizing happens in your browser.</p>
+    </div>
+
+    <div class="fr-stage" data-stage hidden>
+      <p class="fr-orig-meta" data-original-meta></p>
+      <div class="crop-stage" data-crop-stage>
+        <img data-crop-img alt="Your uploaded photo with a crop frame over it">
+        <div class="crop-box" data-crop-box><div class="crop-handle" data-crop-handle aria-hidden="true"></div></div>
+      </div>
+      <p class="fr-crop-hint">Drag the frame to move it. Drag the round corner handle to resize it — its shape stays locked to your preset's proportions.</p>
+      <div class="controls-card fr-controls">
+        <span class="target-label">Choose your exam / size</span>
+        <div class="chip-row preset-chips" data-preset-chips></div>
+        <div class="fr-custom" data-custom-fields hidden>
+        <label>Width (px)<input type="number" min="10" max="8000" step="1" placeholder="e.g. 200" data-custom-w inputmode="numeric"></label>
+        <label>Height (px)<input type="number" min="10" max="8000" step="1" placeholder="e.g. 230" data-custom-h inputmode="numeric"></label>
+        <label>Max size (KB)<input type="number" min="1" max="10000" step="1" placeholder="e.g. 50" data-custom-maxkb inputmode="numeric"></label>
+        <label>Min size (KB, optional)<input type="number" min="0" max="10000" step="1" placeholder="0" data-custom-minkb inputmode="numeric"></label>
+      </div>
+        <p class="fr-preset-spec" data-preset-spec></p>
+        <div class="fr-actions">
+          <button type="button" class="btn btn-ghost" data-autocrop>⤢ Auto center-crop</button>
+          <button type="button" class="btn btn-big" data-make-btn>Make my photo</button>
+        </div>
+        <p class="tool-status" data-status role="status" aria-live="polite"></p>
+        <p class="privacy-note">🔒 Your file never leaves your device.</p>
+      </div>
+    </div>
+
+    <div class="result-panel" data-result hidden>
+      <h3 class="result-title">✅ Your photo is ready</h3>
+      <div class="result-grid">
+        <figure class="preview-card">
+          <img data-result-img alt="Preview of your resized photo">
+          <figcaption data-result-meta></figcaption>
+        </figure>
+        <div class="result-stats">
+          <div class="stat-row"><span>Dimensions</span><strong data-stat-dims></strong></div>
+          <div class="stat-row"><span>File size</span><strong data-stat-size></strong></div>
+          <div class="stat-row"><span>Required</span><strong data-stat-band></strong></div>
+          <div class="band-status" data-band-status></div>
+          <p class="pad-note" data-pad-note hidden></p>
+          <a class="btn btn-download" data-download href="#" download>⬇ Download photo</a>
+          <button type="button" class="btn btn-ghost" data-reset>Start over</button>
+        </div>
+      </div>
+    </div>
+  </div>
+        <div class="fr-workspace" data-workspace data-mode="signature">
+    <div class="dropzone" data-dropzone tabindex="0" role="button" aria-label="Drop your signature photo here, or activate to choose a file">
+      <input type="file" accept="image/jpeg,image/png,image/webp" data-file-input hidden>
+      <div class="dropzone-icon" aria-hidden="true">✍️</div>
+      <p class="dropzone-title">Drag &amp; drop your signature photo here</p>
+      <p class="dropzone-sub">or <span class="dropzone-link">click to choose a file</span> — JPG, PNG or WebP</p>
+      <p class="dropzone-note">🔒 Your file never leaves your device — resizing happens in your browser.</p>
+    </div>
+
+    <div class="fr-stage" data-stage hidden>
+      <p class="fr-orig-meta" data-original-meta></p>
+      <div class="crop-stage" data-crop-stage>
+        <img data-crop-img alt="Your uploaded signature with a crop frame over it">
+        <div class="crop-box" data-crop-box><div class="crop-handle" data-crop-handle aria-hidden="true"></div></div>
+      </div>
+      <p class="fr-crop-hint">Drag the frame to move it. Drag the round corner handle to resize it — its shape stays locked to your preset's proportions.</p>
+      <div class="notice fr-sig-tip">
+        <strong>Signature tip:</strong> sign with a dark blue or black pen on plain white paper, make the signature big enough to fill the frame, and photograph it straight-on in good, even light — shadows across the paper are the most common reason signature uploads look grey and get rejected.
+      </div>
+      <div class="controls-card fr-controls">
+        <span class="target-label">Choose your exam / size</span>
+        <div class="chip-row preset-chips" data-preset-chips></div>
+        <div class="fr-custom" data-custom-fields hidden>
+        <label>Width (px)<input type="number" min="10" max="8000" step="1" placeholder="e.g. 200" data-custom-w inputmode="numeric"></label>
+        <label>Height (px)<input type="number" min="10" max="8000" step="1" placeholder="e.g. 230" data-custom-h inputmode="numeric"></label>
+        <label>Max size (KB)<input type="number" min="1" max="10000" step="1" placeholder="e.g. 50" data-custom-maxkb inputmode="numeric"></label>
+        <label>Min size (KB, optional)<input type="number" min="0" max="10000" step="1" placeholder="0" data-custom-minkb inputmode="numeric"></label>
+      </div>
+        <p class="fr-preset-spec" data-preset-spec></p>
+        <div class="fr-actions">
+          <button type="button" class="btn btn-ghost" data-autocrop>⤢ Auto center-crop</button>
+          <button type="button" class="btn btn-big" data-make-btn>Make my signature</button>
+        </div>
+        <p class="tool-status" data-status role="status" aria-live="polite"></p>
+        <p class="privacy-note">🔒 Your file never leaves your device.</p>
+      </div>
+    </div>
+
+    <div class="result-panel" data-result hidden>
+      <h3 class="result-title">✅ Your signature is ready</h3>
+      <div class="result-grid">
+        <figure class="preview-card">
+          <img data-result-img alt="Preview of your resized signature photo">
+          <figcaption data-result-meta></figcaption>
+        </figure>
+        <div class="result-stats">
+          <div class="stat-row"><span>Dimensions</span><strong data-stat-dims></strong></div>
+          <div class="stat-row"><span>File size</span><strong data-stat-size></strong></div>
+          <div class="stat-row"><span>Required</span><strong data-stat-band></strong></div>
+          <div class="band-status" data-band-status></div>
+          <p class="pad-note" data-pad-note hidden></p>
+          <a class="btn btn-download" data-download href="#" download>⬇ Download signature</a>
+          <button type="button" class="btn btn-ghost" data-reset>Start over</button>
+        </div>
+      </div>
+    </div>
+  </div>
+      </div>
+      <!-- ===== /Tool box ===== -->
+
+      <h2>All presets at a glance</h2>
+      <p>These are the specifications the presets apply. SSC and IBPS publish exact numbers; the Pakistani commissions set their photo limit in each advertisement, so their rows are marked “typically” — always confirm against your current notice before the last date.</p>
+      <div class="table-wrap">
+        <table class="specs-table">
+          <thead>
+            <tr><th>Exam / form</th><th>Photo</th><th>Signature</th><th>Format</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>SSC</strong> (Staff Selection Commission, India)</td>
+              <td>200 × 230 px, 20–50 KB</td>
+              <td>140 × 60 px, 10–20 KB</td>
+              <td>JPG / JPEG</td>
+            </tr>
+            <tr>
+              <td><strong>IBPS</strong> (bank PO / clerk exams, India)</td>
+              <td>200 × 230 px, 20–50 KB</td>
+              <td>140 × 60 px, 10–20 KB</td>
+              <td>JPG / JPEG</td>
+            </tr>
+            <tr>
+              <td><strong>FPSC</strong> (Federal Public Service Commission, Pakistan)</td>
+              <td colspan="2">Photo 200 × 230 px, typically under 30 KB — as specified in the advertisement</td>
+              <td>JPG / JPEG</td>
+            </tr>
+            <tr>
+              <td><strong>PPSC</strong> (Punjab Public Service Commission, Pakistan)</td>
+              <td colspan="2">Photo 200 × 230 px, typically a small JPG commonly under ~30 KB — check your advertisement</td>
+              <td>JPG / JPEG</td>
+            </tr>
+            <tr>
+              <td><strong>NEET (UG)</strong> (medical entrance, India)</td>
+              <td colspan="2">Passport-size photo in JPG; size typically 10–200 KB — check the current NTA information bulletin</td>
+              <td>JPG / JPEG</td>
+            </tr>
+            <tr>
+              <td><strong>Passport / ID photo</strong> (35 × 45 mm at 300 DPI)</td>
+              <td colspan="2">413 × 531 px, up to 200 KB</td>
+              <td>JPG / JPEG</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
 
-      <h2>Exam presets</h2>
-      <div class="chip-row">
-        <span class="chip">FPSC</span>
-        <span class="chip">PPSC</span>
-        <span class="chip">SSC</span>
-        <span class="chip">IBPS</span>
-        <span class="chip">NEET</span>
-        <span class="chip">Custom size…</span>
-      </div>
-
-      <h2>How it will work</h2>
-      <ol>
-        <li>Choose your exam or organisation from the preset list (or enter custom pixels + KB).</li>
-        <li>Add your photo, crop it with the guide frame, and download the finished file.</li>
-        <li>Add a photo of your signature and download that too — both files, form-ready.</li>
+      <h2>How to use</h2>
+      <ol class="howto-steps">
+        <li><strong>Pick Photo or Signature, then your preset.</strong> The tabs at the top of the tool switch modes; each preset sets the exact pixels and KB band for you — or choose Custom and type your form's numbers.</li>
+        <li><strong>Add your image.</strong> Drag &amp; drop your JPG, PNG or WebP, or tap to select it from your phone or computer.</li>
+        <li><strong>Crop with the locked frame.</strong> Drag the red frame over your face or signature; drag its corner handle to resize. The frame can never drift into the wrong proportions. Not sure? Tap <em>Auto center-crop</em>.</li>
+        <li><strong>Make it and download.</strong> The result panel shows the exact dimensions and file size with a green in-band confirmation — download and upload it to your form.</li>
       </ol>
 
-      <h2>Typical specifications (always verify with the official notice)</h2>
-      <p>As a guide: SSC and IBPS photos are commonly 200×230 pixels at 20–50 KB, with signatures around 140×60 pixels at 10–20 KB. Pakistani commissions such as FPSC and PPSC set their own limits per advertisement. Presets on this page will carry the current known values, and the <a href="../../disclaimer/">Disclaimer</a> explains why you should always cross-check the official instructions.</p>
+      <h2>Why forms reject your photo — and it's rarely your fault</h2>
+      <p>Every application portal checks your uploads with software, and software is pedantic. It typically verifies three separate things: that the file is a JPG, that its size in kilobytes sits inside a stated band, and that its pixel dimensions match the specification exactly — 200 × 230 means 200 × 230, not “about that size”. A photo can pass two checks and fail the third, and many portals respond with nothing more helpful than “upload failed”. Candidates then shrink the file again and again, making it blurrier without ever touching the actual problem, which was the dimensions all along.</p>
+      <p>The KB band surprises people in the other direction too. Because a band has a minimum as well as a maximum, a very clean, small photo can be rejected for being too small — under 20 KB for an SSC photo, under 10 KB for a signature. Making a file bigger without touching the picture sounds impossible, but it is a standard, legitimate technique, explained below.</p>
+
+      <h2>A photo and a signature are different jobs</h2>
+      <p>Forms ask for both because they do different work. The photograph identifies you — invigilators compare it with your face and with the photo on your admit card — so it needs a clear, recent, front-facing image with your whole face inside the frame. The signature verifies you: it is compared against the signature you make on the attendance sheet on exam day. That is why the two files have such different shapes: a tall 200 × 230 portrait frame for the photo, and a wide, short 140 × 60 strip for the signature. This tool keeps a separate workspace for each, so you can prepare both, one after the other, without starting again.</p>
+
+      <h2>How to photograph your signature so it passes first time</h2>
+      <p>Most rejected signatures fail on the photograph, not the handwriting. Sign on a plain white sheet — never on ruled or squared paper, because the lines get baked into the image. Use a dark blue or black pen and sign slightly larger and bolder than you would on a cheque; thin, faint strokes can disappear when the image is reduced to 140 × 60 pixels. Rest the paper flat, photograph it from directly above in bright, even light, and fill the frame with the signature area so there is less background to crop away. Watch for the classic fault: your own shadow falling across the paper, which turns half the “white” background grey. If the signature looks clear and dark on your phone screen at arm's length, it will survive the resize comfortably.</p>
+
+      <h2>How this tool works</h2>
+      <p>When you press the Make button, the tool draws exactly the region inside your crop frame onto a fresh canvas at precisely the preset's pixel size — 200 × 230 means a canvas of exactly 200 by 230 pixels — against a white background, the standard forms expect. It then encodes that canvas as a JPEG, searching for the highest quality setting that still fits under the maximum KB. If a minimum applies and the picture at top quality is still below it, the tool appends empty JPEG comment segments — a legal part of the JPEG format that viewers and decoders simply skip — until the file size enters the band. Nothing about the picture changes; the file just carries a little invisible ballast. Finally, the result panel states the exact dimensions, the exact size, and a plain-language confirmation that you are inside the band, so you can upload with confidence.</p>
+
+      <h2>Frequently asked questions</h2>
+      <div class="faq">
+        <details>
+          <summary>What is the difference between this tool and Compress Image to KB?</summary>
+          <p>That tool changes only the file size (KB) and keeps your photo's original proportions. This tool changes size AND dimensions together: the output is exactly the pixel width and height the form demands (for example 200 × 230 px) AND inside the required KB band. If your form lists pixels, you need this tool; if it lists only a KB limit, either tool works.</p>
+        </details>
+        <details>
+          <summary>My photo was already the right KB, but the form still rejected it. Why?</summary>
+          <p>Because most forms check three things, not one: the file format (JPG), the file size in KB, and the exact pixel dimensions. A 40 KB photo that is 800 × 1000 pixels still fails an SSC upload that demands 200 × 230 pixels. This tool sets all three at once, which is why the result panel shows the exact dimensions next to the size.</p>
+        </details>
+        <details>
+          <summary>Why would a form reject a file for being too SMALL?</summary>
+          <p>Several exam portals — SSC and IBPS among them — specify a band such as 20–50 KB, and their software rejects files below the minimum just as firmly as files above the maximum. If your cropped photo encodes to less than the minimum at top quality, this tool adds a small amount of harmless padding data inside the JPEG file (in comment segments decoders ignore) to bring it into the band. The picture itself is not changed at all.</p>
+        </details>
+        <details>
+          <summary>How should I photograph my signature?</summary>
+          <p>Sign with a dark blue or black pen on a plain white sheet of paper — no ruled lines — and sign a little larger than usual so the strokes are bold. Photograph it straight-on in bright, even light, filling the frame with the signature area, and check there are no shadows across the paper. Then use the Signature tab here: crop tightly around the signature with the locked 140 × 60 frame.</p>
+        </details>
+        <details>
+          <summary>Is my photo or signature uploaded to your server?</summary>
+          <p>No. Everything — cropping, resizing, encoding — runs inside your browser on your own device. Your files are never sent anywhere, never stored, and never seen by anyone. The tool even keeps working if you switch off your internet after the page has loaded.</p>
+        </details>
+      </div>
+
+      <h2>Share this tool</h2>
+      <p>Know someone whose form photo keeps getting rejected? Send them this page:</p>
+      <div class="share-row">
+        <a class="share-btn share-wa" href="https://wa.me/?text=Resize%20photo%20and%20signature%20to%20exact%20pixels%20and%20KB%20for%20online%20forms%20free%3A%20https%3A%2F%2Ffastidious-alfajores-461763.netlify.app%2Ftools%2Fphoto-signature-resizer%2F" target="_blank" rel="noopener">Share on WhatsApp</a>
+        <a class="share-btn share-fb" href="https://www.facebook.com/sharer/sharer.php?u=https://fastidious-alfajores-461763.netlify.app/tools/photo-signature-resizer/" target="_blank" rel="noopener">Share on Facebook</a>
+      </div>
 
       <h2>Related tools</h2>
       <div class="chip-row">
@@ -134,5 +420,6 @@
 </footer>
 
 <script src="../../assets/app.js"></script>
+<script src="../../assets/form-resizer.js"></script>
 </body>
 </html>
