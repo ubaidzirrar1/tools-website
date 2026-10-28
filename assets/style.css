@@ -686,3 +686,196 @@ img, video, svg { max-width: 100%; }
   .tool-box { padding: 24px; }
   .container { padding: 0 24px; }
 }
+
+/* ---------- Photo & Signature Resizer (tool 2) ---------- */
+.mode-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+.mode-tab {
+  flex: 1 1 0;
+  appearance: none;
+  font: inherit;
+  font-weight: 700;
+  font-size: 1rem;
+  min-height: 48px;
+  padding: 11px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text);
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+.mode-tab:hover { border-color: var(--primary); color: var(--primary); }
+.mode-tab.is-active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #ffffff;
+  box-shadow: 0 6px 16px rgba(229, 50, 45, 0.25);
+}
+.mode-tab.is-active:hover { color: #ffffff; }
+.mode-tab:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.fr-orig-meta {
+  margin: 0 0 12px;
+  color: var(--muted);
+  font-size: 0.95rem;
+  word-break: break-word;
+}
+
+/* Crop stage: the image fills the width; the crop box floats over it and
+   everything outside the box is dimmed with a giant box-shadow. */
+.crop-stage {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background:
+    repeating-conic-gradient(rgba(127, 127, 127, 0.12) 0% 25%, transparent 0% 50%) 0 0 / 22px 22px;
+  line-height: 0;
+}
+.crop-stage img {
+  display: block;
+  width: 100%;
+  height: auto;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+.crop-box {
+  position: absolute;
+  border: 2px solid var(--primary);
+  box-shadow: 0 0 0 9999px rgba(8, 10, 14, 0.55);
+  cursor: move;
+  touch-action: none;
+  background-image:
+    linear-gradient(to right, transparent calc(33.33% - 0.5px), rgba(255, 255, 255, 0.45) 33.33%, transparent calc(33.33% + 0.5px)),
+    linear-gradient(to right, transparent calc(66.66% - 0.5px), rgba(255, 255, 255, 0.45) 66.66%, transparent calc(66.66% + 0.5px)),
+    linear-gradient(to bottom, transparent calc(33.33% - 0.5px), rgba(255, 255, 255, 0.45) 33.33%, transparent calc(33.33% + 0.5px)),
+    linear-gradient(to bottom, transparent calc(66.66% - 0.5px), rgba(255, 255, 255, 0.45) 66.66%, transparent calc(66.66% + 0.5px));
+}
+.crop-handle {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--primary);
+  border: 3px solid #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+  cursor: nwse-resize;
+  touch-action: none;
+}
+.crop-handle::after {
+  content: "⤡";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1;
+}
+.fr-crop-hint {
+  color: var(--muted);
+  font-size: 0.92rem;
+  margin: 10px 0 14px;
+}
+.fr-sig-tip { margin: 0 0 16px; max-width: none; }
+
+.fr-controls { margin-top: 4px; }
+.fr-custom {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 12px;
+}
+.fr-custom[hidden] { display: none; }
+.fr-custom label {
+  display: grid;
+  gap: 5px;
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+.fr-custom input {
+  width: 100%;
+  min-height: 48px;
+  padding: 10px 12px;
+  font: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--text);
+}
+.fr-custom input:focus {
+  border-color: var(--primary);
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(229, 50, 45, 0.13);
+}
+.fr-preset-spec {
+  margin: 0;
+  font-weight: 700;
+  font-size: 0.98rem;
+  color: var(--text);
+  background: var(--surface-2);
+  border: 1px dashed var(--border-hover);
+  border-radius: 10px;
+  padding: 9px 13px;
+}
+.fr-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.fr-actions .btn { flex: 1 1 auto; text-align: center; }
+
+/* In-band / warning status line in the result panel */
+.band-status {
+  border-radius: 10px;
+  padding: 11px 14px;
+  font-weight: 700;
+  font-size: 0.98rem;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+}
+.band-status.is-ok {
+  border-color: var(--accent);
+  background: rgba(31, 157, 87, 0.1);
+  color: var(--accent);
+}
+[data-theme="dark"] .band-status.is-ok { background: rgba(74, 222, 128, 0.12); }
+.band-status.is-warn {
+  border-color: #d97706;
+  background: rgba(217, 119, 6, 0.1);
+  color: #b45309;
+}
+[data-theme="dark"] .band-status.is-warn { color: #fbbf24; background: rgba(251, 191, 36, 0.1); }
+.pad-note {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* Tool 2 responsive: same standard as the rest of the site. */
+@media (max-width: 640px) {
+  .mode-tab { font-size: 0.95rem; padding: 10px 8px; }
+  .fr-custom { grid-template-columns: 1fr; }
+  .fr-actions { flex-direction: column; }
+  .fr-actions .btn { width: 100%; }
+  .crop-handle { width: 38px; height: 38px; }
+}
+@media (min-width: 641px) and (max-width: 1024px) {
+  .crop-stage { max-width: 640px; }
+}
+@media (min-width: 1025px) {
+  .crop-stage { max-width: 720px; }
+}
