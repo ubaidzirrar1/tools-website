@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PPSC Photo Resizer — Resize Photo for PPSC Online Apply | Tools Website</title>
+<meta name="description" content="Resize your photo for PPSC online apply: 200×230 px JPG, typically under 30KB — check your advertisement. Aspect-locked crop, free, in your browser, no sign-up.">
+<link rel="stylesheet" href="../../../assets/style.css">
+<script>
+(function(){try{var t=localStorage.getItem("tw-theme");if(t){document.documentElement.setAttribute("data-theme",t);}else if(window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches){document.documentElement.setAttribute("data-theme","dark");}}catch(e){}})();
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "PPSC Photo Resizer",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Any (web browser)",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "Resize your photo for PPSC online apply: 200×230 px JPG, typically under 30KB — check your advertisement. Aspect-locked crop, free, in your browser, no sign-up."
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "../../../"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Image & Form Tools",
+          "item": "../../../image-form-tools/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Photo & Signature Resizer",
+          "item": "../"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "PPSC Photo Resizer"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What photo size does PPSC ask for?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "PPSC advertisements typically ask for a recent passport-size photograph as a small JPG, commonly under ~30 KB. This page's preset produces a 200 × 230 px JPG under 30 KB. Always check your own advertisement — if it states a different limit, use the Custom preset in the tool with those exact numbers."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I use the same photo for PPSC and FPSC?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Usually yes, if one photo meets both advertisements' requirements — both commissions typically want a small JPG passport-style photo. Prepare it once with the stricter of the two limits, and keep the original photograph safe so you can prepare a fresh copy whenever an ad specifies something different."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is my photo uploaded anywhere?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Cropping and resizing happen inside your browser on your phone or computer. Your photo never leaves your device."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="logo" href="../../../index.html">Tools<span>Website</span></a>
+    <nav class="main-nav" aria-label="Categories">
+      <a href="../../../image-form-tools/">Image &amp; Form Tools</a>
+      <a href="../../../urdu-tools/">Urdu Tools</a>
+      <a href="../../../creator-tools/">Creator Tools</a>
+      <a href="../../../file-converters/">File Converters</a>
+    </nav>
+    <button class="theme-toggle" type="button" aria-label="Switch to dark mode">🌙</button>
+  </div>
+</header>
+
+<main>
+  <nav class="breadcrumbs container" aria-label="Breadcrumb">
+    <a href="../../../index.html">Home</a><span class="sep">›</span><a href="../../../image-form-tools/">Image & Form Tools</a><span class="sep">›</span><a href="../">Photo & Signature Resizer</a><span class="sep">›</span><span aria-current="page">PPSC Photo Resizer</span>
+  </nav>
+
+  <section class="page">
+    <div class="container">
+      <h1>PPSC Photo Resizer</h1>
+      <p class="lede">Resize a photo for <strong>PPSC online apply</strong> without the upload rejections. The tool below is preset to a <strong>200 × 230 px</strong> JPG, <strong>typically under 30 KB</strong> as PPSC advertisements commonly require — confirm the exact figure in your advertisement.</p>
+
+      <!-- ===== Tool box ===== -->
+      <div class="tool-box" data-form-resizer data-preset="ppsc-photo">
+        <div class="mode-tabs" role="tablist" aria-label="Choose photo or signature">
+          <button type="button" class="mode-tab is-active" role="tab" aria-selected="true" data-mode-tab="photo">📷 Photo</button>
+          <button type="button" class="mode-tab" role="tab" aria-selected="false" data-mode-tab="signature">✍️ Signature</button>
+        </div>
+        <div class="fr-workspace" data-workspace data-mode="photo">
+    <div class="dropzone" data-dropzone tabindex="0" role="button" aria-label="Drop your photo here, or activate to choose a file">
+      <input type="file" accept="image/jpeg,image/png,image/webp" data-file-input hidden>
+      <div class="dropzone-icon" aria-hidden="true">📷</div>
+      <p class="dropzone-title">Drag &amp; drop your photo here</p>
+      <p class="dropzone-sub">or <span class="dropzone-link">click to choose a file</span> — JPG, PNG or WebP</p>
+      <p class="dropzone-note">🔒 Your file never leaves your device — resizing happens in your browser.</p>
+    </div>
+
+    <div class="fr-stage" data-stage hidden>
+      <p class="fr-orig-meta" data-original-meta></p>
+      <div class="crop-stage" data-crop-stage>
+        <img data-crop-img alt="Your uploaded photo with a crop frame over it">
+        <div class="crop-box" data-crop-box><div class="crop-handle" data-crop-handle aria-hidden="true"></div></div>
+      </div>
+      <p class="fr-crop-hint">Drag the frame to move it. Drag the round corner handle to resize it — its shape stays locked to your preset's proportions.</p>
+      <div class="controls-card fr-controls">
+        <span class="target-label">Choose your exam / size</span>
+        <div class="chip-row preset-chips" data-preset-chips></div>
+        <div class="fr-custom" data-custom-fields hidden>
+        <label>Width (px)<input type="number" min="10" max="8000" step="1" placeholder="e.g. 200" data-custom-w inputmode="numeric"></label>
+        <label>Height (px)<input type="number" min="10" max="8000" step="1" placeholder="e.g. 230" data-custom-h inputmode="numeric"></label>
+        <label>Max size (KB)<input type="number" min="1" max="10000" step="1" placeholder="e.g. 50" data-custom-maxkb inputmode="numeric"></label>
+        <label>Min size (KB, optional)<input type="number" min="0" max="10000" step="1" placeholder="0" data-custom-minkb inputmode="numeric"></label>
+      </div>
+        <p class="fr-preset-spec" data-preset-spec></p>
+        <div class="fr-actions">
+          <button type="button" class="btn btn-ghost" data-autocrop>⤢ Auto center-crop</button>
+          <button type="button" class="btn btn-big" data-make-btn>Make my photo</button>
+        </div>
+        <p class="tool-status" data-status role="status" aria-live="polite"></p>
+        <p class="privacy-note">🔒 Your file never leaves your device.</p>
+      </div>
+    </div>
+
+    <div class="result-panel" data-result hidden>
+      <h3 class="result-title">✅ Your photo is ready</h3>
+      <div class="result-grid">
+        <figure class="preview-card">
+          <img data-result-img alt="Preview of your resized photo">
+          <figcaption data-result-meta></figcaption>
+        </figure>
+        <div class="result-stats">
+          <div class="stat-row"><span>Dimensions</span><strong data-stat-dims></strong></div>
+          <div class="stat-row"><span>File size</span><strong data-stat-size></strong></div>
+          <div class="stat-row"><span>Required</span><strong data-stat-band></strong></div>
+          <div class="band-status" data-band-status></div>
+          <p class="pad-note" data-pad-note hidden></p>
+          <a class="btn btn-download" data-download href="#" download>⬇ Download photo</a>
+          <button type="button" class="btn btn-ghost" data-reset>Start over</button>
+        </div>
+      </div>
+    </div>
+  </div>
+        <div class="fr-workspace" data-workspace data-mode="signature">
+    <div class="dropzone" data-dropzone tabindex="0" role="button" aria-label="Drop your signature photo here, or activate to choose a file">
+      <input type="file" accept="image/jpeg,image/png,image/webp" data-file-input hidden>
+      <div class="dropzone-icon" aria-hidden="true">✍️</div>
+      <p class="dropzone-title">Drag &amp; drop your signature photo here</p>
+      <p class="dropzone-sub">or <span class="dropzone-link">click to choose a file</span> — JPG, PNG or WebP</p>
+      <p class="dropzone-note">🔒 Your file never leaves your device — resizing happens in your browser.</p>
+    </div>
+
+    <div class="fr-stage" data-stage hidden>
+      <p class="fr-orig-meta" data-original-meta></p>
+      <div class="crop-stage" data-crop-stage>
+        <img data-crop-img alt="Your uploaded signature with a crop frame over it">
+        <div class="crop-box" data-crop-box><div class="crop-handle" data-crop-handle aria-hidden="true"></div></div>
+      </div>
+      <p class="fr-crop-hint">Drag the frame to move it. Drag the round corner handle to resize it — its shape stays locked to your preset's proportions.</p>
+      <div class="notice fr-sig-tip">
+        <strong>Signature tip:</strong> sign with a dark blue or black pen on plain white paper, make the signature big enough to fill the frame, and photograph it straight-on in good, even light — shadows across the paper are the most common reason signature uploads look grey and get rejected.
+      </div>
+      <div class="controls-card fr-controls">
+        <span class="target-label">Choose your exam / size</span>
+        <div class="chip-row preset-chips" data-preset-chips></div>
+        <div class="fr-custom" data-custom-fields hidden>
+        <label>Width (px)<input type="number" min="10" max="8000" step="1" placeholder="e.g. 200" data-custom-w inputmode="numeric"></label>
+        <label>Height (px)<input type="number" min="10" max="8000" step="1" placeholder="e.g. 230" data-custom-h inputmode="numeric"></label>
+        <label>Max size (KB)<input type="number" min="1" max="10000" step="1" placeholder="e.g. 50" data-custom-maxkb inputmode="numeric"></label>
+        <label>Min size (KB, optional)<input type="number" min="0" max="10000" step="1" placeholder="0" data-custom-minkb inputmode="numeric"></label>
+      </div>
+        <p class="fr-preset-spec" data-preset-spec></p>
+        <div class="fr-actions">
+          <button type="button" class="btn btn-ghost" data-autocrop>⤢ Auto center-crop</button>
+          <button type="button" class="btn btn-big" data-make-btn>Make my signature</button>
+        </div>
+        <p class="tool-status" data-status role="status" aria-live="polite"></p>
+        <p class="privacy-note">🔒 Your file never leaves your device.</p>
+      </div>
+    </div>
+
+    <div class="result-panel" data-result hidden>
+      <h3 class="result-title">✅ Your signature is ready</h3>
+      <div class="result-grid">
+        <figure class="preview-card">
+          <img data-result-img alt="Preview of your resized signature photo">
+          <figcaption data-result-meta></figcaption>
+        </figure>
+        <div class="result-stats">
+          <div class="stat-row"><span>Dimensions</span><strong data-stat-dims></strong></div>
+          <div class="stat-row"><span>File size</span><strong data-stat-size></strong></div>
+          <div class="stat-row"><span>Required</span><strong data-stat-band></strong></div>
+          <div class="band-status" data-band-status></div>
+          <p class="pad-note" data-pad-note hidden></p>
+          <a class="btn btn-download" data-download href="#" download>⬇ Download signature</a>
+          <button type="button" class="btn btn-ghost" data-reset>Start over</button>
+        </div>
+      </div>
+    </div>
+  </div>
+      </div>
+      <!-- ===== /Tool box ===== -->
+
+      <h2>Resizing a photo for PPSC online apply</h2>
+      <p>Punjab Public Service Commission applications run through the PPSC online portal (ppsc.gop.pk), and the photograph is uploaded near the start of the form — which is why a rejected photo there is so frustrating: nothing else can proceed until it is accepted. The tool above is preset for the PPSC photo, so you only need to add your picture, position the locked 200 × 230 frame over your face, and download the result.</p>
+      <p>PPSC advertisements have typically asked for a recent passport-size photograph as a small JPG, commonly under about 30 KB. Be a careful reader here: PPSC writes its instructions per advertisement, and posts in different departments have occasionally carried slightly different wording. Your advertisement is the final word. If it gives an exact KB figure that differs from the preset, choose <strong>Custom</strong> in the tool and type the numbers from the ad — everything else about the process stays the same.</p>
+      <p>Because PPSC forms are often completed on phones, this tool is built phone-first: the crop frame has large touch handles, the buttons are full-width on small screens, and nothing is uploaded to a server, so it works even on a slow connection once the page has loaded. Use a recent photo with a plain background, taken straight-on — not a cropped group photo — so your face is clear at the small size the portal displays.</p>
+
+      <h2>Specification applied by this page</h2>
+      <div class="table-wrap">
+        <table class="specs-table">
+          <thead>
+            <tr><th>Upload</th><th>Dimensions</th><th>File size</th><th>Format</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>PPSC photo</strong></td><td>200 × 230 px</td><td>Typically under ~30 KB (see your advertisement)</td><td>JPG / JPEG</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Frequently asked questions</h2>
+      <div class="faq">
+        <details>
+          <summary>What photo size does PPSC ask for?</summary>
+          <p>PPSC advertisements typically ask for a recent passport-size photograph as a small JPG, commonly under ~30 KB. This page's preset produces a 200 × 230 px JPG under 30 KB. Always check your own advertisement — if it states a different limit, use the Custom preset in the tool with those exact numbers.</p>
+        </details>
+        <details>
+          <summary>Can I use the same photo for PPSC and FPSC?</summary>
+          <p>Usually yes, if one photo meets both advertisements' requirements — both commissions typically want a small JPG passport-style photo. Prepare it once with the stricter of the two limits, and keep the original photograph safe so you can prepare a fresh copy whenever an ad specifies something different.</p>
+        </details>
+        <details>
+          <summary>Is my photo uploaded anywhere?</summary>
+          <p>No. Cropping and resizing happen inside your browser on your phone or computer. Your photo never leaves your device.</p>
+        </details>
+      </div>
+
+      <h2>Share this tool</h2>
+      <div class="share-row">
+        <a class="share-btn share-wa" href="https://wa.me/?text=PPSC%20Photo%20Resizer%20—%20exact%20pixels%20and%20KB,%20free%3A%20https%3A%2F%2Ffastidious-alfajores-461763.netlify.app%2Ftools%2Fphoto-signature-resizer%2Fppsc%2F" target="_blank" rel="noopener">Share on WhatsApp</a>
+        <a class="share-btn share-fb" href="https://www.facebook.com/sharer/sharer.php?u=https://fastidious-alfajores-461763.netlify.app/tools/photo-signature-resizer/ppsc/" target="_blank" rel="noopener">Share on Facebook</a>
+      </div>
+
+      <h2>Other exams &amp; related tools</h2>
+      <p>The same tool also prepares photos and signatures for the other major exams:</p>
+      <div class="chip-row">
+        <a class="chip" href="../">Photo &amp; Signature Resizer (all presets)</a>
+        <a class="chip" href="../fpsc/">FPSC Photo Resizer</a>
+        <a class="chip" href="../ssc/">SSC Photo Resizer</a>
+        <a class="chip" href="../ibps/">IBPS Photo Resizer</a>
+        <a class="chip" href="../neet/">NEET Photo Resizer</a>
+        <a class="chip" href="../../compress-image-to-kb/">Compress Image to KB</a>
+        <a class="chip" href="../../signature-resizer/">Signature Resizer</a>
+        <a class="chip" href="../../passport-size-photo-maker/">Passport Size Photo Maker</a>
+        <a class="chip" href="../../change-background-to-white/">Change Background to White</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h3>Categories</h3>
+        <ul>
+          <li><a href="../../../image-form-tools/">Image &amp; Form Tools</a></li>
+          <li><a href="../../../urdu-tools/">Urdu Tools</a></li>
+          <li><a href="../../../creator-tools/">Creator Tools</a></li>
+          <li><a href="../../../file-converters/">File Converters</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Popular Tools</h3>
+        <ul>
+          <li><a href="../../../tools/compress-image-to-kb/">Compress Image to KB</a></li>
+          <li><a href="../../../tools/photo-signature-resizer/">Photo &amp; Signature Resizer</a></li>
+          <li><a href="../../../tools/signature-resizer/">Signature Resizer</a></li>
+          <li><a href="../../../tools/passport-size-photo-maker/">Passport Size Photo Maker</a></li>
+          <li><a href="../../../tools/image-to-pdf/">Image to PDF</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Site</h3>
+        <ul>
+          <li><a href="../../../about/">About Us</a></li>
+          <li><a href="../../../contact/">Contact Us</a></li>
+          <li><a href="../../../privacy/">Privacy Policy</a></li>
+          <li><a href="../../../terms/">Terms &amp; Conditions</a></li>
+          <li><a href="../../../disclaimer/">Disclaimer</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Tools Website. Free tools — files are processed in your browser and never uploaded.</span>
+      <span><a href="../../../index.html">Home</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="../../../assets/app.js"></script>
+<script src="../../../assets/form-resizer.js"></script>
+</body>
+</html>
