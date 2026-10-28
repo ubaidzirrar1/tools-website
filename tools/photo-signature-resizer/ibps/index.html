@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IBPS Photo Resizer — 200 × 230 Pixels, 20–50 KB | Tools Website</title>
+<meta name="description" content="Resize IBPS photo to exactly 200×230 pixels and 20–50KB, and IBPS signature to 140×60 and 10–20KB — one free tool for bank PO, Clerk and RRB forms. In your browser, no sign-up.">
+<link rel="stylesheet" href="../../../assets/style.css">
+<script>
+(function(){try{var t=localStorage.getItem("tw-theme");if(t){document.documentElement.setAttribute("data-theme",t);}else if(window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches){document.documentElement.setAttribute("data-theme","dark");}}catch(e){}})();
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "IBPS Photo Resizer",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Any (web browser)",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "Resize IBPS photo to exactly 200×230 pixels and 20–50KB, and IBPS signature to 140×60 and 10–20KB — one free tool for bank PO, Clerk and RRB forms. In your browser, no sign-up."
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "../../../"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Image & Form Tools",
+          "item": "../../../image-form-tools/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Photo & Signature Resizer",
+          "item": "../"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "IBPS Photo Resizer"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What are the IBPS photo and signature specifications?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Photograph: 200 × 230 pixels, 20–50 KB, JPG. Signature: 140 × 60 pixels, 10–20 KB, JPG. Both are presets in the tool on this page — Photo tab for the photograph, Signature tab for the signature."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What are IBPS's rules for the signature itself?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sign in black ink on white paper, in your normal running hand — IBPS does not accept signatures in capital/block letters, and the signature on your answer sheet and call letter must match the uploaded one. Prepare the file here only after you are happy with the signature on paper."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "My signature file came to only 8 KB. Is that acceptable for IBPS?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No — IBPS sets a 10 KB minimum for signatures. This tool detects an underweight file and adds invisible padding data inside the JPEG to bring it into the 10–20 KB band, without altering the signature image in any way."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="logo" href="../../../index.html">Tools<span>Website</span></a>
+    <nav class="main-nav" aria-label="Categories">
+      <a href="../../../image-form-tools/">Image &amp; Form Tools</a>
+      <a href="../../../urdu-tools/">Urdu Tools</a>
+      <a href="../../../creator-tools/">Creator Tools</a>
+      <a href="../../../file-converters/">File Converters</a>
+    </nav>
+    <button class="theme-toggle" type="button" aria-label="Switch to dark mode">🌙</button>
+  </div>
+</header>
+
+<main>
+  <nav class="breadcrumbs container" aria-label="Breadcrumb">
+    <a href="../../../index.html">Home</a><span class="sep">›</span><a href="../../../image-form-tools/">Image & Form Tools</a><span class="sep">›</span><a href="../">Photo & Signature Resizer</a><span class="sep">›</span><span aria-current="page">IBPS Photo Resizer</span>
+  </nav>
+
+  <section class="page">
+    <div class="container">
+      <h1>IBPS Photo Resizer</h1>
+      <p class="lede">Prepare your <strong>IBPS photo</strong> at exactly <strong>200 × 230 pixels</strong> and <strong>20–50 KB</strong> for bank PO, Clerk and RRB forms — then use the Signature tab for your <strong>140 × 60 px, 10–20 KB</strong> signature.</p>
+
+      <!-- ===== Tool box ===== -->
+      <div class="tool-box" data-form-resizer data-preset="ibps-photo">
+        <div class="mode-tabs" role="tablist" aria-label="Choose photo or signature">
+          <button type="button" class="mode-tab is-active" role="tab" aria-selected="true" data-mode-tab="photo">📷 Photo</button>
+          <button type="button" class="mode-tab" role="tab" aria-selected="false" data-mode-tab="signature">✍️ Signature</button>
+        </div>
+        <div class="fr-workspace" data-workspace data-mode="photo">
+    <div class="dropzone" data-dropzone tabindex="0" role="button" aria-label="Drop your photo here, or activate to choose a file">
+      <input type="file" accept="image/jpeg,image/png,image/webp" data-file-input hidden>
+      <div class="dropzone-icon" aria-hidden="true">📷</div>
+      <p class="dropzone-title">Drag &amp; drop your photo here</p>
+      <p class="dropzone-sub">or <span class="dropzone-link">click to choose a file</span> — JPG, PNG or WebP</p>
+      <p class="dropzone-note">🔒 Your file never leaves your device — resizing happens in your browser.</p>
+    </div>
+
+    <div class="fr-stage" data-stage hidden>
+      <p class="fr-orig-meta" data-original-meta></p>
+      <div class="crop-stage" data-crop-stage>
+        <img data-crop-img alt="Your uploaded photo with a crop frame over it">
+        <div class="crop-box" data-crop-box><div class="crop-handle" data-crop-handle aria-hidden="true"></div></div>
+      </div>
+      <p class="fr-crop-hint">Drag the frame to move it. Drag the round corner handle to resize it — its shape stays locked to your preset's proportions.</p>
+      <div class="controls-card fr-controls">
+        <span class="target-label">Choose your exam / size</span>
+        <div class="chip-row preset-chips" data-preset-chips></div>
+        <div class="fr-custom" data-custom-fields hidden>
+        <label>Width (px)<input type="number" min="10" max="8000" step="1" placeholder="e.g. 200" data-custom-w inputmode="numeric"></label>
+        <label>Height (px)<input type="number" min="10" max="8000" step="1" placeholder="e.g. 230" data-custom-h inputmode="numeric"></label>
+        <label>Max size (KB)<input type="number" min="1" max="10000" step="1" placeholder="e.g. 50" data-custom-maxkb inputmode="numeric"></label>
+        <label>Min size (KB, optional)<input type="number" min="0" max="10000" step="1" placeholder="0" data-custom-minkb inputmode="numeric"></label>
+      </div>
+        <p class="fr-preset-spec" data-preset-spec></p>
+        <div class="fr-actions">
+          <button type="button" class="btn btn-ghost" data-autocrop>⤢ Auto center-crop</button>
+          <button type="button" class="btn btn-big" data-make-btn>Make my photo</button>
+        </div>
+        <p class="tool-status" data-status role="status" aria-live="polite"></p>
+        <p class="privacy-note">🔒 Your file never leaves your device.</p>
+      </div>
+    </div>
+
+    <div class="result-panel" data-result hidden>
+      <h3 class="result-title">✅ Your photo is ready</h3>
+      <div class="result-grid">
+        <figure class="preview-card">
+          <img data-result-img alt="Preview of your resized photo">
+          <figcaption data-result-meta></figcaption>
+        </figure>
+        <div class="result-stats">
+          <div class="stat-row"><span>Dimensions</span><strong data-stat-dims></strong></div>
+          <div class="stat-row"><span>File size</span><strong data-stat-size></strong></div>
+          <div class="stat-row"><span>Required</span><strong data-stat-band></strong></div>
+          <div class="band-status" data-band-status></div>
+          <p class="pad-note" data-pad-note hidden></p>
+          <a class="btn btn-download" data-download href="#" download>⬇ Download photo</a>
+          <button type="button" class="btn btn-ghost" data-reset>Start over</button>
+        </div>
+      </div>
+    </div>
+  </div>
+        <div class="fr-workspace" data-workspace data-mode="signature">
+    <div class="dropzone" data-dropzone tabindex="0" role="button" aria-label="Drop your signature photo here, or activate to choose a file">
+      <input type="file" accept="image/jpeg,image/png,image/webp" data-file-input hidden>
+      <div class="dropzone-icon" aria-hidden="true">✍️</div>
+      <p class="dropzone-title">Drag &amp; drop your signature photo here</p>
+      <p class="dropzone-sub">or <span class="dropzone-link">click to choose a file</span> — JPG, PNG or WebP</p>
+      <p class="dropzone-note">🔒 Your file never leaves your device — resizing happens in your browser.</p>
+    </div>
+
+    <div class="fr-stage" data-stage hidden>
+      <p class="fr-orig-meta" data-original-meta></p>
+      <div class="crop-stage" data-crop-stage>
+        <img data-crop-img alt="Your uploaded signature with a crop frame over it">
+        <div class="crop-box" data-crop-box><div class="crop-handle" data-crop-handle aria-hidden="true"></div></div>
+      </div>
+      <p class="fr-crop-hint">Drag the frame to move it. Drag the round corner handle to resize it — its shape stays locked to your preset's proportions.</p>
+      <div class="notice fr-sig-tip">
+        <strong>Signature tip:</strong> sign with a dark blue or black pen on plain white paper, make the signature big enough to fill the frame, and photograph it straight-on in good, even light — shadows across the paper are the most common reason signature uploads look grey and get rejected.
+      </div>
+      <div class="controls-card fr-controls">
+        <span class="target-label">Choose your exam / size</span>
+        <div class="chip-row preset-chips" data-preset-chips></div>
+        <div class="fr-custom" data-custom-fields hidden>
+        <label>Width (px)<input type="number" min="10" max="8000" step="1" placeholder="e.g. 200" data-custom-w inputmode="numeric"></label>
+        <label>Height (px)<input type="number" min="10" max="8000" step="1" placeholder="e.g. 230" data-custom-h inputmode="numeric"></label>
+        <label>Max size (KB)<input type="number" min="1" max="10000" step="1" placeholder="e.g. 50" data-custom-maxkb inputmode="numeric"></label>
+        <label>Min size (KB, optional)<input type="number" min="0" max="10000" step="1" placeholder="0" data-custom-minkb inputmode="numeric"></label>
+      </div>
+        <p class="fr-preset-spec" data-preset-spec></p>
+        <div class="fr-actions">
+          <button type="button" class="btn btn-ghost" data-autocrop>⤢ Auto center-crop</button>
+          <button type="button" class="btn btn-big" data-make-btn>Make my signature</button>
+        </div>
+        <p class="tool-status" data-status role="status" aria-live="polite"></p>
+        <p class="privacy-note">🔒 Your file never leaves your device.</p>
+      </div>
+    </div>
+
+    <div class="result-panel" data-result hidden>
+      <h3 class="result-title">✅ Your signature is ready</h3>
+      <div class="result-grid">
+        <figure class="preview-card">
+          <img data-result-img alt="Preview of your resized signature photo">
+          <figcaption data-result-meta></figcaption>
+        </figure>
+        <div class="result-stats">
+          <div class="stat-row"><span>Dimensions</span><strong data-stat-dims></strong></div>
+          <div class="stat-row"><span>File size</span><strong data-stat-size></strong></div>
+          <div class="stat-row"><span>Required</span><strong data-stat-band></strong></div>
+          <div class="band-status" data-band-status></div>
+          <p class="pad-note" data-pad-note hidden></p>
+          <a class="btn btn-download" data-download href="#" download>⬇ Download signature</a>
+          <button type="button" class="btn btn-ghost" data-reset>Start over</button>
+        </div>
+      </div>
+    </div>
+  </div>
+      </div>
+      <!-- ===== /Tool box ===== -->
+
+      <h2>IBPS photo and signature for bank exam forms</h2>
+      <p>IBPS application forms for PO, Clerk, RRB and Specialist Officer posts all use the same upload specifications: a photograph of <strong>200 × 230 pixels</strong> between <strong>20 KB and 50 KB</strong>, and a signature of <strong>140 × 60 pixels</strong> between <strong>10 KB and 20 KB</strong>, in JPG format. This page's tool starts on the IBPS Photo preset; when the photo is done, the <strong>Signature</strong> tab is already set to IBPS Signature, so both uploads for your form are prepared in one visit.</p>
+      <p>IBPS adds two signature rules worth knowing before you start. The signature must be made with a black ink pen on white paper — blue ink and pencil scans are common rejection reasons — and it must be your running signature, not block capital letters, which IBPS explicitly does not accept. Sign on a plain sheet, photograph it straight-on in good light, and crop tightly with the locked 140 × 60 frame in the Signature tab.</p>
+      <p>Both IBPS bands have minimums, and small clean files can fall beneath them — a neat signature often encodes below 10 KB. If that happens, the tool quietly pads the JPEG with invisible comment-segment data until the file sits inside the band; the image itself is untouched. The result panel always shows the final size with a green confirmation, so you can check the number against your form's instructions before you download and upload.</p>
+
+      <h2>Specification applied by this page</h2>
+      <div class="table-wrap">
+        <table class="specs-table">
+          <thead>
+            <tr><th>Upload</th><th>Dimensions</th><th>File size</th><th>Format</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>IBPS photo</strong></td><td>200 × 230 px</td><td>20–50 KB</td><td>JPG / JPEG</td></tr>
+            <tr><td><strong>IBPS signature</strong></td><td>140 × 60 px</td><td>10–20 KB</td><td>JPG / JPEG</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Frequently asked questions</h2>
+      <div class="faq">
+        <details>
+          <summary>What are the IBPS photo and signature specifications?</summary>
+          <p>Photograph: 200 × 230 pixels, 20–50 KB, JPG. Signature: 140 × 60 pixels, 10–20 KB, JPG. Both are presets in the tool on this page — Photo tab for the photograph, Signature tab for the signature.</p>
+        </details>
+        <details>
+          <summary>What are IBPS's rules for the signature itself?</summary>
+          <p>Sign in black ink on white paper, in your normal running hand — IBPS does not accept signatures in capital/block letters, and the signature on your answer sheet and call letter must match the uploaded one. Prepare the file here only after you are happy with the signature on paper.</p>
+        </details>
+        <details>
+          <summary>My signature file came to only 8 KB. Is that acceptable for IBPS?</summary>
+          <p>No — IBPS sets a 10 KB minimum for signatures. This tool detects an underweight file and adds invisible padding data inside the JPEG to bring it into the 10–20 KB band, without altering the signature image in any way.</p>
+        </details>
+      </div>
+
+      <h2>Share this tool</h2>
+      <div class="share-row">
+        <a class="share-btn share-wa" href="https://wa.me/?text=IBPS%20Photo%20Resizer%20—%20exact%20pixels%20and%20KB,%20free%3A%20https%3A%2F%2Ffastidious-alfajores-461763.netlify.app%2Ftools%2Fphoto-signature-resizer%2Fibps%2F" target="_blank" rel="noopener">Share on WhatsApp</a>
+        <a class="share-btn share-fb" href="https://www.facebook.com/sharer/sharer.php?u=https://fastidious-alfajores-461763.netlify.app/tools/photo-signature-resizer/ibps/" target="_blank" rel="noopener">Share on Facebook</a>
+      </div>
+
+      <h2>Other exams &amp; related tools</h2>
+      <p>The same tool, preset for other major exams, is one tap away:</p>
+      <div class="chip-row">
+        <a class="chip" href="../">Photo &amp; Signature Resizer (all presets)</a>
+        <a class="chip" href="../fpsc/">FPSC Photo Resizer</a>
+        <a class="chip" href="../ppsc/">PPSC Photo Resizer</a>
+        <a class="chip" href="../ssc/">SSC Photo Resizer</a>
+        <a class="chip" href="../neet/">NEET Photo Resizer</a>
+        <a class="chip" href="../../compress-image-to-kb/">Compress Image to KB</a>
+        <a class="chip" href="../../signature-resizer/">Signature Resizer</a>
+        <a class="chip" href="../../passport-size-photo-maker/">Passport Size Photo Maker</a>
+        <a class="chip" href="../../change-background-to-white/">Change Background to White</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h3>Categories</h3>
+        <ul>
+          <li><a href="../../../image-form-tools/">Image &amp; Form Tools</a></li>
+          <li><a href="../../../urdu-tools/">Urdu Tools</a></li>
+          <li><a href="../../../creator-tools/">Creator Tools</a></li>
+          <li><a href="../../../file-converters/">File Converters</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Popular Tools</h3>
+        <ul>
+          <li><a href="../../../tools/compress-image-to-kb/">Compress Image to KB</a></li>
+          <li><a href="../../../tools/photo-signature-resizer/">Photo &amp; Signature Resizer</a></li>
+          <li><a href="../../../tools/signature-resizer/">Signature Resizer</a></li>
+          <li><a href="../../../tools/passport-size-photo-maker/">Passport Size Photo Maker</a></li>
+          <li><a href="../../../tools/image-to-pdf/">Image to PDF</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Site</h3>
+        <ul>
+          <li><a href="../../../about/">About Us</a></li>
+          <li><a href="../../../contact/">Contact Us</a></li>
+          <li><a href="../../../privacy/">Privacy Policy</a></li>
+          <li><a href="../../../terms/">Terms &amp; Conditions</a></li>
+          <li><a href="../../../disclaimer/">Disclaimer</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Tools Website. Free tools — files are processed in your browser and never uploaded.</span>
+      <span><a href="../../../index.html">Home</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="../../../assets/app.js"></script>
+<script src="../../../assets/form-resizer.js"></script>
+</body>
+</html>
