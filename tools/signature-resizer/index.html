@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Signature Resizer — Resize Signature to 10KB, 20KB Online Free | Tools Website</title>
-<meta name="description" content="Resize a photo of your signature to the exact size forms require — under 10KB or 20KB at the correct pixel dimensions. Free, no sign-up, processed privately in your browser.">
+<title>Signature Resizer Online — Resize Signature to 10KB / 20KB (140×60 px), Free | Tools Website</title>
+<meta name="description" content="Free signature resizer online — resize your signature to 20KB or 10KB at exactly 140×60 px for SSC, IBPS and other online forms. Crop with a locked frame, fit the KB band and download. No sign-up; your file never leaves your device.">
 <link rel="stylesheet" href="../../assets/style.css">
 <script>
 (function(){try{var t=localStorage.getItem("tw-theme");if(t){document.documentElement.setAttribute("data-theme",t);}else if(window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches){document.documentElement.setAttribute("data-theme","dark");}}catch(e){}})();
@@ -15,18 +15,112 @@
   "@graph": [
     {
       "@type": "WebApplication",
-      "name": "Signature Resizer to KB",
+      "name": "Signature Resizer Online",
       "applicationCategory": "UtilitiesApplication",
       "operatingSystem": "Any (web browser)",
-      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-      "description": "Resize and compress a scanned or photographed signature to an exact KB target and pixel dimensions for online application forms."
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "Resize a photographed or scanned signature to exactly 140×60 pixels and fit it into the KB band online forms require — 10–20 KB for SSC and IBPS, or under 10 KB / under 50 KB for other portals. Processing happens locally in the browser."
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Home", "item": "../../" },
-        { "@type": "ListItem", "position": 2, "name": "Image & Form Tools", "item": "../../image-form-tools/" },
-        { "@type": "ListItem", "position": 3, "name": "Signature Resizer" }
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "../../"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Image & Form Tools",
+          "item": "../../image-form-tools/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Signature Resizer"
+        }
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "name": "How to get a good signature scan and resize it for an online form",
+      "totalTime": "PT2M",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Sign on plain white paper",
+          "text": "Sign with a dark blue or black pen on a plain, unlined white sheet. Sign a little larger and bolder than usual so the strokes stay clear when reduced."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Photograph it in good light",
+          "text": "Photograph the signature straight-on in bright, even light, with no shadow falling across the paper, and fill the frame with the signature area."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "Add the photo and crop tightly",
+          "text": "Drag and drop the photo into the tool (or tap to choose it, or paste it). Drag the locked 140 × 60 frame so it hugs the signature with only a small white margin."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "name": "Pick your preset, make it and download",
+          "text": "Choose SSC Signature or IBPS Signature (140 × 60 px, 10–20 KB), an Under 10 KB / Under 50 KB preset, or Custom. Press Make my signature — the tool fits the file into the band — then download and upload it to your form."
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What size should my signature be for online forms?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For SSC and IBPS the published specification is 140 × 60 pixels, between 10 KB and 20 KB, as a JPG — both presets are built into the tool above. Other exams and portals set their own numbers, and many simply ask for a signature under 10 KB or under 50 KB; the tool has presets for those too, plus a Custom preset where you can type any pixel size and KB limit from your notification."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I resize my signature to 20KB?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Upload the photo of your signature, crop it with the locked 140 × 60 frame and choose the SSC Signature or IBPS Signature preset, then press Make my signature. Portals that say '20KB' almost always mean the 10–20 KB band, and the tool lands your file inside it: it lowers JPEG quality if the file is too big, and if the picture alone comes out below 10 KB it pads the file invisibly to reach the band — the signature itself is never altered."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why was my signature rejected for being too small?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Because bands like SSC's and IBPS's 10–20 KB have a minimum as well as a maximum, and a clean signature on white paper often encodes to only 4–7 KB at 140 × 60 pixels. The portal's software rejects it just as firmly as an oversized file. This tool detects the shortfall and adds harmless padding data inside the JPEG (comment segments that decoders skip) until the size enters the band."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "My form only says 'signature under 10 KB' and gives no pixel size. What should I use?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Use the Under 10 KB preset. It keeps the widely accepted 140 × 60 pixel dimensions and guarantees the file stays at or below 10 KB. If your notification does list different pixels, choose Custom and type them in — the crop frame locks to whatever shape you enter."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is my signature uploaded to your server?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Cropping, resizing and encoding all run inside your browser on your own device. Your signature is never sent anywhere, never stored and never seen by anyone — sensible, since a signature is a security feature of your identity documents."
+          }
+        }
       ]
     }
   ]
@@ -55,34 +149,157 @@
 
   <section class="page">
     <div class="container">
-      <h1>Signature Resizer</h1>
-      <p class="lede">Sign on white paper, take a photo — this tool crops it, cleans it up and shrinks it to the exact size your form asks for, usually under 10 KB or 20 KB.</p>
+      <h1>Signature Resizer Online</h1>
+      <p class="lede">One job, done exactly: turn the photo of your signature into a file of <strong>exactly 140 × 60 pixels</strong> that sits inside the <strong>KB band</strong> your form demands — <strong>10–20 KB</strong> for SSC and IBPS, or <strong>under 10 KB / under 50 KB</strong> for portals that set only a ceiling. Crop with the locked frame, press one button, download. Free, no sign-up, and your signature never leaves your device.</p>
 
-      <div class="notice">
-        <strong>Launching with the MVP build:</strong> this tool is in the Phase 2 build queue and will appear here shortly.
+      <!-- ===== Tool box ===== -->
+      <div class="tool-box" data-signature-resizer data-preset="ssc-signature">
+        <div class="dropzone" data-dropzone tabindex="0" role="button" aria-label="Drop your signature photo here, or activate to choose a file">
+          <input type="file" accept="image/jpeg,image/png,image/webp" data-file-input hidden>
+          <div class="dropzone-icon" aria-hidden="true">✍️</div>
+          <p class="dropzone-title">Drag &amp; drop your signature photo here</p>
+          <p class="dropzone-sub">or <span class="dropzone-link">click to choose a file</span> — JPG, PNG or WebP (you can also paste an image)</p>
+          <p class="dropzone-note">🔒 Your file never leaves your device — resizing happens in your browser.</p>
+        </div>
+
+        <div class="fr-stage" data-stage hidden>
+          <p class="fr-orig-meta" data-original-meta></p>
+          <div class="crop-stage" data-crop-stage>
+            <img data-crop-img alt="Your uploaded signature with a crop frame over it">
+            <div class="crop-box" data-crop-box><div class="crop-handle" data-crop-handle aria-hidden="true"></div></div>
+          </div>
+          <p class="fr-crop-hint">Drag the frame to move it. Drag the round corner handle to resize it — its shape stays locked to your preset's proportions. Crop tightly: a small white margin around the signature is all you need.</p>
+          <div class="notice fr-sig-tip">
+            <strong>Signature tip:</strong> sign with a dark blue or black pen on plain white paper, make the signature big enough to fill the frame, and photograph it straight-on in good, even light — shadows across the paper are the most common reason signature uploads look grey and get rejected.
+          </div>
+          <div class="controls-card fr-controls">
+            <span class="target-label">Choose your exam / size</span>
+            <div class="chip-row preset-chips" data-preset-chips></div>
+            <div class="fr-custom" data-custom-fields hidden>
+              <label>Width (px)<input type="number" min="10" max="8000" step="1" placeholder="e.g. 140" data-custom-w inputmode="numeric"></label>
+              <label>Height (px)<input type="number" min="10" max="8000" step="1" placeholder="e.g. 60" data-custom-h inputmode="numeric"></label>
+              <label>Max size (KB)<input type="number" min="1" max="10000" step="1" placeholder="e.g. 20" data-custom-maxkb inputmode="numeric"></label>
+              <label>Min size (KB, optional)<input type="number" min="0" max="10000" step="1" placeholder="0" data-custom-minkb inputmode="numeric"></label>
+            </div>
+            <p class="fr-preset-spec" data-preset-spec></p>
+            <div class="fr-actions">
+              <button type="button" class="btn btn-ghost" data-autocrop>⤢ Auto center-crop</button>
+              <button type="button" class="btn btn-big" data-make-btn>Make my signature</button>
+            </div>
+            <p class="tool-status" data-status role="status" aria-live="polite"></p>
+            <p class="privacy-note">🔒 Your file never leaves your device.</p>
+          </div>
+        </div>
+
+        <div class="result-panel" data-result hidden>
+          <h3 class="result-title">✅ Your signature is ready</h3>
+          <div class="result-grid">
+            <figure class="preview-card">
+              <img data-result-img alt="Preview of your resized signature">
+              <figcaption data-result-meta></figcaption>
+            </figure>
+            <div class="result-stats">
+              <div class="stat-row"><span>Dimensions</span><strong data-stat-dims></strong></div>
+              <div class="stat-row"><span>File size</span><strong data-stat-size></strong></div>
+              <div class="stat-row"><span>Required</span><strong data-stat-band></strong></div>
+              <div class="band-status" data-band-status></div>
+              <p class="pad-note" data-pad-note hidden></p>
+              <a class="btn btn-download" data-download href="#" download>⬇ Download signature</a>
+              <button type="button" class="btn btn-ghost" data-reset>Start over</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ===== /Tool box ===== -->
+
+      <p style="margin-top:16px;">Know your exact target already? Use a one-click version of this tool: <a href="to-20kb/">Resize signature to 20KB</a> · <a href="to-10kb/">Resize signature to 10KB</a></p>
+
+      <h2>Signature specifications</h2>
+      <p>SSC and IBPS publish exact signature specifications, and the presets above apply them for you. Other exams and portals set their own rules — sometimes only a KB ceiling — so always read the upload line in your notification before choosing a preset.</p>
+      <div class="table-wrap">
+        <table class="specs-table">
+          <thead>
+            <tr><th>Exam / portal</th><th>Dimensions</th><th>File size</th><th>Format</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>SSC</strong> (Staff Selection Commission, India)</td>
+              <td>140 × 60 px</td>
+              <td>10–20 KB</td>
+              <td>JPG / JPEG</td>
+            </tr>
+            <tr>
+              <td><strong>IBPS</strong> (bank PO / clerk exams, India)</td>
+              <td>140 × 60 px</td>
+              <td>10–20 KB</td>
+              <td>JPG / JPEG</td>
+            </tr>
+            <tr>
+              <td><strong>Other exams &amp; portals</strong></td>
+              <td colspan="2">Varies — many ask only for a signature under 10 KB or under 50 KB, sometimes at their own pixel size. <strong>Check your notification</strong>, then use the Under 10 KB / Under 50 KB preset or Custom.</td>
+              <td>JPG / JPEG</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
 
-      <h2>Common signature targets</h2>
-      <div class="chip-row">
-        <span class="chip">Under 10KB</span>
-        <span class="chip">Under 20KB</span>
-        <span class="chip">140 × 60 pixels</span>
-        <span class="chip">Custom size…</span>
-      </div>
-
-      <h2>How it will work</h2>
-      <ol>
-        <li>Sign with a blue or black pen on plain white paper and photograph it in good light.</li>
-        <li>Upload the photo, drag the crop box tightly around the signature, and pick your target KB.</li>
-        <li>Download the clean, correctly sized signature file and upload it to your form.</li>
+      <h2>How to use</h2>
+      <ol class="howto-steps">
+        <li><strong>Sign and photograph.</strong> Sign with a dark pen on plain white paper and photograph it straight-on in good light (details in the guide below).</li>
+        <li><strong>Add your signature photo.</strong> Drag &amp; drop it into the tool, tap to select it, or paste it from your clipboard.</li>
+        <li><strong>Crop with the locked frame.</strong> The frame is locked to 140 × 60 proportions — drag it over your signature and pull the corner handle so the frame hugs the strokes, or tap <em>Auto center-crop</em>.</li>
+        <li><strong>Pick your preset and download.</strong> SSC / IBPS band, an under-10 KB or under-50 KB ceiling, or your own Custom numbers. The result panel confirms the exact pixels and size before you download.</li>
       </ol>
 
-      <h2>Tips for a signature that gets accepted</h2>
+      <h2>How to get a good signature scan</h2>
+      <p>The resize is the easy part — most failed signature uploads were lost at the photograph. Four habits make yours pass first time:</p>
       <ul>
-        <li>Sign on unlined white paper — lines show through in scans.</li>
-        <li>Photograph straight from above, without shadows across the paper.</li>
-        <li>Make sure the signature in the file matches the one you use on documents — mismatches can fail verification later.</li>
+        <li><strong>Dark pen, plain white paper.</strong> Sign with a dark blue or black pen on a clean, unlined sheet. Ruled lines get baked into the image and look like part of the signature.</li>
+        <li><strong>Sign a little bigger than usual.</strong> Your signature will be reduced to 140 × 60 pixels, so bold, slightly larger strokes survive the shrink; thin, faint ones can break up or vanish.</li>
+        <li><strong>Good light, no shadow.</strong> Photograph in bright, even light — daylight near a window is ideal — and keep your phone and your own shadow off the paper. A shadow turns half the background grey, the classic cause of “unclear signature” rejections.</li>
+        <li><strong>Crop tightly.</strong> In the tool, frame just the signature with a small white margin. The tighter the crop, the larger and clearer the strokes are in the final 140 × 60 file.</li>
       </ul>
+
+      <h2>Why signatures get rejected</h2>
+      <p>A signature upload has to pass the same three software checks as a photo — JPG format, a file size inside the stated limits, and the exact pixel dimensions — and it fails them in its own particular ways. The dimensions catch people out first: 140 × 60 is a wide, short strip, while a phone photo is a tall rectangle, so a signature that has simply been “compressed” still has completely the wrong shape and is refused no matter how small the file is. That is why this tool crops to the shape first and only then worries about kilobytes.</p>
+      <p>The size limits cut in both directions. Shrink a signature too enthusiastically and heavy JPEG compression smears the strokes into grey mush — and a signature that no longer matches the one you sign on the exam-day attendance sheet can cause trouble at verification, long after the upload was accepted. Compress too little, or photograph in such detail that the file stays heavy, and you break the ceiling. And as the next section explains, some bands punish you for making the file too small as well. Add the everyday faults — a shadow across the paper, a bluish or grey background instead of white, strokes so pale they fade at small sizes — and it is easy to see why the signature upload, the smallest file on the form, causes a disproportionate share of rejected applications.</p>
+
+      <h2>The KB band has a floor, not just a ceiling</h2>
+      <p>SSC and IBPS do not ask for “under 20 KB”; they ask for a signature <em>between</em> 10 KB and 20 KB. A clean signature — dark strokes, white paper, nothing else in the frame — is a very simple image, and at 140 × 60 pixels it commonly encodes to just 4–7 KB at the highest JPEG quality. That file is, paradoxically, too good: the portal rejects it for falling below the minimum. When that happens here, the tool appends empty JPEG comment segments — a legal, invisible part of the file format that viewers and decoders simply skip — until the file size rises into the band. The picture is untouched; the file just carries a little ballast, and the result panel tells you plainly when this has been done.</p>
+
+      <h2>How this tool works</h2>
+      <p>When you press <em>Make my signature</em>, the tool draws exactly the region inside your crop frame onto a fresh canvas of precisely 140 × 60 pixels (or your Custom size), laid over a white background, and encodes it as a JPEG. It searches for the highest quality setting that still fits under the maximum KB, then checks the minimum: if one applies and the file is below it, padding brings it into the band as described above. The result panel states the exact dimensions, the exact size and a plain confirmation that you are inside the band. Everything runs in your browser — nothing is uploaded, which is exactly how a signature, of all images, should be handled.</p>
+
+      <h2>Frequently asked questions</h2>
+      <div class="faq">
+        <details>
+          <summary>What size should my signature be for online forms?</summary>
+          <p>For SSC and IBPS the published specification is 140 × 60 pixels, between 10 KB and 20 KB, as a JPG — both presets are built into the tool above. Other exams and portals set their own numbers, and many simply ask for a signature under 10 KB or under 50 KB; the tool has presets for those too, plus a Custom preset where you can type any pixel size and KB limit from your notification.</p>
+        </details>
+        <details>
+          <summary>How do I resize my signature to 20KB?</summary>
+          <p>Upload the photo of your signature, crop it with the locked 140 × 60 frame and choose the SSC Signature or IBPS Signature preset, then press Make my signature. Portals that say “20KB” almost always mean the 10–20 KB band, and the tool lands your file inside it: it lowers JPEG quality if the file is too big, and if the picture alone comes out below 10 KB it pads the file invisibly to reach the band — the signature itself is never altered. There is also a dedicated <a href="to-20kb/">resize signature to 20KB</a> page with the preset already selected.</p>
+        </details>
+        <details>
+          <summary>Why was my signature rejected for being too small?</summary>
+          <p>Because bands like SSC's and IBPS's 10–20 KB have a minimum as well as a maximum, and a clean signature on white paper often encodes to only 4–7 KB at 140 × 60 pixels. The portal's software rejects it just as firmly as an oversized file. This tool detects the shortfall and adds harmless padding data inside the JPEG (comment segments that decoders skip) until the size enters the band.</p>
+        </details>
+        <details>
+          <summary>My form only says “signature under 10 KB” and gives no pixel size. What should I use?</summary>
+          <p>Use the Under 10 KB preset (or the dedicated <a href="to-10kb/">resize signature to 10KB</a> page). It keeps the widely accepted 140 × 60 pixel dimensions and guarantees the file stays at or below 10 KB. If your notification does list different pixels, choose Custom and type them in — the crop frame locks to whatever shape you enter.</p>
+        </details>
+        <details>
+          <summary>Is my signature uploaded to your server?</summary>
+          <p>No. Cropping, resizing and encoding all run inside your browser on your own device. Your signature is never sent anywhere, never stored and never seen by anyone — sensible, since a signature is a security feature of your identity documents.</p>
+        </details>
+      </div>
+
+      <h2>Share this tool</h2>
+      <p>Know someone fighting with a signature upload? Send them this page:</p>
+      <div class="share-row">
+        <a class="share-btn share-wa" href="https://wa.me/?text=Signature%20Resizer%20Online%20—%20resize%20your%20signature%20to%2010KB%20or%2020KB%20at%20140%C3%9760%20px%2C%20free%3A%20https%3A%2F%2Ffastidious-alfajores-461763.netlify.app%2Ftools%2Fsignature-resizer%2F" target="_blank" rel="noopener">Share on WhatsApp</a>
+        <a class="share-btn share-fb" href="https://www.facebook.com/sharer/sharer.php?u=https://fastidious-alfajores-461763.netlify.app/tools/signature-resizer/" target="_blank" rel="noopener">Share on Facebook</a>
+      </div>
 
       <h2>Related tools</h2>
       <div class="chip-row">
@@ -136,5 +353,7 @@
 </footer>
 
 <script src="../../assets/app.js"></script>
+<script src="../../assets/form-resizer.js"></script>
+<script src="../../assets/signature.js"></script>
 </body>
 </html>
