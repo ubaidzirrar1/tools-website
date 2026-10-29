@@ -191,7 +191,11 @@
     var scale = 1;
     var bestOverall = null;
     var attempt = 0;
-    var MAX_ATTEMPTS = 9;
+    // 14 attempts reach scale ~0.12 (e.g. a 4000px photo down to ~480px):
+    // very noisy or detailed images need those extra reductions to reach
+    // small targets like 20–25 KB. Ordinary photos fit in the first few
+    // attempts and never pay for the extra headroom.
+    var MAX_ATTEMPTS = 14;
     function tryScale() {
       attempt++;
       var w = Math.max(1, Math.round(origW * scale));
