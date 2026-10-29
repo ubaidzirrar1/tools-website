@@ -387,32 +387,44 @@
     makeBtn.textContent = "Working…";
     resetResult();
 
-    var maxDim = targetBytes ? 1600 : 2000;
-    function tryQuality(q) {
+    function encodeAll(maxDim, q) {
       setStatus("Working in your browser — building your PDF (" + items.length +
-        (items.length === 1 ? " page" : " pages") + ", quality " + Math.round(q * 100) + "%)…");
+        (items.length === 1 ? " page" : " pages") + ", images up to " + maxDim +
+        " px, quality " + Math.round(q * 100) + "%)…");
       return Promise.all(items.map(function (it) { return encodeItem(it, maxDim, q); }))
         .then(function (encoded) { return assemble(encoded); });
     }
 
     var build;
     if (!targetBytes) {
-      build = tryQuality(0.9);
+      build = encodeAll(2000, 0.9);
     } else {
-      // Quality search: highest quality whose total PDF fits the target.
+      // Fit search: try the largest image dimensions first, searching
+      // quality within them; if even the lowest quality is too big,
+      // step the dimensions down and search again. (Quality alone
+      // cannot tame very detailed images — dimensions have to move
+      // too, exactly as in the image compressor.)
       build = (function () {
-        var lo = 0.35, hi = 0.92, best = null, smallest = null;
-        function step(n) {
-          if (n <= 0) return Promise.resolve(best || smallest);
-          var q = n === 6 ? hi : (lo + hi) / 2;
-          return tryQuality(q).then(function (pdf) {
-            if (!smallest || pdf.length < smallest.length) smallest = pdf;
-            if (pdf.length <= targetBytes) { best = pdf; lo = q; } else { hi = q; }
-            if (n === 6 && best) return best; // top quality already fits
-            return step(n - 1);
+        var dims = [1600, 1200, 900, 700, 550, 420];
+        var smallest = null;
+        function tryDim(di) {
+          if (di >= dims.length) return Promise.resolve(smallest);
+          var lo = 0.35, hi = 0.92, best = null;
+          function step(n, first) {
+            var q = first ? hi : (lo + hi) / 2;
+            return encodeAll(dims[di], q).then(function (pdf) {
+              if (!smallest || pdf.length < smallest.length) smallest = pdf;
+              if (pdf.length <= targetBytes) { best = pdf; lo = q; } else { hi = q; }
+              if (first && best) return best; // top quality fits at this size
+              if (n <= 1) return best;
+              return step(n - 1, false);
+            });
+          }
+          return step(5, true).then(function (found) {
+            return found || tryDim(di + 1);
           });
         }
-        return step(6);
+        return tryDim(0);
       })();
     }
 
