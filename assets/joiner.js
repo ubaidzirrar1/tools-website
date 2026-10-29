@@ -168,7 +168,8 @@
     function initCrop() {
       var d = imgDisplaySize();
       var c = Core.largestCenteredCrop(d.w, d.h, aspect);
-      slot.crop = { x: c.x, y: c.y, size: c.size };
+      // largestCenteredCrop returns {x, y, w, h} — the box size is its w.
+      slot.crop = { x: c.x, y: c.y, size: c.w };
       paintCrop();
     }
     slot.readCropNatural = function () {
@@ -356,6 +357,11 @@
 
   function drawInto(ctx, slot, rect) {
     var c = slot.readCropNatural();
+    // Never fail silently: an invalid crop rect would otherwise produce
+    // a blank area in the joined file while looking like success.
+    if (!isFinite(c.x) || !isFinite(c.y) || !isFinite(c.w) || !isFinite(c.h) || c.w <= 0 || c.h <= 0) {
+      throw new Error("bad-crop");
+    }
     ctx.drawImage(slot.bitmap, c.x, c.y, c.w, c.h, rect.x, rect.y, rect.w, rect.h);
   }
 
@@ -407,7 +413,11 @@
         state.busy = false;
         joinBtn.disabled = false;
         joinBtn.textContent = label;
-        setStatus("Something went wrong while preparing your file. Please try again with different images.");
+        if (e && e.message === "bad-crop") {
+          setStatus("The crop frame could not be read. Please remove both files, add them again, and then join.");
+        } else {
+          setStatus("Something went wrong while preparing your file. Please try again with different images.");
+        }
       }
     }, 30);
   }
