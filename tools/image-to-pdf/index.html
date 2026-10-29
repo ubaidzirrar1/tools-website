@@ -3,8 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Image to PDF Converter Online Free — JPG to PDF Under 200KB | Tools Website</title>
-<meta name="description" content="Convert one or more images into a single PDF online for free, with an option to keep the PDF under 200KB for application form uploads. No sign-up, processed in your browser.">
+<title>Image to PDF Converter Online Free — JPG to PDF, Even Under 200KB | Tools Website</title>
+<meta name="description" content="Convert one or more images into a single PDF online for free — reorder pages, choose A4 or fit-to-image, and keep the PDF under 200KB (or 100/500KB) for application form uploads. No sign-up, processed in your browser.">
+<link rel="canonical" href="https://tools-website-ege.pages.dev/tools/image-to-pdf/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Image to PDF Converter Online Free">
+<meta property="og:description" content="Combine images into one PDF — with page size, order control and a KB limit for portal uploads. In your browser, free.">
+<meta property="og:url" content="https://tools-website-ege.pages.dev/tools/image-to-pdf/">
 <link rel="stylesheet" href="../../assets/style.css">
 <script>
 (function(){try{var t=localStorage.getItem("tw-theme");if(t){document.documentElement.setAttribute("data-theme",t);}else if(window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches){document.documentElement.setAttribute("data-theme","dark");}}catch(e){}})();
@@ -15,11 +20,11 @@
   "@graph": [
     {
       "@type": "WebApplication",
-      "name": "Image to PDF",
+      "name": "Image to PDF Converter",
       "applicationCategory": "UtilitiesApplication",
       "operatingSystem": "Any (web browser)",
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-      "description": "Combine images into a single PDF in the browser, optionally compressed to stay under a chosen KB limit for form uploads."
+      "description": "Combine images into a single PDF in the browser, with page size and ordering controls and an optional KB limit for form and portal uploads. Processing happens locally in the browser."
     },
     {
       "@type": "BreadcrumbList",
@@ -27,6 +32,51 @@
         { "@type": "ListItem", "position": 1, "name": "Home", "item": "../../" },
         { "@type": "ListItem", "position": 2, "name": "File Converters", "item": "../../file-converters/" },
         { "@type": "ListItem", "position": 3, "name": "Image to PDF" }
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "name": "How to convert images to a PDF online",
+      "totalTime": "PT2M",
+      "step": [
+        { "@type": "HowToStep", "position": 1, "name": "Add your images", "text": "Drag and drop one or more JPG, PNG or WebP images into the tool (up to 20). Each image becomes one page of the PDF." },
+        { "@type": "HowToStep", "position": 2, "name": "Arrange and set the options", "text": "Use the up and down buttons to set the page order. Choose the page size (A4 is the safe default for documents), a margin, and — if a portal limits your upload — a size target such as Under 200 KB." },
+        { "@type": "HowToStep", "position": 3, "name": "Create and download the PDF", "text": "Press Create PDF. The result panel shows the page count and the exact file size, and warns you honestly if your size target could not be met. Download the PDF." }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do I make a PDF under 200KB for a form upload?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Add your images, choose 'Under 200 KB' as the PDF size target, and press Create PDF. The tool re-encodes your images at the highest quality that keeps the whole PDF at or under 200 KB (204,800 bytes) and shows you the exact final size. If even the lowest quality cannot fit — usually with many large photos — the result panel says so plainly instead of pretending. There is also a dedicated Image to PDF Under 200KB page with the target already set." }
+        },
+        {
+          "@type": "Question",
+          "name": "What page size should I choose — A4 or Fit to image?",
+          "acceptedAnswer": { "@type": "Answer", "text": "A4 for documents: certificates, CNIC copies, degrees and anything a portal or office will print — every image is placed on a standard A4 page. Fit to image makes each PDF page exactly the shape of its image, which suits photo-only PDFs. Letter is the North American equivalent of A4." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I change the order of pages in the PDF?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. Every image you add appears in a list with up and down buttons — arrange them in the order you want the pages to appear, and remove any image with the ✕ button. The PDF is built in exactly the order shown." }
+        },
+        {
+          "@type": "Question",
+          "name": "Will the quality of my documents stay readable?",
+          "acceptedAnswer": { "@type": "Answer", "text": "With no size target, images are embedded at high quality (up to 2000 pixels on the long edge), which keeps text in photographed documents sharp. With a KB target, quality is traded for size only as much as needed to fit — and for document uploads to portals, the result remains perfectly readable at the sizes portals display." }
+        },
+        {
+          "@type": "Question",
+          "name": "Are my images uploaded to your server?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. The PDF is built inside your browser on your own device — the converter is written in JavaScript and your images are never sent anywhere, never stored and never seen by anyone. That matters when the images are personal documents like CNICs and certificates." }
+        },
+        {
+          "@type": "Question",
+          "name": "How many images can I put in one PDF?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Up to 20 images per PDF, each becoming one page. For a larger set, make two PDFs — or check whether the portal actually wants a single file, since many accept a few separate uploads." }
+        }
       ]
     }
   ]
@@ -55,33 +105,115 @@
 
   <section class="page">
     <div class="container">
-      <h1>Image to PDF</h1>
-      <p class="lede">Forms often want your documents as <strong>one PDF</strong> — and under a size limit. Add your JPG or PNG images, arrange them in order, and download a single PDF, optionally compressed to stay under 200 KB.</p>
+      <h1>Image to PDF Converter</h1>
+      <p class="lede">Turn one or more images into <strong>a single PDF</strong> — with the two things portal uploads actually demand and most converters hide: <strong>page order control</strong> and a <strong>size target</strong>, so your PDF can be made to fit <strong>under 200 KB</strong> (or 100 / 500 KB) for application forms. A4 pages for documents, fit-to-image for photos. Free, no sign-up, and your documents never leave your device.</p>
 
-      <div class="notice">
-        <strong>Launching with the MVP build:</strong> this tool is in the Phase 2 build queue and will appear here shortly.
+      <!-- ===== Tool box ===== -->
+      <div class="tool-box" data-image-to-pdf-tool>
+        <div class="dropzone" data-dropzone tabindex="0" role="button" aria-label="Drop your images here, or activate to choose files">
+          <input type="file" accept="image/jpeg,image/png,image/webp" data-file-input multiple hidden>
+          <div class="dropzone-icon" aria-hidden="true">📄</div>
+          <p class="dropzone-title">Drag &amp; drop your images here</p>
+          <p class="dropzone-sub">or <span class="dropzone-link">click to choose files</span> — JPG, PNG or WebP, up to 20 images (you can also paste)</p>
+          <p class="dropzone-note">🔒 Your files never leave your device — the PDF is built in your browser.</p>
+        </div>
+
+        <div class="pdf-items" data-items hidden></div>
+
+        <div class="controls-card fr-controls">
+          <span class="target-label">Page size</span>
+          <div class="chip-row preset-chips" data-size-chips></div>
+          <span class="target-label">Margin</span>
+          <div class="chip-row preset-chips" data-margin-chips></div>
+          <span class="target-label">PDF size target</span>
+          <div class="chip-row preset-chips" data-target-chips></div>
+          <div class="fr-custom-grid" data-custom-wrap hidden>
+            <label class="field">Custom target (KB)
+              <input type="number" min="20" max="10000" step="1" value="200" data-custom-kb>
+            </label>
+          </div>
+          <div class="fr-actions">
+            <button type="button" class="btn btn-big" data-make-btn>Create PDF</button>
+          </div>
+          <p class="tool-status" data-status role="status" aria-live="polite"></p>
+          <p class="privacy-note">🔒 Your files never leave your device.</p>
+        </div>
+
+        <div class="result-panel" data-result hidden>
+          <h3 class="result-title">✅ Your PDF is ready</h3>
+          <div class="result-stats result-stats-wide">
+            <div class="stat-row"><span>Pages</span><strong data-stat-pages></strong></div>
+            <div class="stat-row"><span>File size</span><strong data-stat-size></strong></div>
+            <div class="stat-row"><span>Size target</span><strong data-stat-target></strong></div>
+            <div class="band-status" data-band-status></div>
+            <p class="result-meta-line" data-result-meta></p>
+            <a class="btn btn-download" data-download href="#" download>⬇ Download PDF</a>
+            <button type="button" class="btn btn-ghost" data-reset>Start over</button>
+          </div>
+        </div>
       </div>
+      <!-- ===== /Tool box ===== -->
 
-      <h2>How it will work</h2>
-      <ol>
-        <li>Add one or more images (degree, CNIC, certificates — whatever the form asks for).</li>
-        <li>Drag them into the right order; choose page size and the optional “under 200KB” target.</li>
-        <li>Download the finished PDF and upload it to your form.</li>
+      <h2>Made for portal document uploads</h2>
+      <p>Most image-to-PDF converters are built for sharing photos. This one is built for the uploads that decide applications: a CNIC front and back that must become <strong>one PDF under a portal's size cap</strong>, degree and certificate scans for a job application, a set of documents a university portal wants as a single file. That is why the size target is a first-class option rather than an afterthought — set it to your portal's limit and the tool finds the highest quality that fits, then shows you the exact byte count so you can be sure before you upload. Need the target pre-set? The dedicated <a href="under-200kb/">Image to PDF Under 200KB</a> page starts with 200 KB already chosen.</p>
+
+      <h2>How to use</h2>
+      <ol class="howto-steps">
+        <li><strong>Add your images.</strong> Drag &amp; drop them, tap to select, or paste — up to 20, each becoming one page.</li>
+        <li><strong>Arrange and set options.</strong> Use ↑ and ↓ to order the pages; pick A4 for documents (the safe default), a margin, and a size target if your portal sets one.</li>
+        <li><strong>Create and download.</strong> The result panel reports the page count and exact size — and warns you honestly if a target could not be met, instead of quietly handing you an oversized file.</li>
       </ol>
 
-      <h2>Good to know</h2>
+      <h2>Which settings should I use?</h2>
       <ul>
-        <li>Photograph documents flat, in bright light, with all four corners visible — the PDF can only be as clear as the photos.</li>
-        <li>The whole conversion happens in your browser; your documents are never uploaded.</li>
-        <li>Need the individual images smaller first? Run them through <a href="../compress-image-to-kb/">Compress Image to KB</a>.</li>
+        <li><strong>Certificates, CNIC, degrees for a portal:</strong> A4, small margin, and the portal's KB limit as the target (200 KB is the most common).</li>
+        <li><strong>A set of photos to send someone:</strong> Fit to image, no margin, best quality.</li>
+        <li><strong>Documents for email:</strong> A4, small margin, Under 500 KB keeps the attachment light while staying sharp.</li>
+        <li><strong>Printing at a shop:</strong> A4, small margin, best quality — the file prints exactly like a normal document.</li>
       </ul>
+
+      <h2>Frequently asked questions</h2>
+      <div class="faq">
+        <details>
+          <summary>How do I make a PDF under 200KB for a form upload?</summary>
+          <p>Add your images, choose “Under 200 KB” as the PDF size target, and press Create PDF. The tool re-encodes your images at the highest quality that keeps the whole PDF at or under 200 KB (204,800 bytes) and shows you the exact final size. If even the lowest quality cannot fit — usually with many large photos — the result panel says so plainly instead of pretending. There is also a dedicated <a href="under-200kb/">Image to PDF Under 200KB</a> page with the target already set.</p>
+        </details>
+        <details>
+          <summary>What page size should I choose — A4 or Fit to image?</summary>
+          <p>A4 for documents: certificates, CNIC copies, degrees and anything a portal or office will print — every image is placed on a standard A4 page. Fit to image makes each PDF page exactly the shape of its image, which suits photo-only PDFs. Letter is the North American equivalent of A4.</p>
+        </details>
+        <details>
+          <summary>Can I change the order of pages in the PDF?</summary>
+          <p>Yes. Every image you add appears in a list with up and down buttons — arrange them in the order you want the pages to appear, and remove any image with the ✕ button. The PDF is built in exactly the order shown.</p>
+        </details>
+        <details>
+          <summary>Will the quality of my documents stay readable?</summary>
+          <p>With no size target, images are embedded at high quality (up to 2000 pixels on the long edge), which keeps text in photographed documents sharp. With a KB target, quality is traded for size only as much as needed to fit — and for document uploads to portals, the result remains perfectly readable at the sizes portals display.</p>
+        </details>
+        <details>
+          <summary>Are my images uploaded to your server?</summary>
+          <p>No. The PDF is built inside your browser on your own device — the converter is written in JavaScript and your images are never sent anywhere, never stored and never seen by anyone. That matters when the images are personal documents like CNICs and certificates.</p>
+        </details>
+        <details>
+          <summary>How many images can I put in one PDF?</summary>
+          <p>Up to 20 images per PDF, each becoming one page. For a larger set, make two PDFs — or check whether the portal actually wants a single file, since many accept a few separate uploads.</p>
+        </details>
+      </div>
+
+      <h2>Share this tool</h2>
+      <p>Know someone fighting a portal's PDF upload limit? Send them this page:</p>
+      <div class="share-row">
+        <a class="share-btn share-wa" href="https://wa.me/?text=Image%20to%20PDF%20Converter%20—%20even%20under%20200KB%20for%20portal%20uploads%2C%20free%3A%20https%3A%2F%2Ftools-website-ege.pages.dev%2Ftools%2Fimage-to-pdf%2F" target="_blank" rel="noopener">Share on WhatsApp</a>
+        <a class="share-btn share-fb" href="https://www.facebook.com/sharer/sharer.php?u=https://tools-website-ege.pages.dev/tools/image-to-pdf/" target="_blank" rel="noopener">Share on Facebook</a>
+      </div>
 
       <h2>Related tools</h2>
       <div class="chip-row">
+        <a class="chip" href="under-200kb/">Image to PDF Under 200KB</a>
         <a class="chip" href="../compress-image-to-kb/">Compress Image to KB</a>
-        <a class="chip" href="../json-to-toon-converter/">JSON to TOON Converter</a>
-        <a class="chip" href="../llm-token-cost-calculator/">LLM Token Cost Calculator</a>
         <a class="chip" href="../photo-signature-resizer/">Photo &amp; Signature Resizer</a>
+        <a class="chip" href="../photo-signature-joiner/">Photo &amp; Signature Joiner</a>
+        <a class="chip" href="../passport-size-photo-maker/">Passport Size Photo Maker</a>
       </div>
     </div>
   </section>
@@ -128,5 +260,6 @@
 </footer>
 
 <script src="../../assets/app.js"></script>
+<script src="../../assets/image-to-pdf.js"></script>
 </body>
 </html>
