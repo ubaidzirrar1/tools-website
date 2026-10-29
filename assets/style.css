@@ -931,3 +931,14 @@ img, video, svg { max-width: 100%; }
 }
 .sheet-block .target-label { display: block; margin-bottom: 8px; }
 .sheet-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+
+/* Add Name & Date on Photo — live preview of the printed strip. */
+.nd-strip-preview {
+  display: block;
+  width: 260px;
+  max-width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #ffffff;
+  margin: 6px 0 4px;
+}
