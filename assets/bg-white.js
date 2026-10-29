@@ -258,7 +258,8 @@
     if (state.resultURL) URL.revokeObjectURL(state.resultURL);
     state.resultURL = URL.createObjectURL(blob);
     if (resultImg) resultImg.src = state.resultURL;
-    var pct = Math.round(100 * replaced / (pd.w * pd.h));
+    var pctRaw = 100 * replaced / (pd.w * pd.h);
+    var pct = pctRaw < 10 ? pctRaw.toFixed(1) : String(Math.round(pctRaw));
     if (resultMeta) {
       resultMeta.textContent = "Your photo with a " + bg.label.toLowerCase() + " background — " +
         fmtSize(blob.size) + " • " + pd.w + " × " + pd.h + " px";
@@ -268,10 +269,14 @@
     if (statBg) statBg.textContent = bg.label;
     if (bandStatus) {
       bandStatus.classList.remove("is-ok", "is-warn");
-      if (replaced > 0) {
+      if (pctRaw >= 2) {
         bandStatus.classList.add("is-ok");
         bandStatus.textContent = "✓ Background changed — about " + pct + "% of the photo was plain background and is now " +
           bg.label.toLowerCase() + ". Anything the tool could not separate cleanly was left untouched.";
+      } else if (replaced > 0) {
+        bandStatus.classList.add("is-warn");
+        bandStatus.textContent = "⚠ Only about " + pct + "% of this photo counted as plain background, so only that small part changed. " +
+          "This tool works best on a photo taken against a plain, evenly lit wall — a busy or mixed background is left untouched on purpose, rather than risk cutting into the subject.";
       } else {
         bandStatus.classList.add("is-warn");
         bandStatus.textContent = "⚠ No plain background area was detected, so your photo is unchanged. This works best on a photo taken against a plain, evenly lit wall — or try the Strong setting.";
