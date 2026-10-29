@@ -887,3 +887,47 @@ img, video, svg { max-width: 100%; }
 @media (min-width: 1025px) {
   .crop-stage { max-width: 720px; }
 }
+
+/* Passport Photo Maker — face guide inside the crop frame, background
+   colour dots on chips, and the print-sheet block in the result panel.
+   The guide is pointer-events:none so it never interferes with the
+   crop drag/resize handling. */
+.crop-guide {
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  width: 62%;
+  height: 72%;
+  transform: translate(-50%, -50%);
+  border: 2px dashed rgba(255, 255, 255, 0.9);
+  box-shadow:
+    0 0 0 2px rgba(0, 0, 0, 0.22),
+    inset 0 0 0 2px rgba(0, 0, 0, 0.22);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.crop-guide-line {
+  position: absolute;
+  left: 7%;
+  right: 7%;
+  bottom: 12%;
+  border-top: 2px dashed rgba(255, 255, 255, 0.75);
+  box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.18);
+  pointer-events: none;
+}
+.bg-dot {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.28);
+  margin-right: 7px;
+  vertical-align: -2px;
+}
+.sheet-block {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+.sheet-block .target-label { display: block; margin-bottom: 8px; }
+.sheet-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
