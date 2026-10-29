@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://fastidious-alfajores-461763.netlify.app/sitemap.xml
+Sitemap: https://tools-website-ege.pages.dev/sitemap.xml
