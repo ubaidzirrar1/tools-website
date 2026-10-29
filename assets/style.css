@@ -942,3 +942,8 @@ img, video, svg { max-width: 100%; }
   background: #ffffff;
   margin: 6px 0 4px;
 }
+
+/* Joiner slots (Photo & Signature Joiner) */
+.joiner-slot + .joiner-slot { margin-top: 1.5rem; }
+
+.slot-title { font-size: 1.08rem; margin: 0 0 0.6rem; }
