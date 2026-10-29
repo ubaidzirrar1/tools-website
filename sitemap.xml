@@ -27,6 +27,8 @@
   <url><loc>https://tools-website-ege.pages.dev/tools/passport-size-photo-maker/</loc><priority>0.8</priority></url>
   <url><loc>https://tools-website-ege.pages.dev/tools/name-and-date-on-photo/</loc><priority>0.8</priority></url>
   <url><loc>https://tools-website-ege.pages.dev/tools/photo-signature-joiner/</loc><priority>0.8</priority></url>
+  <url><loc>https://tools-website-ege.pages.dev/tools/photo-signature-resizer/thumb-impression/</loc><priority>0.8</priority></url>
+  <url><loc>https://tools-website-ege.pages.dev/tools/photo-signature-resizer/handwritten-declaration/</loc><priority>0.8</priority></url>
   <url><loc>https://tools-website-ege.pages.dev/tools/change-background-to-white/</loc><priority>0.8</priority></url>
   <url><loc>https://tools-website-ege.pages.dev/tools/image-to-pdf/</loc><priority>0.8</priority></url>
   <url><loc>https://tools-website-ege.pages.dev/tools/json-to-toon-converter/</loc><priority>0.8</priority></url>

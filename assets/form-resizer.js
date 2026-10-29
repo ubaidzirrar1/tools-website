@@ -30,8 +30,20 @@
       { id: "ssc-signature",  slug: "ssc",  label: "SSC Signature",  w: 140, h: 60, minKB: 10, maxKB: 20 },
       { id: "ibps-signature", slug: "ibps", label: "IBPS Signature", w: 140, h: 60, minKB: 10, maxKB: 20 },
       { id: "custom",         slug: "custom", label: "Custom size…" }
+    ],
+    thumb: [
+      { id: "ibps-thumb", slug: "ibps", label: "IBPS / SBI Thumb Impression", w: 240, h: 240, minKB: 20, maxKB: 50 },
+      { id: "custom",     slug: "custom", label: "Custom size…" }
+    ],
+    declaration: [
+      { id: "ibps-declaration", slug: "ibps", label: "IBPS / SBI Handwritten Declaration", w: 800, h: 400, minKB: 50, maxKB: 100 },
+      { id: "custom",           slug: "custom", label: "Custom size…" }
     ]
   };
+
+  /* Nouns for result and status text per mode. */
+  var MODE_NOUNS = { photo: "photo", signature: "signature", thumb: "thumb impression", declaration: "declaration" };
+  var MODE_SUBJECTS = { photo: "face", signature: "signature", thumb: "thumb", declaration: "declaration" };
 
   function findPreset(mode, id) {
     var list = PRESETS[mode] || [];
@@ -482,7 +494,7 @@
       state.resultURL = URL.createObjectURL(res.blob);
       if (resultImg) resultImg.src = state.resultURL;
       if (resultMeta) {
-        resultMeta.textContent = (mode === "photo" ? "Your form-ready photo" : "Your form-ready signature") +
+        resultMeta.textContent = "Your form-ready " + (MODE_NOUNS[mode] || "image") +
           " — " + fmtSize(res.blob.size) + " • " + spec.w + " × " + spec.h + " px";
       }
       if (statDims) statDims.textContent = spec.w + " × " + spec.h + " px (exact)";
@@ -493,7 +505,7 @@
         if (res.over) {
           bandStatus.classList.add("is-warn");
           bandStatus.textContent = "⚠ " + fmtKB(res.blob.size) + " — still above the " + spec.maxKB +
-            " KB limit. Try a tighter crop around the " + (mode === "photo" ? "face" : "signature") + " and make it again.";
+            " KB limit. Try a tighter crop around the " + (MODE_SUBJECTS[mode] || "subject") + " and make it again.";
         } else if (spec.minKB > 0) {
           bandStatus.classList.add("is-ok");
           bandStatus.textContent = "✓ Within " + spec.minKB + "–" + spec.maxKB + " KB — " +
