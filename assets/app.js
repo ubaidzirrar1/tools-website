@@ -129,6 +129,13 @@
       if (!open) closeMega();
     });
   }
+  if (megaItem && window.matchMedia && matchMedia("(min-width: 921px) and (hover: hover)").matches) {
+    megaItem.addEventListener("mouseenter", function () {
+      megaItem.classList.add("open");
+      if (megaBtn) megaBtn.setAttribute("aria-expanded", "true");
+    });
+    megaItem.addEventListener("mouseleave", function () { closeMega(); });
+  }
   document.addEventListener("click", function () { closeMega(); });
   document.addEventListener("keydown", function (e) {
     if (e.key === "Escape") closeNav();

@@ -213,10 +213,8 @@ button.nav-link:hover { background: var(--surface-2); }
 }
 .nav-toggle:hover { background: var(--surface-2); }
 
-@media (min-width: 921px) and (hover: hover) {
-  .has-mega:hover .mega-menu { display: block; }
-  .has-mega:hover .caret { transform: rotate(180deg); }
-}
+/* Desktop hover-open is handled in app.js (mouseenter/mouseleave) so that
+   click-to-close and Escape work even while the pointer is over the menu. */
 
 @media (max-width: 920px) {
   .nav-toggle { display: block; }
