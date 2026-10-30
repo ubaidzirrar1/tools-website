@@ -89,3 +89,51 @@
     });
   });
 })();
+
+/* ---------- Header navigation: mega menu + mobile panel ---------- */
+(function () {
+  "use strict";
+  var header = document.querySelector(".site-header");
+  if (!header) return;
+  var navToggle = header.querySelector("[data-nav-toggle]");
+  var megaBtn = header.querySelector("[data-mega-toggle]");
+  var megaItem = header.querySelector(".has-mega");
+
+  function closeMega() {
+    if (megaItem) megaItem.classList.remove("open");
+    if (megaBtn) megaBtn.setAttribute("aria-expanded", "false");
+  }
+  function closeNav() {
+    header.classList.remove("nav-open");
+    if (navToggle) {
+      navToggle.setAttribute("aria-expanded", "false");
+      navToggle.setAttribute("aria-label", "Open menu");
+    }
+    closeMega();
+  }
+
+  if (megaBtn && megaItem) {
+    megaBtn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      var open = megaItem.classList.toggle("open");
+      megaBtn.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+    megaItem.addEventListener("click", function (e) { e.stopPropagation(); });
+  }
+  if (navToggle) {
+    navToggle.addEventListener("click", function (e) {
+      e.stopPropagation();
+      var open = header.classList.toggle("nav-open");
+      navToggle.setAttribute("aria-expanded", open ? "true" : "false");
+      navToggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+      if (!open) closeMega();
+    });
+  }
+  document.addEventListener("click", function () { closeMega(); });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") closeNav();
+  });
+  header.querySelectorAll(".mega-item, .mega-heading, .main-nav > a.nav-link").forEach(function (link) {
+    link.addEventListener("click", function () { closeNav(); });
+  });
+})();

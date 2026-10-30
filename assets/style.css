@@ -83,40 +83,173 @@ a:hover { text-decoration: underline; }
 .site-header {
   position: sticky;
   top: 0;
-  z-index: 50;
+  z-index: 60;
   background: var(--header-bg);
   box-shadow: var(--header-shadow);
 }
 .header-inner {
   display: flex;
   align-items: center;
-  gap: 14px;
-  flex-wrap: wrap;
-  padding-top: 11px;
-  padding-bottom: 11px;
+  gap: 8px;
+  flex-wrap: nowrap;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 .logo {
   font-size: 1.32rem;
   font-weight: 800;
   color: var(--text);
   letter-spacing: -0.02em;
+  white-space: nowrap;
 }
 .logo:hover { text-decoration: none; }
 .logo span { color: var(--primary); }
 .main-nav {
   display: flex;
+  align-items: center;
   gap: 2px;
-  flex-wrap: wrap;
   margin-left: auto;
 }
-.main-nav a {
+.nav-link {
   color: var(--text);
-  padding: 8px 11px;
-  border-radius: 999px;
-  font-size: 0.95rem;
-  font-weight: 500;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  white-space: nowrap;
 }
-.main-nav a:hover { background: var(--surface-2); color: var(--primary); text-decoration: none; }
+a.nav-link:hover { background: var(--surface-2); color: var(--primary); text-decoration: none; }
+button.nav-link {
+  background: none;
+  border: none;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+}
+button.nav-link:hover { background: var(--surface-2); }
+.nav-all-tools { color: var(--primary); }
+.caret { display: inline-block; font-size: 0.72em; transition: transform 0.15s ease; }
+.has-mega.open .caret { transform: rotate(180deg); }
+
+/* Mega dropdown (iLovePDF-style "All Tools" panel) */
+.mega-menu {
+  display: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  background: var(--header-bg);
+  border-top: 1px solid var(--border);
+  box-shadow: 0 30px 44px rgba(16, 24, 40, 0.18);
+  z-index: 60;
+}
+.has-mega.open .mega-menu { display: block; }
+.mega-grid {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 26px 20px 30px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px 34px;
+}
+.mega-heading {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+.mega-heading:hover { color: var(--primary); text-decoration: none; }
+.mega-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 8px;
+  border-radius: 9px;
+  color: var(--text);
+  font-weight: 500;
+  font-size: 0.97rem;
+}
+.mega-item:hover { background: var(--surface-2); text-decoration: none; }
+.mega-icon {
+  width: 28px;
+  height: 28px;
+  flex: 0 0 28px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  background: color-mix(in srgb, var(--mi, #888888) 18%, var(--surface));
+}
+.mega-soon {
+  margin-left: auto;
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  background: var(--badge-bg);
+  color: var(--badge-text);
+  padding: 2px 7px;
+  border-radius: 999px;
+}
+.nav-toggle {
+  display: none;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  border-radius: 10px;
+  padding: 8px 13px;
+  cursor: pointer;
+  font-size: 1.05rem;
+  line-height: 1;
+  min-height: 40px;
+}
+.nav-toggle:hover { background: var(--surface-2); }
+
+@media (min-width: 921px) and (hover: hover) {
+  .has-mega:hover .mega-menu { display: block; }
+  .has-mega:hover .caret { transform: rotate(180deg); }
+}
+
+@media (max-width: 920px) {
+  .nav-toggle { display: block; }
+  .main-nav { display: none; }
+  .site-header.nav-open .main-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--header-bg);
+    box-shadow: var(--shadow-lg);
+    padding: 10px 16px 18px;
+    max-height: calc(100dvh - 58px);
+    overflow-y: auto;
+    gap: 2px;
+  }
+  .main-nav .nav-link {
+    padding: 13px 10px;
+    font-size: 1rem;
+    text-align: left;
+    width: 100%;
+  }
+  .mega-menu {
+    position: static;
+    box-shadow: none;
+    border-top: none;
+  }
+  .mega-grid { grid-template-columns: 1fr; padding: 8px 0 4px; gap: 18px; }
+  .mega-item { padding: 10px 8px; }
+}
 .theme-toggle {
   border: 1px solid var(--border);
   background: var(--surface);
@@ -1012,3 +1145,134 @@ img, video, svg { max-width: 100%; }
 .mark-typical { background: #fff3d1; color: #856100; }
 
 .chart-table td a { font-weight: 600; }
+
+/* ===== UI Redesign Round 2 — iLovePDF-style tool pages ===== */
+
+/* Centred hero on tool pages (pages that contain a tool box) */
+.page:has(.tool-box) h1 {
+  text-align: center;
+  font-size: 2.35rem;
+  max-width: 820px;
+  margin: 30px auto 12px;
+}
+.page:has(.tool-box) h1::after {
+  content: "";
+  display: block;
+  width: 64px;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--primary);
+  margin: 14px auto 0;
+}
+.page:has(.tool-box) .lede {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Tool box as the hero card */
+.tool-box {
+  max-width: 920px;
+  margin: 26px auto 10px;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: var(--shadow-lg);
+}
+.dropzone {
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 44px 24px;
+  background: color-mix(in srgb, var(--primary) 4%, var(--surface));
+  border-color: color-mix(in srgb, var(--primary) 40%, var(--border));
+}
+.dropzone-icon {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--primary) 13%, var(--surface));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.3rem;
+  line-height: 1;
+  margin-bottom: 16px;
+}
+.dropzone-title { font-size: 1.45rem; font-weight: 800; letter-spacing: -0.01em; }
+.dropzone-sub { font-size: 1rem; }
+.dropzone-link {
+  display: inline-block;
+  background: var(--primary);
+  color: var(--primary-contrast);
+  padding: 11px 26px;
+  border-radius: 10px;
+  font-size: 1.02rem;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 6px 16px rgba(229, 50, 45, 0.25);
+  margin: 2px;
+}
+.dropzone:hover .dropzone-link { background: var(--primary-hover); text-decoration: none; }
+.btn-big { border-radius: 12px; padding: 17px 30px; font-size: 1.12rem; }
+.btn-download { border-radius: 12px; }
+.result-panel { background: color-mix(in srgb, var(--accent) 5%, var(--surface)); }
+
+/* How-to steps as numbered cards */
+.howto-steps {
+  list-style: none;
+  counter-reset: step;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 14px;
+  padding: 0;
+  max-width: none;
+}
+.howto-steps li {
+  counter-increment: step;
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 18px 18px 16px 58px;
+  box-shadow: var(--shadow-sm);
+  margin: 0;
+  max-width: none;
+}
+.howto-steps li::before {
+  content: counter(step);
+  position: absolute;
+  left: 16px;
+  top: 16px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: var(--primary-contrast);
+  font-weight: 800;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* iLovePDF-style dark footer */
+.site-footer {
+  background: #14141d;
+  border-top: none;
+  color: #c7cad4;
+}
+.site-footer h3 { color: #ffffff; }
+.site-footer a { color: #a6abb9; }
+.site-footer a:hover { color: #ff8a84; }
+.footer-bottom { border-top: 1px solid rgba(255, 255, 255, 0.13); color: #a6abb9; }
+.footer-bottom a { color: #a6abb9; }
+
+@media (max-width: 640px) {
+  .page:has(.tool-box) h1 { font-size: 1.8rem; margin-top: 20px; }
+  .tool-box { padding: 18px; }
+  .dropzone { min-height: 240px; padding: 30px 16px; }
+  .dropzone-icon { width: 68px; height: 68px; font-size: 1.9rem; }
+  .dropzone-title { font-size: 1.22rem; }
+}
