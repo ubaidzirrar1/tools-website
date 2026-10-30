@@ -24,6 +24,7 @@
       { id: "fpsc-photo", slug: "fpsc",     label: "FPSC Photo",       w: 200, h: 230, minKB: 0,  maxKB: 30 },
       { id: "ppsc-photo", slug: "ppsc",     label: "PPSC Photo",       w: 200, h: 230, minKB: 0,  maxKB: 30 },
       { id: "passport",   slug: "passport", label: "Passport Photo 35×45mm (300 DPI)", w: 413, h: 531, minKB: 0, maxKB: 200 },
+      { id: "dv-lottery", slug: "dv",       label: "DV Lottery Photo (US Green Card)", w: 600, h: 600, minKB: 0, maxKB: 240 },
       { id: "custom",     slug: "custom",   label: "Custom size…" }
     ],
     signature: [
