@@ -218,6 +218,7 @@ button.nav-link:hover { background: var(--surface-2); }
 
 @media (max-width: 920px) {
   .nav-toggle { display: block; }
+  .theme-toggle { margin-left: auto; }
   .main-nav { display: none; }
   .site-header.nav-open .main-nav {
     display: flex;
