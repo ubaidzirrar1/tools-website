@@ -25,11 +25,15 @@
       { id: "ppsc-photo", slug: "ppsc",     label: "PPSC Photo",       w: 200, h: 230, minKB: 0,  maxKB: 30 },
       { id: "passport",   slug: "passport", label: "Passport Photo 35×45mm (300 DPI)", w: 413, h: 531, minKB: 0, maxKB: 200 },
       { id: "dv-lottery", slug: "dv",       label: "DV Lottery Photo (US Green Card)", w: 600, h: 600, minKB: 0, maxKB: 240 },
+      { id: "pan-nsdl-photo", slug: "pan",  label: "PAN Photo — Protean (NSDL)", w: 197, h: 276, minKB: 0, maxKB: 50 },
+      { id: "pan-uti-photo",  slug: "pan",  label: "PAN Photo — UTIITSL", w: 213, h: 213, minKB: 0, maxKB: 30 },
       { id: "custom",     slug: "custom",   label: "Custom size…" }
     ],
     signature: [
       { id: "ssc-signature",  slug: "ssc",  label: "SSC Signature",  w: 140, h: 60, minKB: 10, maxKB: 20 },
       { id: "ibps-signature", slug: "ibps", label: "IBPS Signature", w: 140, h: 60, minKB: 10, maxKB: 20 },
+      { id: "pan-nsdl-signature", slug: "pan", label: "PAN Signature — Protean (NSDL)", w: 354, h: 157, minKB: 0, maxKB: 50 },
+      { id: "pan-uti-signature",  slug: "pan", label: "PAN Signature — UTIITSL", w: 400, h: 200, minKB: 0, maxKB: 60 },
       { id: "custom",         slug: "custom", label: "Custom size…" }
     ],
     thumb: [

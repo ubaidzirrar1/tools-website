@@ -90,21 +90,39 @@
     });
     if (bgN) { bg[0] /= bgN; bg[1] /= bgN; bg[2] /= bgN; }
 
+    // Region growing, not just a single-colour flood: a pixel joins the
+    // background when it is close to the reference colour, OR when it is
+    // a small step from an already-accepted neighbour while still within
+    // a capped distance of the reference. The step rule walks across
+    // gradients and uneven lighting (the common real-world background).
+    // It is disabled at high tolerances (> 50): there the tolerance box
+    // is already wide, and a step walk could creep from a skin-toned
+    // wall into the face itself, whose colour can sit inside the cap.
+    var stepTol = tolerance > 50 ? 0 : Math.max(8, Math.round(tolerance * 0.22));
+    var capTol = tolerance + 40;
     var filled = new Uint8Array(total);
     var stack = [];
-    function seed(i) {
-      if (!filled[i] && close(px(i), bg, tolerance)) { filled[i] = 1; stack.push(i); }
+    function accept(i, from) {
+      if (filled[i]) return;
+      var c = px(i);
+      if (close(c, bg, tolerance) ||
+          (from && stepTol > 0 && close(c, from, stepTol) && close(c, bg, capTol))) {
+        filled[i] = 1;
+        stack.push(i);
+      }
     }
+    function seed(i) { accept(i, null); }
     var x, y, i;
     for (x = 0; x < width; x++) { seed(x); seed((height - 1) * width + x); }
     for (y = 0; y < height; y++) { seed(y * width); seed(y * width + width - 1); }
     while (stack.length) {
       i = stack.pop();
+      var from = px(i);
       var ix = i % width, iy = (i / width) | 0;
-      if (ix > 0) seed(i - 1);
-      if (ix < width - 1) seed(i + 1);
-      if (iy > 0) seed(i - width);
-      if (iy < height - 1) seed(i + width);
+      if (ix > 0) accept(i - 1, from);
+      if (ix < width - 1) accept(i + 1, from);
+      if (iy > 0) accept(i - width, from);
+      if (iy < height - 1) accept(i + width, from);
     }
     var tr = target[0], tg = target[1], tb = target[2];
     var count = 0, o;
