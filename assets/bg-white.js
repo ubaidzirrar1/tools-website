@@ -1,24 +1,29 @@
 /* Tools Website — Change Photo Background to White
    Works on any page that contains an element with [data-bg-white-tool].
 
-   Replaces a plain photo background with white (or light blue / light
-   grey) using the edge flood-fill engine from the Passport Photo Maker
-   (window.TWPassportMaker in assets/passport.js, loaded before this
-   file — its UI stays inert on pages without a passport container).
+   Primary engine: an on-device AI person segmenter (Google MediaPipe
+   Selfie Segmentation, loaded from a public CDN on first use). The AI
+   finds the person in the photo and everything else is replaced with
+   white / light blue / light grey, with a softened edge band. The photo
+   itself is NEVER uploaded — only the AI model files are downloaded,
+   once; all processing happens locally in the browser.
+
+   Fallback: if the AI model cannot be loaded (no connection to the
+   CDN, very old browser), the tool falls back to the edge flood-fill
+   engine from the Passport Photo Maker (window.TWPassportMaker in
+   assets/passport.js) and the result panel says so plainly.
+
    No crop, no KB band: the photo keeps its own dimensions, with very
    large photos processed at up to 2400 px on the long edge (stated
-   openly in the UI). Honest by design: if no plain background area is
-   found, the tool says so and returns the photo unchanged rather than
-   pretending. All processing happens locally in the browser. */
+   openly in the UI). */
 (function (global) {
   "use strict";
 
   var MAX_DIM = 2400;
-  var STRENGTHS = [
-    { id: "gentle",   label: "Gentle",   tolerance: 25 },
-    { id: "standard", label: "Standard", tolerance: 40 },
-    { id: "strong",   label: "Strong",   tolerance: 65 }
-  ];
+  var INFER_MAX = 1280; // AI runs at up to this long edge; mask is scaled up for compositing
+  var FALLBACK_TOLERANCE = 40;
+  var MP_CDN = "https://cdn.jsdelivr.net/npm/@mediapipe/selfie_segmentation";
+  var AI_TIMEOUT_MS = 60000;
 
   function findById(list, id) {
     for (var i = 0; i < list.length; i++) if (list[i].id === id) return list[i];
@@ -32,7 +37,34 @@
     return { w: Math.round(natW * s), h: Math.round(natH * s), scaled: true };
   }
 
-  var BgCore = { STRENGTHS: STRENGTHS, MAX_DIM: MAX_DIM, findById: findById, processDims: processDims };
+  /* Pure compositing (unit-testable): imgData pixels are blended toward
+     `target` [r,g,b] by the person mask in maskData (RGBA; MediaPipe's
+     mask carries the person probability in the red channel — bright =
+     person). A soft band (mask 0.35–0.65) feathers the edge. Returns
+     the number of pixels counted as background (keep < 0.5). */
+  function compositeWithMask(imgData, maskData, w, h, target) {
+    var d = imgData.data;
+    var total = w * h;
+    if (!d || d.length < total * 4 || !maskData || maskData.length < total * 4) return 0;
+    var bgCount = 0;
+    for (var i = 0; i < total; i++) {
+      var m = maskData[i * 4] / 255;
+      var a; // strength of the ORIGINAL pixel to keep
+      if (m <= 0.35) a = 0;
+      else if (m >= 0.65) a = 1;
+      else a = (m - 0.35) / 0.3;
+      if (a < 0.5) bgCount++;
+      if (a === 1) continue;
+      var o = i * 4, na = 1 - a;
+      d[o]     = Math.round(d[o] * a + target[0] * na);
+      d[o + 1] = Math.round(d[o + 1] * a + target[1] * na);
+      d[o + 2] = Math.round(d[o + 2] * a + target[2] * na);
+      d[o + 3] = 255;
+    }
+    return bgCount;
+  }
+
+  var BgCore = { MAX_DIM: MAX_DIM, findById: findById, processDims: processDims, compositeWithMask: compositeWithMask };
   if (typeof module !== "undefined" && module.exports) module.exports = BgCore;
   if (global) global.TWBgWhite = BgCore;
 
@@ -88,7 +120,6 @@
   var origMeta    = qs("[data-original-meta]");
   var previewImg  = qs("[data-preview-img]");
   var bgChips     = qs("[data-bg-chips]");
-  var strChips    = qs("[data-strength-chips]");
   var makeBtn     = qs("[data-make-btn]");
   var statusEl    = qs("[data-status]");
   var resultPanel = qs("[data-result]");
@@ -106,7 +137,7 @@
   var state = {
     file: null, bitmap: null, natW: 0, natH: 0,
     previewURL: null, resultURL: null,
-    bgId: "white", strengthId: "standard",
+    bgId: "white",
     busy: false
   };
 
@@ -131,13 +162,8 @@
       var btn = e.target.closest ? e.target.closest("[" + attr + "]") : null;
       if (!btn) return;
       var id = btn.getAttribute(attr);
-      if (attr === "data-bg-id") {
-        if (findById(BACKGROUNDS, id)) state.bgId = id;
-        paintChips(bgChips, "data-bg-id", state.bgId);
-      } else {
-        if (findById(STRENGTHS, id)) state.strengthId = id;
-        paintChips(strChips, "data-strength-id", state.strengthId);
-      }
+      if (findById(BACKGROUNDS, id)) state.bgId = id;
+      paintChips(bgChips, "data-bg-id", state.bgId);
     });
   }
   function paintChips(wrap, attr, activeId) {
@@ -148,9 +174,7 @@
     }
   }
   buildChips(bgChips, BACKGROUNDS, "data-bg-id", true);
-  buildChips(strChips, STRENGTHS, "data-strength-id", false);
   paintChips(bgChips, "data-bg-id", state.bgId);
-  paintChips(strChips, "data-strength-id", state.strengthId);
 
   function setStatus(msg) { if (statusEl) statusEl.textContent = msg || ""; }
 
@@ -204,61 +228,148 @@
     });
   }
 
+  /* ---------- AI segmenter (lazy, singleton) ---------- */
+  var segPromise = null;
+  var segInstance = null;
+  var segPending = null;
+  var aiReady = false;
+
+  function loadSegmenter() {
+    if (segPromise) return segPromise;
+    segPromise = new Promise(function (resolve, reject) {
+      function init() {
+        try {
+          var ss = new global.SelfieSegmentation({
+            locateFile: function (f) { return MP_CDN + "/" + f; }
+          });
+          ss.setOptions({ modelSelection: 1 });
+          ss.onResults(function (results) {
+            if (segPending) {
+              var p = segPending;
+              segPending = null;
+              p.resolve(results.segmentationMask);
+            }
+          });
+          segInstance = ss;
+          aiReady = true;
+          resolve(ss);
+        } catch (e) { reject(e); }
+      }
+      if (global.SelfieSegmentation) { init(); return; }
+      var s = document.createElement("script");
+      s.src = MP_CDN + "/selfie_segmentation.js";
+      s.async = true;
+      s.onload = init;
+      s.onerror = function () { reject(new Error("ai-load-failed")); };
+      document.head.appendChild(s);
+    });
+    // A failed load may succeed on a later attempt (connection hiccup).
+    segPromise.catch(function () { segPromise = null; segInstance = null; });
+    return segPromise;
+  }
+
+  function segmentMask(sourceCanvas) {
+    return loadSegmenter().then(function (ss) {
+      return new Promise(function (resolve, reject) {
+        var timer = setTimeout(function () {
+          segPending = null;
+          reject(new Error("ai-timeout"));
+        }, AI_TIMEOUT_MS);
+        segPending = {
+          resolve: function (mask) { clearTimeout(timer); resolve(mask); }
+        };
+        ss.send({ image: sourceCanvas }).catch(function (e) {
+          clearTimeout(timer);
+          segPending = null;
+          reject(e);
+        });
+      });
+    });
+  }
+
+  function finishWithCanvas(canvas, pd, bg, bgPx, mode) {
+    canvasToBlob(canvas, 0.92).then(function (blob) {
+      state.busy = false;
+      makeBtn.disabled = false;
+      makeBtn.textContent = "Change background";
+      showResult(blob, pd, bg, bgPx, mode);
+      track("tool_resize_success", {
+        tool: "change_background_to_white", background: bg.id, engine: mode,
+        output_kb: Math.round(blob.size / 1024),
+        replaced_pct: Math.round(100 * bgPx / (pd.w * pd.h))
+      });
+    }).catch(function () {
+      state.busy = false;
+      makeBtn.disabled = false;
+      makeBtn.textContent = "Change background";
+      setStatus("Something went wrong while preparing your photo. Please try again.");
+    });
+  }
+
   function runMake() {
     if (state.busy || !state.file || !state.bitmap) return;
     var bg = findById(BACKGROUNDS, state.bgId);
-    var str = findById(STRENGTHS, state.strengthId);
-    if (!bg || !str) return;
+    if (!bg) return;
     state.busy = true;
     makeBtn.disabled = true;
-    var label = makeBtn.textContent;
     makeBtn.textContent = "Working…";
-    setStatus("Working in your browser — replacing the background…");
     resetResult();
 
-    // Let the status paint before the (synchronous) pixel work starts.
-    setTimeout(function () {
+    var pd = processDims(state.natW, state.natH, MAX_DIM);
+    var canvas = document.createElement("canvas");
+    canvas.width = pd.w;
+    canvas.height = pd.h;
+    var ctx = canvas.getContext("2d");
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(0, 0, pd.w, pd.h);
+    ctx.drawImage(state.bitmap, 0, 0, pd.w, pd.h);
+    var target = Engine.hexToRgb(bg.color);
+
+    // Inference runs on a smaller copy; the returned mask is drawn
+    // scaled (and smoothed) to the working size for compositing.
+    var idims = processDims(pd.w, pd.h, INFER_MAX);
+    var inferCanvas = document.createElement("canvas");
+    inferCanvas.width = idims.w;
+    inferCanvas.height = idims.h;
+    inferCanvas.getContext("2d").drawImage(canvas, 0, 0, idims.w, idims.h);
+
+    setStatus(aiReady
+      ? "Working in your browser — the AI is finding you in the photo…"
+      : "First use: downloading the AI model (a few MB, once only) — your photo itself never leaves your device…");
+
+    segmentMask(inferCanvas).then(function (mask) {
+      var maskCanvas = document.createElement("canvas");
+      maskCanvas.width = pd.w;
+      maskCanvas.height = pd.h;
+      var mctx = maskCanvas.getContext("2d");
+      mctx.imageSmoothingEnabled = true;
+      mctx.drawImage(mask, 0, 0, pd.w, pd.h);
+      var maskData = mctx.getImageData(0, 0, pd.w, pd.h).data;
+      var imgData = ctx.getImageData(0, 0, pd.w, pd.h);
+      var bgPx = compositeWithMask(imgData, maskData, pd.w, pd.h, target);
+      ctx.putImageData(imgData, 0, 0);
+      finishWithCanvas(canvas, pd, bg, bgPx, "ai");
+    }).catch(function () {
+      // Fallback: the original edge flood-fill, labelled as basic.
       try {
-        var pd = processDims(state.natW, state.natH, MAX_DIM);
-        var canvas = document.createElement("canvas");
-        canvas.width = pd.w;
-        canvas.height = pd.h;
-        var ctx = canvas.getContext("2d");
-        ctx.fillStyle = "#ffffff";
-        ctx.fillRect(0, 0, pd.w, pd.h);
-        ctx.drawImage(state.bitmap, 0, 0, pd.w, pd.h);
-        var imgData = ctx.getImageData(0, 0, pd.w, pd.h);
-        var replaced = Engine.floodFillReplace(imgData, pd.w, pd.h, Engine.hexToRgb(bg.color), str.tolerance);
-        if (replaced > 0) ctx.putImageData(imgData, 0, 0);
-        canvasToBlob(canvas, 0.92).then(function (blob) {
-          state.busy = false;
-          makeBtn.disabled = false;
-          makeBtn.textContent = label;
-          showResult(blob, pd, bg, replaced);
-          track("tool_resize_success", {
-            tool: "change_background_to_white", background: bg.id, strength: str.id,
-            output_kb: Math.round(blob.size / 1024), replaced_pct: Math.round(100 * replaced / (pd.w * pd.h))
-          });
-        }).catch(function () {
-          state.busy = false;
-          makeBtn.disabled = false;
-          makeBtn.textContent = label;
-          setStatus("Something went wrong while preparing your photo. Please try again.");
-        });
+        var imgData2 = ctx.getImageData(0, 0, pd.w, pd.h);
+        var replaced = Engine.floodFillReplace(imgData2, pd.w, pd.h, target, FALLBACK_TOLERANCE);
+        if (replaced > 0) ctx.putImageData(imgData2, 0, 0);
+        finishWithCanvas(canvas, pd, bg, replaced, "basic");
       } catch (e) {
         state.busy = false;
         makeBtn.disabled = false;
-        makeBtn.textContent = label;
+        makeBtn.textContent = "Change background";
         setStatus("Something went wrong while preparing your photo. Please try again with a different image.");
       }
-    }, 30);
+    });
   }
 
-  function showResult(blob, pd, bg, replaced) {
+  function showResult(blob, pd, bg, bgPx, mode) {
     if (state.resultURL) URL.revokeObjectURL(state.resultURL);
     state.resultURL = URL.createObjectURL(blob);
     if (resultImg) resultImg.src = state.resultURL;
-    var pctRaw = 100 * replaced / (pd.w * pd.h);
+    var pctRaw = 100 * bgPx / (pd.w * pd.h);
     var pct = pctRaw < 10 ? pctRaw.toFixed(1) : String(Math.round(pctRaw));
     if (resultMeta) {
       resultMeta.textContent = "Your photo with a " + bg.label.toLowerCase() + " background — " +
@@ -269,17 +380,31 @@
     if (statBg) statBg.textContent = bg.label;
     if (bandStatus) {
       bandStatus.classList.remove("is-ok", "is-warn");
-      if (pctRaw >= 2) {
-        bandStatus.classList.add("is-ok");
-        bandStatus.textContent = "✓ Background changed — about " + pct + "% of the photo was plain background and is now " +
-          bg.label.toLowerCase() + ". Anything the tool could not separate cleanly was left untouched.";
-      } else if (replaced > 0) {
-        bandStatus.classList.add("is-warn");
-        bandStatus.textContent = "⚠ Only about " + pct + "% of this photo counted as plain background, so only that small part changed. " +
-          "This tool works best on a photo taken against a plain, evenly lit wall — a busy or mixed background is left untouched on purpose, rather than risk cutting into the subject.";
+      if (mode === "ai") {
+        if (pctRaw >= 2) {
+          bandStatus.classList.add("is-ok");
+          bandStatus.textContent = "✓ Background changed — the on-device AI found the person in your photo and replaced about " + pct +
+            "% of the picture (the background) with " + bg.label.toLowerCase() +
+            ". Your photo was never uploaded: the AI runs entirely in your browser.";
+        } else if (bgPx > 0) {
+          bandStatus.classList.add("is-ok");
+          bandStatus.textContent = "✓ Done — the AI found that almost the whole frame is the person, so there was only a small background area (about " + pct + "%) to replace with " + bg.label.toLowerCase() + ".";
+        } else {
+          bandStatus.classList.add("is-warn");
+          bandStatus.textContent = "⚠ The AI could not separate a background in this photo, so it is unchanged. A clearer, front-facing photo with the person distinct from the background works best.";
+        }
       } else {
-        bandStatus.classList.add("is-warn");
-        bandStatus.textContent = "⚠ No plain background area was detected, so your photo is unchanged. This works best on a photo taken against a plain, evenly lit wall — or try the Strong setting.";
+        if (pctRaw >= 2) {
+          bandStatus.classList.add("is-ok");
+          bandStatus.textContent = "✓ Background changed — about " + pct + "% of the photo was plain background and is now " + bg.label.toLowerCase() +
+            ". Note: the AI model could not be loaded this time (connection?), so the basic method was used — it separates plain, evenly lit backgrounds only.";
+        } else if (bgPx > 0) {
+          bandStatus.classList.add("is-warn");
+          bandStatus.textContent = "⚠ Only about " + pct + "% of this photo counted as plain background, so only that small part changed. The AI model could not be loaded this time (connection?), and the basic method used instead works only on plain, evenly lit backgrounds. Check your connection and try again for the full AI method.";
+        } else {
+          bandStatus.classList.add("is-warn");
+          bandStatus.textContent = "⚠ No plain background area was detected, so your photo is unchanged. The AI model could not be loaded this time (connection?) and the basic fallback found nothing it could safely separate. Check your connection and try again.";
+        }
       }
     }
     if (downloadBtn) {
@@ -330,8 +455,8 @@
     });
   });
   dropzone.addEventListener("drop", function (e) {
-    var files = e.dataTransfer && e.dataTransfer.files;
-    if (files && files[0]) handleFile(files[0]);
+    var files2 = e.dataTransfer && e.dataTransfer.files;
+    if (files2 && files2[0]) handleFile(files2[0]);
   });
   document.addEventListener("paste", function (e) {
     if (!state.file && e.clipboardData && e.clipboardData.files && e.clipboardData.files[0]) {
