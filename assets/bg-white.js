@@ -40,8 +40,10 @@
   /* Pure compositing (unit-testable): imgData pixels are blended toward
      `target` [r,g,b] by the person mask in maskData (RGBA; MediaPipe's
      mask carries the person probability in the red channel — bright =
-     person). A soft band (mask 0.35–0.65) feathers the edge. Returns
-     the number of pixels counted as background (keep < 0.5). */
+     person). The keep-band is deliberately tight (0.42–0.62): the AI's
+     edge pixels still carry the OLD background's colour, so a wide soft
+     band shows up as a coloured halo around the person. Returns the
+     number of pixels counted as background (keep < 0.5). */
   function compositeWithMask(imgData, maskData, w, h, target) {
     var d = imgData.data;
     var total = w * h;
@@ -50,9 +52,9 @@
     for (var i = 0; i < total; i++) {
       var m = maskData[i * 4] / 255;
       var a; // strength of the ORIGINAL pixel to keep
-      if (m <= 0.35) a = 0;
-      else if (m >= 0.65) a = 1;
-      else a = (m - 0.35) / 0.3;
+      if (m <= 0.42) a = 0;
+      else if (m >= 0.62) a = 1;
+      else a = (m - 0.42) / 0.2;
       if (a < 0.5) bgCount++;
       if (a === 1) continue;
       var o = i * 4, na = 1 - a;
@@ -64,7 +66,47 @@
     return bgCount;
   }
 
-  var BgCore = { MAX_DIM: MAX_DIM, findById: findById, processDims: processDims, compositeWithMask: compositeWithMask };
+  /* Pure (unit-testable): erode the person mask's red channel in place
+     by `passes` 3×3 minimum-filter passes (≈ passes px). The AI mask is
+     computed at low resolution, so its boundary sits a few output pixels
+     OUTSIDE the person, over background-coloured pixels — compositing
+     with it raw leaves a halo of the old background around the outline.
+     Shrinking the mask first assigns that mixed fringe to the
+     background, which is what a clean cut-out needs. */
+  function erodeMaskData(data, w, h, passes) {
+    var total = w * h;
+    if (!data || data.length < total * 4) return;
+    var src = new Uint8Array(total);
+    var dst = new Uint8Array(total);
+    var i, x, y, p;
+    for (i = 0; i < total; i++) src[i] = data[i * 4];
+    for (p = 0; p < passes; p++) {
+      for (y = 0; y < h; y++) {
+        for (x = 0; x < w; x++) {
+          var min = 255;
+          for (var dy = -1; dy <= 1; dy++) {
+            var yy = y + dy;
+            if (yy < 0 || yy >= h) continue;
+            for (var dx = -1; dx <= 1; dx++) {
+              var xx = x + dx;
+              if (xx < 0 || xx >= w) continue;
+              var v = src[yy * w + xx];
+              if (v < min) min = v;
+            }
+          }
+          dst[y * w + x] = min;
+        }
+      }
+      var tmp = src; src = dst; dst = tmp;
+    }
+    for (i = 0; i < total; i++) {
+      data[i * 4] = src[i];
+      data[i * 4 + 1] = src[i];
+      data[i * 4 + 2] = src[i];
+    }
+  }
+
+  var BgCore = { MAX_DIM: MAX_DIM, findById: findById, processDims: processDims, compositeWithMask: compositeWithMask, erodeMaskData: erodeMaskData };
   if (typeof module !== "undefined" && module.exports) module.exports = BgCore;
   if (global) global.TWBgWhite = BgCore;
 
@@ -228,21 +270,23 @@
     });
   }
 
-  /* ---------- AI segmenter (lazy, singleton) ---------- */
-  var segPromise = null;
-  var segInstance = null;
+  /* ---------- AI segmenter (lazy, one instance per model) ----------
+     MediaPipe offers two models: 0 = square (fits portrait photos),
+     1 = landscape. Picking the one that matches the photo's shape
+     gives a noticeably tighter mask on head-and-shoulders portraits. */
+  var segByModel = {};
   var segPending = null;
   var aiReady = false;
 
-  function loadSegmenter() {
-    if (segPromise) return segPromise;
-    segPromise = new Promise(function (resolve, reject) {
+  function loadSegmenter(modelSel) {
+    if (segByModel[modelSel]) return segByModel[modelSel];
+    var promise = new Promise(function (resolve, reject) {
       function init() {
         try {
           var ss = new global.SelfieSegmentation({
             locateFile: function (f) { return MP_CDN + "/" + f; }
           });
-          ss.setOptions({ modelSelection: 1 });
+          ss.setOptions({ modelSelection: modelSel });
           ss.onResults(function (results) {
             if (segPending) {
               var p = segPending;
@@ -250,7 +294,6 @@
               p.resolve(results.segmentationMask);
             }
           });
-          segInstance = ss;
           aiReady = true;
           resolve(ss);
         } catch (e) { reject(e); }
@@ -263,13 +306,14 @@
       s.onerror = function () { reject(new Error("ai-load-failed")); };
       document.head.appendChild(s);
     });
+    segByModel[modelSel] = promise;
     // A failed load may succeed on a later attempt (connection hiccup).
-    segPromise.catch(function () { segPromise = null; segInstance = null; });
-    return segPromise;
+    promise.catch(function () { delete segByModel[modelSel]; });
+    return promise;
   }
 
-  function segmentMask(sourceCanvas) {
-    return loadSegmenter().then(function (ss) {
+  function segmentMask(sourceCanvas, modelSel) {
+    return loadSegmenter(modelSel).then(function (ss) {
       return new Promise(function (resolve, reject) {
         var timer = setTimeout(function () {
           segPending = null;
@@ -337,13 +381,25 @@
       ? "Working in your browser — the AI is finding you in the photo…"
       : "First use: downloading the AI model (a few MB, once only) — your photo itself never leaves your device…");
 
-    segmentMask(inferCanvas).then(function (mask) {
+    var modelSel = pd.h >= pd.w ? 0 : 1;
+    segmentMask(inferCanvas, modelSel).then(function (mask) {
+      // Erode the mask at inference size first (≈2 px): the raw mask's
+      // boundary sits over old-background pixels and would otherwise
+      // leave a coloured halo around the person.
+      var rawCanvas = document.createElement("canvas");
+      rawCanvas.width = idims.w;
+      rawCanvas.height = idims.h;
+      var rctx = rawCanvas.getContext("2d");
+      rctx.drawImage(mask, 0, 0, idims.w, idims.h);
+      var rawData = rctx.getImageData(0, 0, idims.w, idims.h);
+      erodeMaskData(rawData.data, idims.w, idims.h, 2);
+      rctx.putImageData(rawData, 0, 0);
       var maskCanvas = document.createElement("canvas");
       maskCanvas.width = pd.w;
       maskCanvas.height = pd.h;
       var mctx = maskCanvas.getContext("2d");
       mctx.imageSmoothingEnabled = true;
-      mctx.drawImage(mask, 0, 0, pd.w, pd.h);
+      mctx.drawImage(rawCanvas, 0, 0, pd.w, pd.h);
       var maskData = mctx.getImageData(0, 0, pd.w, pd.h).data;
       var imgData = ctx.getImageData(0, 0, pd.w, pd.h);
       var bgPx = compositeWithMask(imgData, maskData, pd.w, pd.h, target);
