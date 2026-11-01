@@ -1275,3 +1275,6 @@ img, video, svg { max-width: 100%; }
   .dropzone-icon { width: 68px; height: 68px; font-size: 1.9rem; }
   .dropzone-title { font-size: 1.22rem; }
 }
+
+/* Compress PDF: selected-file info line */
+.tool-file-info { margin: 14px 2px 0; font-weight: 600; font-size: 0.98rem; }
