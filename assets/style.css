@@ -1278,3 +1278,6 @@ img, video, svg { max-width: 100%; }
 
 /* Compress PDF: selected-file info line */
 .tool-file-info { margin: 14px 2px 0; font-weight: 600; font-size: 0.98rem; }
+
+/* Image converter (WebP to JPG and siblings) */
+.conv-range { width: 100%; max-width: 420px; min-height: 44px; accent-color: var(--primary, #e5322d); display: block; }
