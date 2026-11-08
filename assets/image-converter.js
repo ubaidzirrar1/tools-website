@@ -8,7 +8,13 @@
    entirely in the browser: File -> decode -> Canvas at the ORIGINAL
    pixel dimensions -> encode as JPG or PNG. For JPG, transparent
    pixels are flattened onto a chosen background colour (white or
-   black) because JPG has no alpha channel. Files are never uploaded. */
+   black) because JPG has no alpha channel. Files are never uploaded.
+
+   HEIC/HEIF exception: no browser can decode HEIC natively, so HEIC
+   files are decoded with libheif (self-hosted at
+   /assets/vendor/libheif.js), which is loaded LAZILY — only when the
+   first HEIC file is added — and then cached. Everything still happens
+   on the user's device; HEIC photos are never uploaded either. */
 (function (global) {
   "use strict";
 
@@ -64,12 +70,22 @@
     for (var i = 0; i < BACKGROUNDS.length; i++) if (BACKGROUNDS[i].id === id) return BACKGROUNDS[i].css;
     return "#ffffff";
   }
+  /* True for HEIC/HEIF files — by MIME type when the browser reports
+     one, otherwise by file extension (some systems hand HEIC files over
+     with an empty or generic type). */
+  function isHeicFile(file) {
+    if (!file) return false;
+    var type = String(file.type || "").toLowerCase();
+    if (type === "image/heic" || type === "image/heif") return true;
+    return /\.hei[cf]$/i.test(String(file.name || ""));
+  }
 
   var ConvertCore = {
     FORMATS: FORMATS, BACKGROUNDS: BACKGROUNDS, MAX_FILES: MAX_FILES,
     DEFAULT_QUALITY: DEFAULT_QUALITY,
     normalizeFormat: normalizeFormat, formatInfo: formatInfo,
-    clampQuality: clampQuality, outputName: outputName, backgroundCss: backgroundCss
+    clampQuality: clampQuality, outputName: outputName, backgroundCss: backgroundCss,
+    isHeicFile: isHeicFile
   };
   if (typeof module !== "undefined" && module.exports) module.exports = ConvertCore;
   if (global) global.TWImageConvert = ConvertCore;
@@ -77,6 +93,81 @@
   /* ================================================================
      DOM conversion (browser only)
      ================================================================ */
+  /* ---- HEIC decoding via libheif (lazy, cached) ---- */
+  function heicLoadError() {
+    var e = new Error("HEIC decoder could not load — check your connection and try again.");
+    e.isHeicLoadError = true;
+    return e;
+  }
+  var heifModulePromise = null;
+  function loadHeifModule() {
+    if (heifModulePromise) return heifModulePromise;
+    var p = new Promise(function (resolve, reject) {
+      function fail() { reject(heicLoadError()); }
+      function init() {
+        if (typeof window === "undefined" || typeof window.libheif !== "function") { fail(); return; }
+        try {
+          Promise.resolve(window.libheif()).then(function (mod) {
+            if (mod && typeof mod.HeifDecoder === "function") resolve(mod);
+            else fail();
+          }, fail);
+        } catch (e) { fail(); }
+      }
+      if (typeof window !== "undefined" && typeof window.libheif === "function") { init(); return; }
+      if (typeof document === "undefined" || !document.createElement) { fail(); return; }
+      var s = document.createElement("script");
+      s.src = "/assets/vendor/libheif.js";
+      s.async = true;
+      s.onload = init;
+      s.onerror = fail;
+      (document.head || document.documentElement).appendChild(s);
+    });
+    heifModulePromise = p;
+    /* A failed load must not poison the page: clear the cache so the
+       next HEIC file retries. */
+    p.then(null, function () { if (heifModulePromise === p) heifModulePromise = null; });
+    return p;
+  }
+  function readArrayBuffer(file) {
+    if (typeof file.arrayBuffer === "function") return file.arrayBuffer();
+    return new Promise(function (resolve, reject) {
+      var r = new FileReader();
+      r.onload = function () { resolve(r.result); };
+      r.onerror = function () { reject(new Error("decode")); };
+      r.readAsArrayBuffer(file);
+    });
+  }
+  /* Decode a HEIC/HEIF file to a canvas at its exact pixel size. */
+  function decodeHeicToCanvas(file) {
+    return loadHeifModule().then(function (heif) {
+      return readArrayBuffer(file).then(function (buf) {
+        var img;
+        try {
+          var decoder = new heif.HeifDecoder();
+          var images = decoder.decode(buf);
+          if (!images || !images.length) throw new Error("decode");
+          img = images[0];
+        } catch (e) { throw new Error("decode"); }
+        var w = img.get_width(), h = img.get_height();
+        if (!w || !h) throw new Error("decode");
+        var canvas = document.createElement("canvas");
+        canvas.width = w;
+        canvas.height = h;
+        var ctx = canvas.getContext("2d");
+        var imageData = ctx.createImageData(w, h);
+        return new Promise(function (resolve, reject) {
+          try {
+            img.display(imageData, function (displayData) {
+              if (!displayData) { reject(new Error("decode")); return; }
+              ctx.putImageData(displayData, 0, 0);
+              resolve(canvas);
+            });
+          } catch (e) { reject(new Error("decode")); }
+        });
+      });
+    });
+  }
+
   function loadViaImageElement(file) {
     return new Promise(function (resolve, reject) {
       var url = URL.createObjectURL(file);
@@ -87,6 +178,17 @@
     });
   }
   function loadSource(file) {
+    if (isHeicFile(file)) {
+      /* Browsers cannot decode HEIC: go through libheif. The decoded
+         canvas doubles as the source, and a JPEG data URL of it serves
+         as the list thumbnail (the browser cannot render a HEIC blob
+         URL in an <img>). */
+      return decodeHeicToCanvas(file).then(function (canvas) {
+        var thumb = null;
+        try { thumb = canvas.toDataURL("image/jpeg", 0.85); } catch (e) {}
+        return { source: canvas, url: thumb };
+      });
+    }
     if (typeof window !== "undefined" && typeof window.createImageBitmap === "function") {
       return window.createImageBitmap(file, { imageOrientation: "from-image" })
         .then(function (bmp) { return { source: bmp, url: null }; })
@@ -320,7 +422,7 @@
   function addFiles(fileList) {
     var files = Array.prototype.slice.call(fileList || []);
     files.forEach(function (file) {
-      if (file.type && file.type.indexOf("image/") !== 0) {
+      if (!isHeicFile(file) && file.type && file.type.indexOf("image/") !== 0) {
         setStatus("“" + file.name + "” is not an image file, so it was skipped.");
         return;
       }
@@ -339,8 +441,12 @@
         renderList();
         setStatus("");
         track("tool_file_selected", { tool: "image_converter", file_type: file.type || "" });
-      }).catch(function () {
-        setStatus("“" + file.name + "” could not be read — it may be damaged, or a format your browser cannot open. A WebP, JPG or PNG will work.");
+      }).catch(function (err) {
+        if (err && err.isHeicLoadError) {
+          setStatus("“" + file.name + "” — " + err.message);
+        } else {
+          setStatus("“" + file.name + "” could not be read — it may be damaged, or a format your browser cannot open. A WebP, JPG or PNG will work.");
+        }
       });
     });
   }
@@ -367,9 +473,11 @@
           it.resultURL = URL.createObjectURL(res.blob);
           okCount++;
           renderList();
-        }).catch(function () {
+        }).catch(function (err) {
           it.state = "error";
-          it.error = "Could not convert this file — it may be damaged, or a format your browser cannot decode.";
+          it.error = (err && err.isHeicLoadError)
+            ? err.message
+            : "Could not convert this file — it may be damaged, or a format your browser cannot decode.";
           failCount++;
           renderList();
         });
