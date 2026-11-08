@@ -53,3 +53,5 @@ python3 -m http.server 8000
 - Every page: semantic HTML, unique `<title>` + meta description, shared header/footer.
 - Category and tool pages carry BreadcrumbList JSON-LD; the homepage carries
   Organization + WebSite + WebApplication + FAQPage JSON-LD.
+
+<!-- deploy nudge 2026-11-08: HEIC to JPG added -->
