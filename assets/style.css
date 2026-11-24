@@ -1281,3 +1281,35 @@ img, video, svg { max-width: 100%; }
 
 /* Image converter (WebP to JPG and siblings) */
 .conv-range { width: 100%; max-width: 420px; min-height: 44px; accent-color: var(--primary, #e5322d); display: block; }
+
+/* Merge & Split PDF */
+.ms-thumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.45rem;
+  background: var(--surface-2);
+  object-fit: initial;
+}
+.ms-field { font-weight: 600; display: grid; gap: 6px; margin-top: 14px; }
+.ms-range-input {
+  width: 100%;
+  max-width: 420px;
+  min-height: 48px;
+  padding: 12px 14px;
+  font: inherit;
+  font-size: 1.05rem;
+  font-weight: 600;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--text);
+}
+.ms-range-input:focus {
+  border-color: var(--primary);
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(229, 50, 45, 0.13);
+}
+.ms-helper { color: var(--muted); font-size: 0.92rem; margin: 10px 0 0; max-width: 560px; }
+.ms-split-links { margin-top: 16px; }
+.ms-dl-btn { white-space: nowrap; }
